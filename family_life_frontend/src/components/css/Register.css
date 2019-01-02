@@ -1,0 +1,9 @@
+.ui.form {
+    width: 36%;
+    border: 1px solid;
+    padding: 20px;
+    left: 30%;
+    border-radius: 5px;
+    margin-top: 4rem;
+    color: lightgray
+}
