@@ -1,3 +1,9 @@
-.test {
-    color: red;
+.header-container {
+    font-size: 1.5rem;
+}
+
+.ui .landingPage--list {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-top: 40px;
 }

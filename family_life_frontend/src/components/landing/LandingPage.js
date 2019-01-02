@@ -35,7 +35,7 @@ const HomepageHeading = ({ mobile }) => (
     />
     <Header
       as='h2'
-      content='Simply the best family organizer'
+      content='The best way to keep your family organized and unified!'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
@@ -90,8 +90,8 @@ class DesktopContainer extends Component {
               size='large'
               style={{border: 'none'}}
             >
-              <Container>
-                <Menu.Item as='a' active>
+              <Container className='header-container'>
+                <Menu.Item  as='a' active>
                   FamilyLife
                 </Menu.Item>
                 <Menu.Item position='right'>
@@ -203,11 +203,11 @@ const LandingPage = () => (
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={9}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+            <Header as='h3' style={{ fontSize: '3em' }}>
              A must have application for families on the go!
             </Header>
-            <List bulleted>
-              <List.Item className='test' >Set up, track and monitor chores and homework</List.Item>
+            <List className='landingPage--list' bulleted>
+              <List.Item  >Set up, track and monitor chores and homework</List.Item>
               <List.Item>Schedule appointments and activities</List.Item>
               <List.Item>Use from any mobile device or computer</List.Item>
             </List>
