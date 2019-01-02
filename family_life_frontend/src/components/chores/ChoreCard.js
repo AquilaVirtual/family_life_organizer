@@ -22,14 +22,16 @@ const ChoreCard = ({ user, index, chores }) => {
         </Grid.Row>
         {chores.map((chore, i) => (
           <React.Fragment key={i}>
-            <Grid.Column>{chore.title}</Grid.Column>
+            <Grid.Column
+              style={{paddingLeft: "3rem", textAlign: "left" }}
+            >{chore.title}</Grid.Column>
             <Grid.Column>
               {chore.status === "completed" ? (
-                <Icon className="check icon" />
+                <Icon className="check icon green" />
               ) : chore.status === "not started" ? (
-                <Icon className="close icon" />
+                <Icon className="close icon red" />
               ) : (
-                <Icon className="clock outline icon" />
+                <Icon className="clock outline icon yellow" />
               )}
             </Grid.Column>
           </React.Fragment>
