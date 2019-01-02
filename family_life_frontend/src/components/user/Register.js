@@ -19,11 +19,11 @@ class Register extends Component {
       <Form>
         <Form.Field>
           <label>Full Name</label>
-          <input placeholder="First Name" />
+          <input placeholder="Full Name" />
         </Form.Field>
         <Form.Field>
           <label>Username</label>
-          <input placeholder="Last Name" />
+          <input placeholder="Username" />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
@@ -31,7 +31,7 @@ class Register extends Component {
         </Form.Field>
         <Form.Field>
           <label>Confirm Password</label>
-          <input placeholder="ConfirmPassword" />
+          <input placeholder="Confirm Password" />
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>
