@@ -1,6 +1,8 @@
 import React from "react";
 import { Segment, Grid, Header, Icon } from "semantic-ui-react";
 
+import ChoreModal from "./ChoreModal";
+
 const ChoreCard = ({ user, index, chores }) => {
   return (
     <Segment
@@ -9,7 +11,7 @@ const ChoreCard = ({ user, index, chores }) => {
         margin: "0 auto"
       }}
     >
-      <Grid columns={2}>
+      <Grid style={{ marginBottom: "2rem" }} columns={2}>
         <Grid.Row>
           <Grid.Column>
             <Header textAlign="left" as="h2">
@@ -37,6 +39,7 @@ const ChoreCard = ({ user, index, chores }) => {
           </React.Fragment>
         ))}
       </Grid>
+      <ChoreModal user={user} />
     </Segment>
   );
 };
