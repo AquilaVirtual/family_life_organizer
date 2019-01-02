@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route, NavLink } from 'react-router-dom';
+import { Menu } from 'semantic-ui-react';
+
+import LandingPage from "./components/landing/LandingPage";
+import UserPage from "./components/user/UserPage";
+import ActivityPage from "./components/activities/ActivityPage";
+import CalendarPage from "./components/calendar/CalendarPage";
+import ChorePage from "./components/chores/ChorePage";
+import AssignmentPage from "./components/assignments/AssignmentPage";
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {/* Temporary links */}
+        <Menu>
+          <Menu.Item>
+            <NavLink to="/">Home</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/users">Users</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/activities">Activities</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/calendar">Calendar</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/chores">Chores</NavLink>
+          </Menu.Item>
+          <Menu.Item>
+            <NavLink to="/homeworks">Homeworks</NavLink>
+          </Menu.Item>
+        </Menu>
+
+        {/* Available routes */}
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/users" component={UserPage} />
+        <Route exact path="/activities" component={ActivityPage} />
+        <Route exact path="/calendar" component={CalendarPage} />
+        <Route exact path="/chores" component={ChorePage} />
+        <Route exact path="/homeworks" component={AssignmentPage} />
       </div>
     );
   }
