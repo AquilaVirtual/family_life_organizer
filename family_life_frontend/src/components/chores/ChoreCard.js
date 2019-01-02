@@ -1,6 +1,8 @@
 import React from "react";
 import { Segment, Grid, Header, Icon } from "semantic-ui-react";
 
+import ChoreModal from "./ChoreModal";
+
 const ChoreCard = ({ user, index, chores }) => {
   return (
     <Segment
@@ -9,7 +11,7 @@ const ChoreCard = ({ user, index, chores }) => {
         margin: "0 auto"
       }}
     >
-      <Grid columns={2}>
+      <Grid style={{ marginBottom: "2rem" }} columns={2}>
         <Grid.Row>
           <Grid.Column>
             <Header textAlign="left" as="h2">
@@ -22,19 +24,22 @@ const ChoreCard = ({ user, index, chores }) => {
         </Grid.Row>
         {chores.map((chore, i) => (
           <React.Fragment key={i}>
-            <Grid.Column>{chore.title}</Grid.Column>
+            <Grid.Column
+              style={{paddingLeft: "3rem", textAlign: "left" }}
+            >{chore.title}</Grid.Column>
             <Grid.Column>
               {chore.status === "completed" ? (
-                <Icon className="check icon" />
+                <Icon className="check icon green" />
               ) : chore.status === "not started" ? (
-                <Icon className="close icon" />
+                <Icon className="close icon red" />
               ) : (
-                <Icon className="clock outline icon" />
+                <Icon className="clock outline icon yellow" />
               )}
             </Grid.Column>
           </React.Fragment>
         ))}
       </Grid>
+      <ChoreModal user={user} />
     </Segment>
   );
 };
