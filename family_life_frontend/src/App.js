@@ -9,6 +9,7 @@ import CalendarPage from "./components/calendar/CalendarPage";
 import ChorePage from "./components/chores/ChorePage";
 import AssignmentPage from "./components/assignments/AssignmentPage";
 import Login from "./components/user/Login";
+import Register from "./components/user/Register";
 
 import './App.css';
 
@@ -39,8 +40,9 @@ class App extends Component {
         </Menu>
 
         {/* Available routes */}
-        <Route exact path="/login" component={Login} />
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/users" component={UserPage} />
         <Route exact path="/activities" component={ActivityPage} />
         <Route exact path="/calendar" component={CalendarPage} />
