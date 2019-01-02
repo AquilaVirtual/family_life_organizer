@@ -22,7 +22,7 @@ class ChoreCard extends React.Component {
           margin: "0 auto"
         }}
       >
-        <Grid style={{ marginBottom: "2rem" }} columns={2}>
+        <Grid style={{ marginBottom: "2rem" }} columns={3}>
           <Grid.Row>
             <Grid.Column>
               <Header textAlign="left" as="h2">
@@ -30,7 +30,10 @@ class ChoreCard extends React.Component {
               </Header>
             </Grid.Column>
             <Grid.Column>
-              <Header as="h2">{index === 0 && "Status"}</Header>
+              <Header as="h4">{index === 0 && "Status"}</Header>
+            </Grid.Column>
+            <Grid.Column>
+              <Header as="h4">{index === 0 && "Actions"}</Header>
             </Grid.Column>
           </Grid.Row>
           {chores.map((chore, i) => (
@@ -39,13 +42,28 @@ class ChoreCard extends React.Component {
                 style={{ paddingLeft: "3rem", textAlign: "left" }}
               >{chore.title}</Grid.Column>
               <Grid.Column>
-                {chore.status === "completed" ? (
-                  <Icon className="check icon green" />
-                ) : chore.status === "not started" ? (
-                  <Icon className="close icon red" />
-                ) : (
-                      <Icon className="clock outline icon yellow" />
-                    )}
+                <Icon className={`${
+                  chore.status === "completed" ?
+                    "check green" :
+                  chore.status === "not started" ?
+                    "close red" :
+                    "clock outline yellow"
+                  } icon`}
+                  style = {{ fontSize: "1.4rem" }}
+                />
+              </Grid.Column>
+              <Grid.Column textAlign="right">
+                {
+                  chore.status !== "completed" &&
+                  <Icon className={`${
+                    chore.status === "not started" ?
+                    "arrow alternate circle right yellow" :
+                    "stop circle outline green"
+                    } icon`}
+                    style = {{ cursor: "pointer", fontSize: "1.4rem" }}
+                  />
+                }
+                <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }} className="trash alternate outline" />
               </Grid.Column>
             </React.Fragment>
           ))}
