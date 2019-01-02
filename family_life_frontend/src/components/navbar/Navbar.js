@@ -1,9 +1,6 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
+import { Menu, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
-
-import Login from "../user/Login";
-import Register from "../user/Register";
 
 const LandingPage = () => {
   return (   
@@ -27,6 +24,11 @@ const LandingPage = () => {
           <Menu.Item>
             <NavLink to="/homeworks">Homeworks</NavLink>
           </Menu.Item>
+          <NavLink to="/login">
+       <Button primary>Login</Button></NavLink>
+          <NavLink to="/register">
+          <Button primary>Register</Button></NavLink>
+            
         </Menu>
        </div>       
   );

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
 
+import "../css/Register.css"
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +63,7 @@ class Register extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Field>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" primary>Submit</Button>
       </Form>
     );
   }

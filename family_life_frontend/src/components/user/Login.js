@@ -39,7 +39,7 @@ class LogIn extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Field>
-        <Button type="submit">Submit</Button>
+        <Button type="submit" primary>Submit</Button>
       </Form>
     );
   }
