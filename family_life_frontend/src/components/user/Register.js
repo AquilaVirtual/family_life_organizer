@@ -14,24 +14,52 @@ class Register extends Component {
       errorMessage: ""
     };
   }
+  handleInputChange = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  };
   render() {
     return (
       <Form>
         <Form.Field>
           <label>Full Name</label>
-          <input placeholder="Full Name" />
+          <input
+            placeholder="Full Name"
+            name="name"
+            type="text"
+            value={this.state.name}
+            onChange={this.handleInputChange}
+          />
         </Form.Field>
         <Form.Field>
           <label>Username</label>
-          <input placeholder="Username" />
+          <input
+            placeholder="Username"
+            name="username"
+            type="text"
+            value={this.state.username}
+            onChange={this.handleInputChange}
+          />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
-          <input placeholder="Password" />
+          <input
+            placeholder="Password"
+            name="password"
+            type="password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+          />
         </Form.Field>
         <Form.Field>
           <label>Confirm Password</label>
-          <input placeholder="Confirm Password" />
+          <input
+            placeholder="Confirm Password"
+            name="confirmPassword"
+            type="password"
+            value={this.state.confirmPassword}
+            onChange={this.handleInputChange}
+          />
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>
