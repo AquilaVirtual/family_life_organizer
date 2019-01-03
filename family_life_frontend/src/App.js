@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import { Route } from 'react-router-dom';
 
 import LandingPage from "./components/landing/LandingPage";
 import UserPage from "./components/user/UserPage";
@@ -18,9 +17,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
         {/* Available routes */}
         <Route exact path="/" component={LandingPage} />
+        <Route path="/:path" component={Navbar} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/users" component={UserPage} />
