@@ -7,3 +7,8 @@
     margin-top: 4rem;
     color: lightgray
 }
+
+.ui.form .field label {
+    color: rgb(34, 133, 208);
+    float: left;
+}
