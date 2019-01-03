@@ -7,6 +7,7 @@ class ChoreCard extends React.Component {
   state = {
     modal: false,
     confirmDelete: false,
+    deleteIndex: null,
   }
 
   handleModalToggle = () => {
@@ -69,15 +70,9 @@ class ChoreCard extends React.Component {
                 }
                 <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
                   className="trash alternate outline"
-                  onClick={() => this.setState({confirmDelete: true})}
-                />
-                <Confirm open={confirmDelete}
-                  content="Are you sure you want to delete this chore?"
-                  onCancel={() => this.setState({ confirmDelete: false })}
-                  onConfirm={() => {
-                    deleteChore(id, i);
-                    this.setState({ confirmDelete: false })}
-                  }
+                  onClick={() => {
+                    this.setState({ confirmDelete: true, deleteIndex: i })
+                  }}
                 />
               </Grid.Column>
             </React.Fragment>
@@ -85,6 +80,14 @@ class ChoreCard extends React.Component {
         </Grid>
         <Button primary icon="add" content="New Chore"
           onClick={this.handleModalToggle}
+        />
+        <Confirm open={confirmDelete}
+          content="Are you sure you want to delete this chore?"
+          onCancel={() => this.setState({ confirmDelete: false })}
+          onConfirm={() => {
+            deleteChore(id, this.state.deleteIndex);
+            this.setState({ confirmDelete: false })}
+          }
         />
         <ChoreModal
           open={this.state.modal}
