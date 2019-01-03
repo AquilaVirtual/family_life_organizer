@@ -1,11 +1,12 @@
 import React from "react";
-import { Segment, Grid, Header, Icon, Button } from "semantic-ui-react";
+import { Segment, Grid, Header, Icon, Button, Confirm } from "semantic-ui-react";
 
 import ChoreModal from "./ChoreModal";
 
 class ChoreCard extends React.Component {
   state = {
     modal: false,
+    confirmDelete: false,
   }
 
   handleModalToggle = () => {
@@ -15,6 +16,7 @@ class ChoreCard extends React.Component {
   }
   render() {
     const { user, index, chores } = this.props;
+    const { confirmDelete } = this.state;
     return (
       <Segment
         style={{
@@ -63,7 +65,18 @@ class ChoreCard extends React.Component {
                     style = {{ cursor: "pointer", fontSize: "1.4rem" }}
                   />
                 }
-                <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }} className="trash alternate outline" />
+                <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
+                  className="trash alternate outline"
+                  onClick={() => this.setState({confirmDelete: true})}
+                />
+                <Confirm open={confirmDelete}
+                  content="Are you sure you want to delete this chore?"
+                  onCancel={() => this.setState({ confirmDelete: false })}
+                  onConfirm={() => {
+                    console.log("delete a chore");
+                    this.setState({ confirmDelete: false })}
+                  }
+                />
               </Grid.Column>
             </React.Fragment>
           ))}
