@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 
-import { account } from './dummyData';
-
 import LandingPage from "./components/landing/LandingPage";
 import UserPage from "./components/user/UserPage";
 import ActivityPage from "./components/activities/ActivityPage";
@@ -11,28 +9,9 @@ import ChorePage from "./components/chores/ChorePage";
 import AssignmentPage from "./components/assignments/AssignmentPage";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Navbar from "./components/navbar/Navbar";
+// import Navbar from "./components/navbar/Navbar";
 
 import "./App.css";
-
-const user = {
-  id: 123,
-  name: "Dad",
-  familyMembers: [
-    {
-      name: "Mom",
-      type: "Parent"
-    },
-    {
-      name: "Jan",
-      type: "Child"
-    },
-    {
-      name: "Tom",
-      type: "Type"
-    }
-  ]
-}
 
 class App extends Component {
   render() {
@@ -43,12 +22,7 @@ class App extends Component {
         {/* <Route path="/:path" component={Navbar} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-
-        <Route exact path="/users" render={props => (
-          <UserPage {...props} user={account}/>
-        )
-        } />
-
+        <Route exact path="/users" component={UserPage} />
         <Route exact path="/activities" component={ActivityPage} />
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />

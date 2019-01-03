@@ -14,6 +14,7 @@ class ChoreCard extends React.Component {
       modal: !state.modal
     }))
   }
+
   render() {
     const { user, id, index, chores, addChore, deleteChore, updateStatus } = this.props;
     const { confirmDelete } = this.state;
