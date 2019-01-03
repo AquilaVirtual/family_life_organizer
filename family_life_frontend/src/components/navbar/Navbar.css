@@ -1,0 +1,45 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 1.8rem;
+    padding: 50px 0 0 0;
+    z-index: 5;
+}
+
+.navbar--btn {
+    /* border: red 1px solid; */
+    padding: 30px;
+    display: block;
+    width: 200px;
+    height: 100%;
+    background-color: lightblue;
+    border-radius: 5px;
+    color: #201F26;
+}
+
+
+.navbar--btn-activities {
+    background-color: #C7DFC5;
+}
+
+.navbar--btn-calendar {
+    background-color: #A6808C;
+}
+
+.navbar--btn-chores {
+    background-color: #EF959D;
+}
+
+.navbar--btn-homework {
+    background-color: #FCDDBC;
+}
+
+.active{
+  color: white;
+}

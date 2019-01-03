@@ -61,3 +61,34 @@ export const activities = [
  type: "Sports"
 }
 ]
+
+export const homework = [
+  {
+    user: "Jan",
+    due: new Date("2019-01-05"),
+    status: "completed",
+    title: "Algebra II",
+    description: "Ex.4, no 1-10, page 110"
+  },
+  {
+    user: "Tom",
+    due: new Date("2019-01-10"),
+    status: "incomplete",
+    title: "Science Project",
+    description: "Which Type of Sunglass Lenses Gives the Best Sun Protection?"
+  },
+  {
+    user: "Jan",
+    due: new Date("2019-02-20"),
+    status: "incomplete",
+    title: "Social Study",
+    description: ""
+  },
+  {
+    user: "Jan",
+    due: new Date("2019-01-13"),
+    status: "initial",
+    title: "Toy Drive",
+    description: "Run Math club toy drive"
+  }
+]

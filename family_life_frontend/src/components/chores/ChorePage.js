@@ -5,7 +5,7 @@ import ChoreCard from "./ChoreCard";
 
 import { users } from "../../dummyData";
 import Navbar from "../navbar/Navbar";
-
+import SiteHeader from '../header/SiteHeader';
 class ChorePage extends React.Component {
   state = {
     users: []
@@ -68,9 +68,9 @@ class ChorePage extends React.Component {
   render() {
     const { users } = this.state;
     return (
-      <Segment>
+      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
         <Navbar />
-        <Header as="h2">Chore Page</Header>
+        <SiteHeader name='Chores'></SiteHeader>
 
         {users.map((user, i) => (
           <ChoreCard
