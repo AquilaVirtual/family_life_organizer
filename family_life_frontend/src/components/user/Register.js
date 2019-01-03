@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
-
-import "../css/Register.css"
+import axios from "axios";
 
 class Register extends Component {
   constructor(props) {
@@ -20,9 +20,38 @@ class Register extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
+  createUser = event => {
+    event.preventDefault();
+    if (this.state.password !== this.state.confirmPassword) {
+      this.setState({
+        errorMessage: "Passwords don't match!"
+      });
+      return;
+    }
+    const user = {
+      name: this.state.name,
+      username: this.state.username,
+      email: this.state.email,
+      password: this.state.password,
+    };
+    axios //This is for when backend is ready
+      .post(``, user)
+      .then(response => {
+        this.props.history.push(`/login`);
+        this.setState({
+          error: false
+        });
+      })
+      .catch(err => {
+        this.setState({
+          error: true,
+          errorMessage: err.response.data.error
+        });
+      });
+  };
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.createUser}>
         <Form.Field>
           <label>Full Name</label>
           <input
@@ -69,4 +98,4 @@ class Register extends Component {
   }
 }
 
-export default Register;
+export default withRouter(Register);

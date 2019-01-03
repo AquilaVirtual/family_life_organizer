@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Segment, Button } from 'semantic-ui-react';
 
@@ -29,3 +30,4 @@ const UserPage = ({ user }) => {
 }
 
 export default UserPage;
+

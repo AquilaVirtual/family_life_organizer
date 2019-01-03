@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
 import { account } from './dummyData';
 
@@ -13,7 +13,7 @@ import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Navbar from "./components/navbar/Navbar";
 
-import './App.css';
+import "./App.css";
 
 const user = {
   id: 123,
@@ -43,10 +43,12 @@ class App extends Component {
         <Route path="/:path" component={Navbar} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
+
         <Route exact path="/users" render={props => (
           <UserPage {...props} user={account}/>
         )
         } />
+
         <Route exact path="/activities" component={ActivityPage} />
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />
