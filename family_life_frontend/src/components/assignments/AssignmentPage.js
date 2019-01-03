@@ -5,6 +5,7 @@ import { homework } from "../../dummyData";
 
 import Navbar from "../navbar/Navbar";
 import AssignmentCard from "./AssignmentCard";
+import SiteHeader from '../header/SiteHeader';
 
 class AssignmentPage extends React.Component {
   state = {
@@ -28,7 +29,7 @@ class AssignmentPage extends React.Component {
     return (
       <Segment>
         <Navbar />
-        <Header as="h2">Assignment Page</Header>
+        <SiteHeader name='Assignments'/>
         <Button icon="add" primary content="New Assignment"/>
         <div style={{
           maxWidth: "80rem",
