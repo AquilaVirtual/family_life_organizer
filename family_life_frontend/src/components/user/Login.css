@@ -1,0 +1,11 @@
+.form-group {
+  width: 36%;
+  border: 0.1rem solid lightgray;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  left: 30%;
+  margin-top: 8%;
+}
+.form-control {
+
+}

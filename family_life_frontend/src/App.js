@@ -19,7 +19,7 @@ class App extends Component {
       <div className="App">
         {/* Available routes */}
         <Route exact path="/" component={LandingPage} />
-        <Route path="/:path" component={Navbar} />
+        {/* <Route path="/:path" component={Navbar} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route

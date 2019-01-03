@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
+
+import "./Login.css";
 
 class LogIn extends Component {
   constructor(props) {
@@ -17,13 +21,13 @@ class LogIn extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-  
+
   render() {
     return (
-      <Form>
+      <Form className="form-group">
         <Form.Field>
-          <label>Email</label>
           <input
+            className="form-control"
             placeholder="Email"
             name="email"
             type="text"
@@ -32,8 +36,8 @@ class LogIn extends Component {
           />
         </Form.Field>
         <Form.Field>
-          <label>Password</label>
           <input
+            className="form-control"
             placeholder="Password"
             name="password"
             type="password"
@@ -41,7 +45,12 @@ class LogIn extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Field>
-        <Button type="submit" primary>Submit</Button>
+        <Button primary onClick={()=>{this.props.history.push('/')}}>
+          Cancel
+        </Button>
+        <Button type="submit" primary>
+          Submit
+        </Button>
       </Form>
     );
   }

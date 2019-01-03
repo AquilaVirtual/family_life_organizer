@@ -1,9 +1,11 @@
 import React from "react";
 import { Segment, Header, Image } from "semantic-ui-react";
+import Navbar from "../navbar/Navbar";
 
 const UserPage = ({ user }) => {
   return (
     <Segment>
+    <Navbar />
       <Header as="h2">User Page</Header>
       <Image
         centered
