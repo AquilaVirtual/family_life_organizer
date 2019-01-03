@@ -1,25 +1,35 @@
-import React from "react";
-import { Segment, Header, Image } from "semantic-ui-react";
-import Navbar from "../navbar/Navbar";
+
+
+import React from 'react';
+import { Segment, Button } from 'semantic-ui-react';
+
+import UserCard from "./UserCard";
 
 const UserPage = ({ user }) => {
   return (
-    <Segment>
-    <Navbar />
-      <Header as="h2">User Page</Header>
-      <Image
-        centered
-        src={
-          user && user.url
-            ? user.url
-            : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+    <Segment style={{textAlign: "center"}}>
+      <UserCard user={{name: user.name, type: user.type}} />
+      <Button circular primary icon="add" content="Family Member" />
+
+      <div style={{
+        maxWidth: "60rem",
+        margin: "0 auto",
+        padding: "2rem 0",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+        {
+          user.familyMembers.map((member, id) => (
+            <UserCard key={id} user={member} />
+          ))
+
         }
-        size="small"
-        circular
-      />
-      <Header as="h1">{user.username}</Header>
+      </div>
     </Segment>
   );
-};
+}
 
 export default UserPage;
+
