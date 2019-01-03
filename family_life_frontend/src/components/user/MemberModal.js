@@ -12,6 +12,15 @@ class MemberModal extends React.Component {
     accountText: "",
   };
 
+  componentWillReceiveProps(props) {
+    if (props.member) {
+      this.setState({
+        nameText: props.member.member.name,
+        accountText: props.member.member.type
+      })
+    }
+  }
+
   handleChange = ({ target }) => {
     this.setState({
       [target.name]: target.value
@@ -25,7 +34,7 @@ class MemberModal extends React.Component {
   }
 
   handleAddMember = () => {
-    const { addMember, handleModalToggle } = this.props;
+    const { addMember, handleModalToggle, member } = this.props;
     const { nameText, accountText } = this.state;
 
     const newMember = {
@@ -33,24 +42,27 @@ class MemberModal extends React.Component {
       type: accountText,
     };
 
+    const id = member ? member.id : null;
+
     this.setState({
       nameText: "",
       accountText: "",
     });
 
-    addMember(newMember);
+    addMember(newMember, id);
     handleModalToggle();
   };
 
   render() {
-    const { open, handleModalToggle } = this.props;
+    const { action, open, handleModalToggle } = this.props;
     const { nameText, accountText } = this.state;
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>Add a Family Member</Modal.Header>
+        <Modal.Header>{`${action} a Family Member`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleAddMember}>
             <Form.Input
+              required
               placeholder="Add member name..."
               onChange={this.handleChange}
               name="nameText"
@@ -69,8 +81,8 @@ class MemberModal extends React.Component {
                 primary
                 floated="right"
                 type="submit"
-                icon="add"
-                content="Add"
+                icon={`${action ===  "Add" ? "add" : "edit"}`}
+                content={`${action ===  "Add" ? "Add" : "Edit"}`}
               />
               <Button
                 floated="right"

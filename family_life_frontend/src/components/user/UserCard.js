@@ -6,7 +6,7 @@ class UserCard extends React.Component {
     confirmDelete: false,
   }
   render() {
-    const { user, deleteUser } = this.props;
+    const { user, deleteUser, handleModalToggle } = this.props;
     const { confirmDelete } = this.state;
 
     return (
@@ -31,7 +31,7 @@ class UserCard extends React.Component {
 
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
-          onClick={() => this.setState({ confirmDelete: true })}
+          onClick={handleModalToggle}
         />
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="trash alternate outline red"

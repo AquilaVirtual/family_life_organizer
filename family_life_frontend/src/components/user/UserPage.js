@@ -10,7 +10,8 @@ class UserPage extends React.Component {
   state = {
     user: {},
     modal: false,
-    action: "add"
+    action: "add",
+    member: null
   };
 
   componentDidMount() {
@@ -19,24 +20,42 @@ class UserPage extends React.Component {
     });
   }
 
-  handleModalToggle = action => {
+  handleModalToggle = (action, member) => {
     this.setState(state => ({
       modal: !state.modal,
-      action
+      action,
+      member
     }));
   };
 
   handleMemberAction = (member, id) => {
-    if (this.state.action === "add") {
+    if (this.state.action === "Add") {
       this.setState(state => ({
         user: {
           ...state.user,
-          familyMembers: [
-            ...state.user.familyMembers,
-            member
-          ]
+          familyMembers: [...state.user.familyMembers, member]
         }
-      }))
+      }));
+    } else if (!id && id!==0) {
+      this.setState(state => ({
+        user: {
+          ...state.user,
+          name: member.name,
+          type: member.type
+        }
+      }));
+    } else {
+      this.setState(state => ({
+        user: {
+          ...state.user,
+          familyMembers: state.user.familyMembers.map((currentMember, i) => {
+            if (i === id) {
+              return member;
+            }
+            return currentMember;
+          })
+        }
+      }));
     }
   };
 
@@ -44,34 +63,41 @@ class UserPage extends React.Component {
     if (!id && id !== 0) {
       this.setState({
         user: {}
-      })
+      });
     } else {
       this.setState(state => ({
         user: {
           ...state.user,
-          familyMembers: state.user.familyMembers.filter((member,i) => i !== id)
+          familyMembers: state.user.familyMembers.filter(
+            (member, i) => i !== id
+          )
         }
-      }))
+      }));
     }
-  }
+  };
 
   render() {
-    const { user, modal, action } = this.state;
+    const { user, modal, action, member } = this.state;
 
-    if (!user.name) return <div>No User</div>
+    if (!user.name) return <div>No User</div>;
 
     return (
       <Segment style={{ textAlign: "center" }}>
         <UserCard
           user={{ name: user.name, type: user.type }}
           deleteUser={() => this.deleteUser()}
+          handleModalToggle={() =>
+            this.handleModalToggle("Edit", {
+              member: { name: user.name, type: user.type }
+            })
+          }
         />
         <Button
           circular
           primary
           icon="add"
           content="Family Member"
-          onClick={() => this.handleModalToggle("add")}
+          onClick={() => this.handleModalToggle("Add")}
         />
 
         <div
@@ -87,14 +113,25 @@ class UserPage extends React.Component {
         >
           {user.familyMembers &&
             user.familyMembers.map((member, id) => (
-              <UserCard key={id} user={member}
+              <UserCard
+                key={id}
+                user={member}
                 deleteUser={() => this.deleteUser(id)}
+                handleModalToggle={() =>
+                  this.handleModalToggle("Edit", {
+                    id: id,
+                    member: member
+                  })
+                }
               />
             ))}
         </div>
-        <MemberModal open={modal} action={action}
+        <MemberModal
+          open={modal}
+          action={action}
           addMember={this.handleMemberAction}
-          handleModalToggle={this.handleModalToggle}
+          handleModalToggle={() => this.handleModalToggle()}
+          member={member}
         />
       </Segment>
     );
