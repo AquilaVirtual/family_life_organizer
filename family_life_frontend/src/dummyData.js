@@ -49,3 +49,15 @@ export const account = {
     }
   ]
 }
+export const activities = [
+ { 
+   id: 1,
+  name: "Football",
+  type: "Sports"
+ },
+ { 
+  id: 2,
+ name: "Run",
+ type: "Sports"
+}
+]
