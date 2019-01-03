@@ -27,7 +27,7 @@ class AssignmentPage extends React.Component {
   render() {
     const { assignments } = this.state;
     return (
-      <Segment>
+      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
         <Navbar />
         <SiteHeader name='Assignments'/>
         <Button icon="add" primary content="New Assignment"/>
