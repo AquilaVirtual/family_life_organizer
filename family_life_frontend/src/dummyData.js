@@ -29,3 +29,23 @@ export const users = [
     ]
   }
 ];
+
+export const account = {
+  id: 123,
+  name: "Dad",
+  type: "Parent",
+  familyMembers: [
+    {
+      name: "Mom",
+      type: "Parent"
+    },
+    {
+      name: "Jan",
+      type: "Child"
+    },
+    {
+      name: "Tom",
+      type: "Child"
+    }
+  ]
+}
