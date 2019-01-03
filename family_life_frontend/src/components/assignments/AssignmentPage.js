@@ -17,13 +17,19 @@ class AssignmentPage extends React.Component {
     })
   }
 
+  deleteAssignment = (id) => {
+    this.setState(state => ({
+      assignments: state.assignments.filter((assignment, i) => i!==id)
+    }))
+  }
+
   render() {
     const { assignments } = this.state;
     return (
       <Segment>
         <Navbar />
         <Header as="h2">Assignment Page</Header>
-        <Button icon="add" primary circular content="New Assignment"/>
+        <Button icon="add" primary content="New Assignment"/>
         <div style={{
           maxWidth: "80rem",
           margin: "1rem auto",
@@ -34,7 +40,10 @@ class AssignmentPage extends React.Component {
         }}>
           {
             assignments.map((assignment, i) => (
-              <AssignmentCard key={i} assignment={assignment} />
+              <AssignmentCard key={i} assignment={assignment}
+                deleteAssignment={this.deleteAssignment}
+                id={i}
+              />
             ))
           }
         </div>
