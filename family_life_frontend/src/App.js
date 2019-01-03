@@ -27,7 +27,7 @@ const user = {
     },
     {
       name: "Tom",
-      type: "Type"
+      type: "Child"
     }
   ]
 }
