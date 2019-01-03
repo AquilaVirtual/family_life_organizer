@@ -6,7 +6,6 @@ import UserCard from "./UserCard";
 const UserPage = ({ user }) => {
   return (
     <Segment style={{textAlign: "center"}}>
-      {/* <Header as="h2">User Page</Header> */}
       <UserCard user={{name: user.name, type: user.type}} />
       <Button circular primary icon="add" content="Family Member" />
 
