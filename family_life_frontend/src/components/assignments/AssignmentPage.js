@@ -4,16 +4,6 @@ import { Segment, Header, Button } from 'semantic-ui-react';
 import { homework } from "../../dummyData";
 
 import Navbar from "../navbar/Navbar";
-<<<<<<< HEAD
-import SiteHeader from '../header/SiteHeader';
-const AssignmentPage = () => {
-  return (
-    <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
-    <SiteHeader name='Assignments'/>
-    <Navbar />
-    </Segment>
-  );
-=======
 import AssignmentCard from "./AssignmentCard";
 
 class AssignmentPage extends React.Component {
@@ -60,7 +50,6 @@ class AssignmentPage extends React.Component {
       </Segment>
     );
   }
->>>>>>> master
 }
  
 export default AssignmentPage;
