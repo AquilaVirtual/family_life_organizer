@@ -1,0 +1,14 @@
+.header-container {
+    font-size: 1.5rem;
+}
+
+.ui .landingPage--list {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-top: 40px;
+}
+
+#landingPage--getStarted {
+    margin-top: 30px;
+    margin-bottom: -30px;
+}
