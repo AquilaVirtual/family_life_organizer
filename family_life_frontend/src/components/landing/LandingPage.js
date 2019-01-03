@@ -106,7 +106,7 @@ class DesktopContainer extends Component {
                       Log in
                     </Button>
                   </NavLink>
-                  <NavLink to="/login">
+                  <NavLink to="/register">
                     {" "}
                     <Button
                       as="a"
@@ -181,12 +181,14 @@ class MobileContainer extends Component {
                   <Icon name="sidebar" />
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <Button as="a" inverted>
+                  <NavLink to="/login"><Button as="a" inverted>
                     Log in
                   </Button>
-                  <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
+                  </NavLink>
+                  <NavLink to="/register"> <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
                     Sign Up
                   </Button>
+                  </NavLink>
                 </Menu.Item>
               </Menu>
             </Container>

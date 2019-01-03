@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Segment, Button } from 'semantic-ui-react';
 
@@ -23,6 +24,7 @@ const UserPage = ({ user }) => {
           user.familyMembers.map((member, id) => (
             <UserCard key={id} user={member} />
           ))
+
         }
       </div>
     </Segment>

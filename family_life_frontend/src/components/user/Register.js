@@ -32,7 +32,7 @@ class Register extends Component {
       name: this.state.name,
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password,
+      password: this.state.password
     };
     axios //This is for when backend is ready
       .post(``, user)
@@ -51,10 +51,10 @@ class Register extends Component {
   };
   render() {
     return (
-      <Form onSubmit={this.createUser}>
+      <Form onSubmit={this.createUser} className="form-group">
         <Form.Field>
-          <label>Full Name</label>
           <input
+            className="form-control"
             placeholder="Full Name"
             name="name"
             type="text"
@@ -63,8 +63,8 @@ class Register extends Component {
           />
         </Form.Field>
         <Form.Field>
-          <label>Username</label>
           <input
+            className="form-control"
             placeholder="Username"
             name="username"
             type="text"
@@ -73,8 +73,8 @@ class Register extends Component {
           />
         </Form.Field>
         <Form.Field>
-          <label>Password</label>
           <input
+            className="form-control"
             placeholder="Password"
             name="password"
             type="password"
@@ -83,8 +83,8 @@ class Register extends Component {
           />
         </Form.Field>
         <Form.Field>
-          <label>Confirm Password</label>
           <input
+            className="form-control"
             placeholder="Confirm Password"
             name="confirmPassword"
             type="password"
@@ -92,7 +92,12 @@ class Register extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Field>
-        <Button type="submit" primary>Submit</Button>
+        <Button  primary onClick={()=>{this.props.history.push('/')}}>
+        Cancel
+      </Button>
+      <Button type="submit" primary>
+        Submit
+      </Button>
       </Form>
     );
   }

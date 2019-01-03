@@ -4,6 +4,7 @@ import { Segment, Header } from "semantic-ui-react";
 import ChoreCard from "./ChoreCard";
 
 import { users } from "../../dummyData";
+import Navbar from "../navbar/Navbar";
 
 class ChorePage extends React.Component {
   state = {
@@ -51,22 +52,24 @@ class ChorePage extends React.Component {
               if (id === choreId) {
                 return {
                   ...chore,
-                  status: chore.status === "not started" ? "in progress" : "completed",
-                }
+                  status:
+                    chore.status === "not started" ? "in progress" : "completed"
+                };
               }
               return chore;
             })
-          }
+          };
         }
         return user;
       })
     }));
-  }
+  };
 
   render() {
     const { users } = this.state;
     return (
       <Segment>
+        <Navbar />
         <Header as="h2">Chore Page</Header>
 
         {users.map((user, i) => (
