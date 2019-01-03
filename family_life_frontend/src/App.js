@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
+import DatePicker from "react-datepicker";
 
 import LandingPage from "./components/landing/LandingPage";
 import UserPage from "./components/user/UserPage";
