@@ -1,0 +1,25 @@
+.header--time{
+    font-size: 1.5rem;
+    margin-bottom: -10px;
+    color: #373737;
+  }
+  
+  .header--time span{
+    font-weight: 700;
+  }
+  #header--heading{
+    font-size: 5rem;
+    font-weight: 300;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: #7A7A7A
+  }
+  
+  .header--headingContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    text-align: center;
+  
+  }
