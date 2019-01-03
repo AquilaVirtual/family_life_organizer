@@ -40,12 +40,32 @@ class UserPage extends React.Component {
     }
   };
 
+  deleteUser = id => {
+    if (!id && id !== 0) {
+      this.setState({
+        user: {}
+      })
+    } else {
+      this.setState(state => ({
+        user: {
+          ...state.user,
+          familyMembers: state.user.familyMembers.filter((member,i) => i !== id)
+        }
+      }))
+    }
+  }
+
   render() {
     const { user, modal, action } = this.state;
 
+    if (!user.name) return <div>No User</div>
+
     return (
       <Segment style={{ textAlign: "center" }}>
-        <UserCard user={{ name: user.name, type: user.type }} />
+        <UserCard
+          user={{ name: user.name, type: user.type }}
+          deleteUser={() => this.deleteUser()}
+        />
         <Button
           circular
           primary
@@ -67,7 +87,9 @@ class UserPage extends React.Component {
         >
           {user.familyMembers &&
             user.familyMembers.map((member, id) => (
-              <UserCard key={id} user={member} />
+              <UserCard key={id} user={member}
+                deleteUser={() => this.deleteUser(id)}
+              />
             ))}
         </div>
         <MemberModal open={modal} action={action}
