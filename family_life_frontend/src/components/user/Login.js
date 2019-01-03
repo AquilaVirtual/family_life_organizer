@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Form } from "semantic-ui-react";
+import axios from "axios";
 
 class LogIn extends Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class LogIn extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
+  
   render() {
     return (
       <Form>
