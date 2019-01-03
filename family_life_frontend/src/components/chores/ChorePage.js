@@ -16,6 +16,17 @@ class ChorePage extends React.Component {
     })
   }
 
+  addChore = (userId, newChore) => {
+    this.setState(state => ({
+      users: state.users.map(user => {
+        if (user.id === userId) {
+          return { ...user, chores: [...user.chores, newChore]}
+        }
+        return user;
+      })
+    }))
+  }
+
   render() {
     const { users } = this.state;
     return (
@@ -23,7 +34,14 @@ class ChorePage extends React.Component {
         <Header as="h2">Chore Page</Header>
 
         {users.map((user, i) => (
-          <ChoreCard key={i} index={i} user={user.name} chores={user.chores} />
+          <ChoreCard
+            key={user.id}
+            index={i}
+            id={user.id}
+            user={user.name}
+            chores={user.chores}
+            addChore={this.addChore}
+          />
         ))}
       </Segment>
     );

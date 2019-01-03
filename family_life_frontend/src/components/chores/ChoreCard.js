@@ -15,7 +15,7 @@ class ChoreCard extends React.Component {
     }))
   }
   render() {
-    const { user, index, chores } = this.props;
+    const { user, id, index, chores, addChore } = this.props;
     const { confirmDelete } = this.state;
     return (
       <Segment
@@ -87,6 +87,8 @@ class ChoreCard extends React.Component {
         <ChoreModal
           open={this.state.modal}
           user={user}
+          id={id}
+          addChore={addChore}
           handleModalToggle={this.handleModalToggle}
         />
       </Segment>
