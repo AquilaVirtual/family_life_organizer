@@ -3,7 +3,7 @@ import { Segment, Header } from "semantic-ui-react";
 
 import ChoreCard from "./ChoreCard";
 
-import { users } from "../../dummyData"
+import { users } from "../../dummyData";
 
 class ChorePage extends React.Component {
   state = {
@@ -12,20 +12,34 @@ class ChorePage extends React.Component {
 
   componentWillMount() {
     this.setState({
-      users,
-    })
+      users
+    });
   }
 
   addChore = (userId, newChore) => {
     this.setState(state => ({
       users: state.users.map(user => {
         if (user.id === userId) {
-          return { ...user, chores: [...user.chores, newChore]}
+          return { ...user, chores: [...user.chores, newChore] };
         }
         return user;
       })
-    }))
-  }
+    }));
+  };
+
+  deleteChore = (userId, choreId) => {
+    this.setState(state => ({
+      users: state.users.map(user => {
+        if (user.id === userId) {
+          return {
+            ...user,
+            chores: user.chores.filter((chore, id) => id !== choreId)
+          };
+        }
+        return user;
+      })
+    }));
+  };
 
   render() {
     const { users } = this.state;
@@ -41,6 +55,7 @@ class ChorePage extends React.Component {
             user={user.name}
             chores={user.chores}
             addChore={this.addChore}
+            deleteChore={this.deleteChore}
           />
         ))}
       </Segment>

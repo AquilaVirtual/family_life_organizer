@@ -15,7 +15,7 @@ class ChoreCard extends React.Component {
     }))
   }
   render() {
-    const { user, id, index, chores, addChore } = this.props;
+    const { user, id, index, chores, addChore, deleteChore } = this.props;
     const { confirmDelete } = this.state;
     return (
       <Segment
@@ -73,7 +73,7 @@ class ChoreCard extends React.Component {
                   content="Are you sure you want to delete this chore?"
                   onCancel={() => this.setState({ confirmDelete: false })}
                   onConfirm={() => {
-                    console.log("delete a chore");
+                    deleteChore(id, i);
                     this.setState({ confirmDelete: false })}
                   }
                 />
