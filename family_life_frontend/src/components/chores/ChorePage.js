@@ -3,45 +3,87 @@ import { Segment, Header } from "semantic-ui-react";
 
 import ChoreCard from "./ChoreCard";
 
-// dummy data
-const users = [
-  {
-    name: "Dad",
-    chores: [
-      { title: "Mow lawn", status: "not started" },
-      { title: "Fix sink", status: "in progress" }
-    ]
-  },
-  {
-    name: "Mom",
-    chores: [{ title: "Buy grocery", status: "not started" }]
-  },
-  {
-    name: "Jan",
-    chores: [
-      { title: "Wash dishes", status: "completed" },
-      { title: "Clean room", status: "in progress" }
-    ]
-  },
-  {
-    name: "Tom",
-    chores: [
-      { title: "Clean bathroom", status: "not started" },
-      { title: "Walk dog", status: "completed" }
-    ]
+import { users } from "../../dummyData";
+
+class ChorePage extends React.Component {
+  state = {
+    users: []
+  };
+
+  componentWillMount() {
+    this.setState({
+      users
+    });
   }
-];
 
-const ChorePage = () => {
-  return (
-    <Segment>
-      <Header as="h2">Chore Page</Header>
+  addChore = (userId, newChore) => {
+    this.setState(state => ({
+      users: state.users.map(user => {
+        if (user.id === userId) {
+          return { ...user, chores: [...user.chores, newChore] };
+        }
+        return user;
+      })
+    }));
+  };
 
-      {users.map((user, i) => (
-        <ChoreCard key={i} index={i} user={user.name} chores={user.chores} />
-      ))}
-    </Segment>
-  );
-};
+  deleteChore = (userId, choreId) => {
+    this.setState(state => ({
+      users: state.users.map(user => {
+        if (user.id === userId) {
+          return {
+            ...user,
+            chores: user.chores.filter((chore, id) => id !== choreId)
+          };
+        }
+        return user;
+      })
+    }));
+  };
+
+  updateStatus = (userId, choreId) => {
+    this.setState(state => ({
+      users: state.users.map(user => {
+        if (user.id === userId) {
+          return {
+            ...user,
+            chores: user.chores.map((chore, id) => {
+              if (id === choreId) {
+                return {
+                  ...chore,
+                  status: chore.status === "not started" ? "in progress" : "completed",
+                }
+              }
+              return chore;
+            })
+          }
+        }
+        return user;
+      })
+    }));
+  }
+
+  render() {
+    const { users } = this.state;
+    return (
+      <Segment>
+        <Header as="h2">Chore Page</Header>
+
+        {users.map((user, i) => (
+          <ChoreCard
+            key={user.id}
+            index={i}
+            id={user.id}
+            user={user.name}
+            chores={user.chores}
+            addChore={this.addChore}
+            deleteChore={this.deleteChore}
+            updateStatus={this.updateStatus}
+          />
+        ))}
+      </Segment>
+    );
+  }
+}
 
 export default ChorePage;
