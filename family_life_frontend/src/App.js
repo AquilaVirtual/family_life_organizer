@@ -22,7 +22,10 @@ class App extends Component {
         <Route path="/:path" component={Navbar} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Route exact path="/users" component={UserPage} />
+        <Route exact path="/users" render={props => (
+          <UserPage {...props} user={{username:"Dad"}}/>
+        )
+        } />
         <Route exact path="/activities" component={ActivityPage} />
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />
