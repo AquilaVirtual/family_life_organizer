@@ -13,6 +13,25 @@ import Navbar from "./components/navbar/Navbar";
 
 import './App.css';
 
+const user = {
+  id: 123,
+  name: "Dad",
+  familyMembers: [
+    {
+      name: "Mom",
+      type: "Parent"
+    },
+    {
+      name: "Jan",
+      type: "Child"
+    },
+    {
+      name: "Tom",
+      type: "Type"
+    }
+  ]
+}
+
 class App extends Component {
   render() {
     return (
@@ -23,7 +42,7 @@ class App extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/users" render={props => (
-          <UserPage {...props} user={{username:"Dad"}}/>
+          <UserPage {...props} user={user}/>
         )
         } />
         <Route exact path="/activities" component={ActivityPage} />
