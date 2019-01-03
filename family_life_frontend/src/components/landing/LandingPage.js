@@ -21,6 +21,7 @@ import {
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
+
     <Header
       as='h1'
       content='FamilyLife'
@@ -91,6 +92,7 @@ class DesktopContainer extends Component {
               style={{border: 'none'}}
             >
               <Container className='header-container'>
+              
                 <Menu.Item  as='a' active>
                   FamilyLife
                 </Menu.Item>
@@ -203,21 +205,21 @@ const LandingPage = () => (
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={9}>
-            <Header as='h3' style={{ fontSize: '3em' }}>
+            <Header as='h3' style={{ fontSize: '2em' }}>
              A must have application for families on the go!
             </Header>
             <List className='landingPage--list' bulleted>
-              <List.Item  >Set up, track and monitor chores and homework</List.Item>
+              <List.Item>Set up, track and monitor chores and homework</List.Item>
               <List.Item>Schedule appointments and activities</List.Item>
               <List.Item>Use from any mobile device or computer</List.Item>
             </List>
           </Grid.Column>
-          <Grid.Column floated='right' width={5}>
+          <Grid.Column floated='right' width={6}>
             <Image bordered rounded size='large' src='https://images.unsplash.com/photo-1484981184820-2e84ea0af397?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80' />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
-          <Grid.Column textAlign='center'>
+          <Grid.Column id="landingPage--getStarted" textAlign='center'>
             <Button  size='huge'>Get Started with a free account!</Button>
           </Grid.Column>
         </Grid.Row>
