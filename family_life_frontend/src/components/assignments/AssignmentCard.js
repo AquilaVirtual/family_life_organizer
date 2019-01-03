@@ -6,7 +6,7 @@ class AssignmentCard extends React.Component{
     confirmDelete: false,
   }
   render() {
-    const { assignment, deleteAssignment, id } = this.props;
+    const { assignment, deleteAssignment, changeStatus, id } = this.props;
     const { confirmDelete } = this.state;
     return (
       <Segment style={{ width: "18rem", margin: "1rem" }}>
@@ -16,9 +16,11 @@ class AssignmentCard extends React.Component{
         <p style={{ fontSize: "1.4rem" }}>
           <Icon
             className={`${
-              assignment.status === "completed" ? "check green" : "time yellow"
+              assignment.status === "completed" ? "check green" :
+              assignment.status === "initial" ? "play circle outline" : "time yellow"
               }`}
             style={{ cursor: "pointer", margin: "0 .5rem" }}
+            onClick={() => changeStatus(id)}
           />
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}

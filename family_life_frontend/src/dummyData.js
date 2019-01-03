@@ -75,7 +75,7 @@ export const homework = [
   {
     user: "Jan",
     due: new Date("2019-01-13"),
-    status: "incomplete",
+    status: "initial",
     title: "Toy Drive",
     description: "Run Math club toy drive"
   }
