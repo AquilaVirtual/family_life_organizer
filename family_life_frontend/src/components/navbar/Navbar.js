@@ -1,8 +1,8 @@
 import React from "react";
-import { Menu, Button } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
-const LandingPage = ({ history }) => {
+const LandingPage = () => {
   return (
     <div className="navbar">
       <Menu>
@@ -24,14 +24,6 @@ const LandingPage = ({ history }) => {
         <Menu.Item>
           <NavLink to="/homeworks">Homeworks</NavLink>
         </Menu.Item>
-        <Menu.Menu position="right">
-            <Button primary onClick={() => history.push("/login")}>
-              Login
-            </Button>
-            <Button primary onClick={() => history.push("/register")}>
-              Register
-            </Button>
-        </Menu.Menu>
       </Menu>
     </div>
   );
