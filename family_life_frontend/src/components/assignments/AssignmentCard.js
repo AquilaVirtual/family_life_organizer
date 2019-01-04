@@ -5,6 +5,7 @@ class AssignmentCard extends React.Component{
   state= {
     confirmDelete: false,
   }
+
   render() {
     const { assignment, deleteAssignment, changeStatus, id } = this.props;
     const { confirmDelete } = this.state;
@@ -42,7 +43,7 @@ class AssignmentCard extends React.Component{
           />
         </p>
         <div style={{ widht: "100%", textAlign: "left" }}>
-          <p>Due: {assignment.due.toDateString()}</p>
+          <p>Due: {assignment.due.toString()}</p>
           <p />
           <p>
             Description:
