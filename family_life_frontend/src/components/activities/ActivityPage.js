@@ -6,6 +6,8 @@ import { Segment, Button, Header } from "semantic-ui-react";
 
 import { activities } from "../../dummyData";
 
+import ActivityCard from "./ActivityCard";
+
 class ActivityPage extends React.Component {
   state = {
     activities: [],
@@ -68,7 +70,8 @@ class ActivityPage extends React.Component {
     return (
       <Segment
         style={{
-          textAlign: "center"       
+          textAlign: "center",
+       
         }}
       >
         <SiteHeader name="Activities" />
@@ -78,13 +81,35 @@ class ActivityPage extends React.Component {
           content="Activity"
           onClick={() => this.handleModalToggle("Add")}
         />
- 
+        <ActivityCard
+          activity={{ name: activity.name, type: activity.type }}
+          deleteActivity={() => this.deleteActivity()}
+          handleModalToggle={() =>
+            this.handleModalToggle("Edit", {
+              activity: { name: activity.name, type: activity.type }
+            })
+          }
+        />
         <div
           style={{
             alignItems: "center"
           }}
         >
-        </div>        
+          {activities &&
+            activities.map((activity, id) => (
+              <ActivityCard
+                key={id}
+                activity={activity}
+                deleteActivity={() => this.deleteActivity(id)}
+                handleModalToggle={() =>
+                  this.handleModalToggle("Edit", {
+                    id: id,
+                    activity: activity
+                  })
+                }
+              />
+            ))}
+        </div>    
         <Navbar />
       </Segment>
     );
