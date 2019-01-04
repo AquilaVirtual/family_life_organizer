@@ -58,7 +58,7 @@ export const activities = [
  { 
   id: 2,
  name: "Run",
- type: "Sports"
+ type: "Execise"
 }
 ]
 
