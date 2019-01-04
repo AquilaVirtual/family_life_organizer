@@ -53,7 +53,7 @@ class LogIn extends Component {
   render() {
     return (
       <div>
-      <LoginHeader />
+      <LoginHeader name='Login' />
       <Form className="form-group" onSubmit={this.login}>
         <Form.Field>
           <input

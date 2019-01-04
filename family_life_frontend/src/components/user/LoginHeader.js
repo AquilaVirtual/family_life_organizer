@@ -2,10 +2,10 @@ import React from 'react'
 import './Login.css'
 import moment from 'moment';
 
-const LoginHeader = () => {
+const LoginHeader = (props) => {
     return (
         <div className ='loginHeaderContainer'> 
-            <h1 className ='loginHeader'>FamilyLife | Login</h1>
+            <h1 className ='loginHeader'>FamilyLife | {props.name}</h1>
             <p className="header--time"><span>{moment().format('LT')} </span>  {moment().format('MMM Do YY')}
             </p>
             

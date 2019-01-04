@@ -10,8 +10,11 @@
   background-color: rgba(169,169,169 , .7);
   display: flex;
   flex-direction: column;
-  
-  /* margin-top: 8%; */
+}
+
+.form-group--register {
+  height: 550px;
+  top: 275px;
 }
 .form-group .form-controlBtn:last-child {
   margin: 20px auto;
