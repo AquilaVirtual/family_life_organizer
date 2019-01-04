@@ -5,6 +5,7 @@ import { homework } from "../../dummyData";
 
 import Navbar from "../navbar/Navbar";
 import AssignmentCard from "./AssignmentCard";
+import SiteHeader from '../header/SiteHeader';
 import AssignmentModal from "./AssignmentModal";
 
 class AssignmentPage extends React.Component {
@@ -57,10 +58,9 @@ class AssignmentPage extends React.Component {
   render() {
     const { assignments, modal } = this.state;
     return (
-      <Segment>
+      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
         <Navbar />
-        <Header as="h2">Assignment Page</Header>
-        <Button icon="add" primary content="New Assignment"
+        <SiteHeader name="Assignments" />        <Button icon="add" primary content="New Assignment"
           onClick={this.handleModalToggle}
         />
         <div

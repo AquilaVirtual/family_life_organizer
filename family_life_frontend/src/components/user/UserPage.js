@@ -5,6 +5,8 @@ import { account } from "../../dummyData";
 
 import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";
+import Navbar from '../navbar/Navbar';
+import SiteHeader from '../header/SiteHeader';
 
 class UserPage extends React.Component {
   state = {
@@ -82,7 +84,9 @@ class UserPage extends React.Component {
     if (!user.name) return <div>No User</div>;
 
     return (
-      <Segment style={{ textAlign: "center" }}>
+      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px', marginBottom: '30px'}}>
+        <Navbar />
+        <SiteHeader name="Users" />
         <UserCard
           user={{ name: user.name, type: user.type }}
           deleteUser={() => this.deleteUser()}

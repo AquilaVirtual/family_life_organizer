@@ -71,10 +71,7 @@ class ActivityPage extends React.Component {
     if (!activity.name) return <div>No activity</div>;
     return (
       <Segment
-        style={{
-          textAlign: "center",
-       
-        }}
+        style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}
       >
         <SiteHeader name="Activities" />
         <Button
