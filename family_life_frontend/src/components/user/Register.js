@@ -40,19 +40,25 @@ class Register extends Component {
       child: this.state.child,
       id:    this.state.id
     };
-    axios //This is for when backend is ready
+    axios
       .post(`https://vast-hollows-12854.herokuapp.com/api/register`, user)
       .then(response => {
+        console.log("Fire response here", response)
+        console.log("Fire error here", this.state.errorMessage)
+
+        
         this.props.history.push(`/login`);
         this.setState({
           error: false
         });
       })
       .catch(err => {
-        this.setState({
-          error: true,
-          errorMessage: err.response.data.error
-        });
+        // this.setState({
+        //   error: true,
+        //   errorMessage: err.response.data.error
+        // });
+
+        console.log("Error in catch", err)
       });
   };
   render() {
@@ -61,7 +67,7 @@ class Register extends Component {
         <Form.Field>
           <input
             className="form-control"
-            placeholder="Full Name"
+            placeholder="First Name"
             name="firstname"
             type="text"
             value={this.state.firstname}
@@ -71,7 +77,7 @@ class Register extends Component {
         <Form.Field>
           <input
             className="form-control"
-            placeholder="Full Name"
+            placeholder="Last Name"
             name="lastname"
             type="text"
             value={this.state.lastname}
@@ -81,10 +87,10 @@ class Register extends Component {
         <Form.Field>
           <input
             className="form-control"
-            placeholder="Username"
-            name="username"
+            placeholder="Email"
+            name="email"
             type="text"
-            value={this.state.username}
+            value={this.state.email}
             onChange={this.handleInputChange}
           />
         </Form.Field>
