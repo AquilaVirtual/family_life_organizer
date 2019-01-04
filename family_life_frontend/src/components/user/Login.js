@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
+import LoginHeader from './LoginHeader';
 
 import "./Login.css";
 
@@ -51,10 +52,12 @@ class LogIn extends Component {
 
   render() {
     return (
+      <div>
+      <LoginHeader />
       <Form className="form-group" onSubmit={this.login}>
         <Form.Field>
           <input
-            className="form-control"
+            id="form-control"
             placeholder="Username"
             name="username"
             type="text"
@@ -64,7 +67,7 @@ class LogIn extends Component {
         </Form.Field>
         <Form.Field>
           <input
-            className="form-control"
+            id="form-control"
             placeholder="Password"
             name="password"
             type="password"
@@ -72,13 +75,14 @@ class LogIn extends Component {
             onChange={this.handleInputChange}
           />
         </Form.Field>
-        <Button primary onClick={()=>{this.props.history.push('/')}}>
+        <Button className="form-controlBtn" primary onClick={()=>{this.props.history.push('/')}}>
           Cancel
         </Button>
-        <Button type="submit" primary>
+        <Button className="form-controlBtn" type="submit" primary>
           Submit
         </Button>
       </Form>
+      </div>
     );
   }
 }
