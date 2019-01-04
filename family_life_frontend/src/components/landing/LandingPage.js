@@ -100,7 +100,7 @@ class DesktopContainer extends Component {
                   FamilyLife
                 </Menu.Item>
                 <Menu.Item position="right">
-                  <NavLink to="/login">
+                  {localStorage.getItem("token") ? ( <NavLink to="/users">{`${localStorage.getItem("name").split(" ")[0]}`}</NavLink>):( <div><NavLink to="/login">
                     {" "}
                     <Button as="a" inverted={!fixed}>
                       Log in
@@ -116,7 +116,24 @@ class DesktopContainer extends Component {
                     >
                       Sign Up
                     </Button>
+                  </NavLink></div>)}
+                  {/* <NavLink to="/login">
+                    {" "}
+                    <Button as="a" inverted={!fixed}>
+                      Log in
+                    </Button>
                   </NavLink>
+                  <NavLink to="/register">
+                    {" "}
+                    <Button
+                      as="a"
+                      inverted={!fixed}
+                      primary={fixed}
+                      style={{ marginLeft: "0.5em" }}
+                    >
+                      Sign Up
+                    </Button>
+                  </NavLink> */}
                 </Menu.Item>
               </Container>
             </Menu>

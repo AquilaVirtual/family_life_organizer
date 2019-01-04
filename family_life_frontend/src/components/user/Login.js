@@ -29,25 +29,28 @@ class LogIn extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    axios
-      .post(`https://vast-hollows-12854.herokuapp.com/api/login`, user)
-      .then(response => {
-       console.log("Fire", response)
+
+    let token = this.state.password;
+    localStorage.setItem("token", token)
+    // axios
+    //   .post(`https://vast-hollows-12854.herokuapp.com/api/login`, user)
+    //   .then(response => {
+    //    console.log("Fire", response)
               
-        this.setState({
-          error: false
-        });
-        setTimeout(() => {
+    //     this.setState({
+    //       error: false
+    //     });
+    //     setTimeout(() => {
           this.props.history.push("/");
-        }, 200);
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({
-          error: true,
-          errorMessage: err.response.data.error
-        });
-      });
+    //     }, 200);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     this.setState({
+    //       error: true,
+    //       errorMessage: err.response.data.error
+    //     });
+    //   });
   };
 
   render() {
