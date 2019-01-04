@@ -5,10 +5,12 @@ import { homework } from "../../dummyData";
 
 import Navbar from "../navbar/Navbar";
 import AssignmentCard from "./AssignmentCard";
+import AssignmentModal from "./AssignmentModal";
 
 class AssignmentPage extends React.Component {
   state = {
-    assignments: []
+    assignments: [],
+    modal: false,
   };
 
   componentDidMount() {
@@ -17,11 +19,25 @@ class AssignmentPage extends React.Component {
     });
   }
 
+  handleModalToggle = (action, member) => {
+    this.setState(state => ({
+      modal: !state.modal,
+      action,
+      member
+    }));
+  };
+
   deleteAssignment = id => {
     this.setState(state => ({
       assignments: state.assignments.filter((assignment, i) => i !== id)
     }));
   };
+
+  addAssignment = assignment => {
+    this.setState(state => ({
+      assignments: [...state.assignments, assignment]
+    }))
+  }
 
   changeStatus = id => {
     this.setState(state => ({
@@ -39,12 +55,14 @@ class AssignmentPage extends React.Component {
   };
 
   render() {
-    const { assignments } = this.state;
+    const { assignments, modal } = this.state;
     return (
       <Segment>
         <Navbar />
         <Header as="h2">Assignment Page</Header>
-        <Button icon="add" primary content="New Assignment" />
+        <Button icon="add" primary content="New Assignment"
+          onClick={this.handleModalToggle}
+        />
         <div
           style={{
             maxWidth: "80rem",
@@ -65,6 +83,10 @@ class AssignmentPage extends React.Component {
             />
           ))}
         </div>
+        <AssignmentModal open={modal}
+          handleModalToggle={this.handleModalToggle}
+          addAssignment={this.addAssignment}
+        />
       </Segment>
     );
   }
