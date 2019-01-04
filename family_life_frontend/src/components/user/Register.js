@@ -35,7 +35,7 @@ class Register extends Component {
       password: this.state.password
     };
     axios //This is for when backend is ready
-      .post(``, user)
+      .post(`https://vast-hollows-12854.herokuapp.com/`, user)
       .then(response => {
         this.props.history.push(`/login`);
         this.setState({
