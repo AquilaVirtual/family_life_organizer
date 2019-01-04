@@ -49,6 +49,18 @@ export const account = {
     }
   ]
 }
+export const activities = [
+ { 
+   id: 1,
+  name: "Football",
+  type: "Sports"
+ },
+ { 
+  id: 2,
+ name: "Run",
+ type: "Execise"
+}
+]
 
 export const homework = [
   {
@@ -75,7 +87,7 @@ export const homework = [
   {
     user: "Jan",
     due: new Date("2019-01-13"),
-    status: "incomplete",
+    status: "initial",
     title: "Toy Drive",
     description: "Run Math club toy drive"
   }
