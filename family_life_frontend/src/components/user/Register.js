@@ -7,10 +7,13 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      username: "",
+      firstname: "",
+      lastname: "",
       email: "",
+      username: "",
       password: "",
+      "child": false,
+      "id": 2,
       confirmPassword: "",
       error: false,
       errorMessage: ""
@@ -29,24 +32,33 @@ class Register extends Component {
       return;
     }
     const user = {
-      name: this.state.name,
-      username: this.state.username,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
       email: this.state.email,
-      password: this.state.password
+      username: this.state.username,
+      password: this.state.password,
+      child: this.state.child,
+      id:    this.state.id
     };
-    axios //This is for when backend is ready
-      .post(``, user)
+    axios
+      .post(`https://vast-hollows-12854.herokuapp.com/api/register`, user)
       .then(response => {
+        console.log("Fire response here", response)
+        console.log("Fire error here", this.state.errorMessage)
+
+        
         this.props.history.push(`/login`);
         this.setState({
           error: false
         });
       })
       .catch(err => {
-        this.setState({
-          error: true,
-          errorMessage: err.response.data.error
-        });
+        // this.setState({
+        //   error: true,
+        //   errorMessage: err.response.data.error
+        // });
+
+        console.log("Error in catch", err)
       });
   };
   render() {
@@ -55,10 +67,30 @@ class Register extends Component {
         <Form.Field>
           <input
             className="form-control"
-            placeholder="Full Name"
-            name="name"
+            placeholder="First Name"
+            name="firstname"
             type="text"
-            value={this.state.name}
+            value={this.state.firstname}
+            onChange={this.handleInputChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <input
+            className="form-control"
+            placeholder="Last Name"
+            name="lastname"
+            type="text"
+            value={this.state.lastname}
+            onChange={this.handleInputChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <input
+            className="form-control"
+            placeholder="Email"
+            name="email"
+            type="text"
+            value={this.state.email}
             onChange={this.handleInputChange}
           />
         </Form.Field>

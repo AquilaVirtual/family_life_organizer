@@ -10,7 +10,7 @@ class LogIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
       error: false,
       open: false,
@@ -22,14 +22,41 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  login = event => {
+    event.preventDefault();
+    const user = {
+      username: this.state.username,
+      password: this.state.password
+    };
+    axios
+      .post(`https://vast-hollows-12854.herokuapp.com/api/login`, user)
+      .then(response => {
+       console.log("Fire", response)
+              
+        this.setState({
+          error: false
+        });
+        setTimeout(() => {
+          this.props.history.push("/");
+        }, 200);
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({
+          error: true,
+          errorMessage: err.response.data.error
+        });
+      });
+  };
+
   render() {
     return (
-      <Form className="form-group">
+      <Form className="form-group" onSubmit={this.login}>
         <Form.Field>
           <input
             className="form-control"
-            placeholder="Email"
-            name="email"
+            placeholder="Username"
+            name="username"
             type="text"
             value={this.state.username}
             onChange={this.handleInputChange}
