@@ -7,10 +7,13 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      username: "",
+      firstname: "",
+      lastname: "",
       email: "",
+      username: "",
       password: "",
+      "child": false,
+      "id": 2,
       confirmPassword: "",
       error: false,
       errorMessage: ""
@@ -29,10 +32,13 @@ class Register extends Component {
       return;
     }
     const user = {
-      name: this.state.name,
-      username: this.state.username,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
       email: this.state.email,
-      password: this.state.password
+      username: this.state.username,
+      password: this.state.password,
+      child: this.state.child,
+      id:    this.state.id
     };
     axios //This is for when backend is ready
       .post(`https://vast-hollows-12854.herokuapp.com/api/register`, user)
@@ -56,9 +62,29 @@ class Register extends Component {
           <input
             className="form-control"
             placeholder="Full Name"
-            name="name"
+            name="firstname"
             type="text"
-            value={this.state.name}
+            value={this.state.firstname}
+            onChange={this.handleInputChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <input
+            className="form-control"
+            placeholder="Full Name"
+            name="lastname"
+            type="text"
+            value={this.state.lastname}
+            onChange={this.handleInputChange}
+          />
+        </Form.Field>
+        <Form.Field>
+          <input
+            className="form-control"
+            placeholder="Username"
+            name="username"
+            type="text"
+            value={this.state.username}
             onChange={this.handleInputChange}
           />
         </Form.Field>
