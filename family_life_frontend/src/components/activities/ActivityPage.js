@@ -7,6 +7,7 @@ import { Segment, Button, Header } from "semantic-ui-react";
 import { activities } from "../../dummyData";
 
 import ActivityCard from "./ActivityCard";
+import ActivityModal from "./ActivityModal";
 
 class ActivityPage extends React.Component {
   state = {
@@ -34,35 +35,36 @@ class ActivityPage extends React.Component {
         ...state.activities,
         activities: [...state.activities, activity]
       }));
-    } else if (!id && id !== 0) {
-      this.setState(state => ({
-        ...state.activities,
-        name: activity.name,
-        type: activity.type
-      }));
-    } else {
-      this.setState(state => ({
-        ...state.activities,
-        activities: state.activities.map((currentActivity, i) => {
-          if (i === id) {
-            return activity;
-          }
-          return currentActivity;
-        })
-      }));
-    }
+    } 
+    // else if (!id && id !== 0) {
+    //   this.setState(state => ({
+    //     ...state.activities,
+    //     name: activity.name,
+    //     type: activity.type
+    //   }));
+    // } else {
+    //   this.setState(state => ({
+    //     ...state.activities,
+    //     activities: state.activities.map((currentActivity, i) => {
+    //       if (i === id) {
+    //         return activity;
+    //       }
+    //       return currentActivity;
+    //     })
+    //   }));
+    // }
   };
   deleteActivity = id => {
-    if (!id && id !== 0) {
-      this.setState({
-        activities: []
-      });
-    } else {
+    // if (!id && id !== 0) {
+    //   this.setState({
+    //     activities: []
+    //   });
+    // } else {
       this.setState(state => ({
         ...state.activities,
         activities: state.activities.filter((activity, i) => i !== id)
       }));
-    }
+   // }
   };
   render() {
     const { activities, modal, action, activity } = this.state;
@@ -109,7 +111,14 @@ class ActivityPage extends React.Component {
                 }
               />
             ))}
-        </div>    
+        </div>
+        <ActivityModal
+          open={modal}
+          action={action}
+          addActivity={this.handleActivityAction}
+          handleModalToggle={() => this.handleModalToggle()}
+          activity={activity}
+        />
         <Navbar />
       </Segment>
     );
