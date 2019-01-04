@@ -6,7 +6,6 @@ import "./LandingPage.css";
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
   Icon,

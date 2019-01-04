@@ -1,12 +1,10 @@
-import Navbar from "../navbar/Navbar";
-import SiteHeader from "../header/SiteHeader";
-
 import React from "react";
 import { Segment, Button, Header } from "semantic-ui-react";
 
 import { activities } from "../../dummyData";
 
 import ActivityCard from "./ActivityCard";
+import StatusCheck from "../auth/StatusCheck";
 
 class ActivityPage extends React.Component {
   state = {
@@ -65,16 +63,22 @@ class ActivityPage extends React.Component {
     }
   };
   render() {
-    const { activities, modal, action, activity } = this.state;
+    const { activities, activity } = this.state;
+
+    const { currentUser, history, toggleModal } = this.props;
+
+    if (!currentUser) return (
+      <StatusCheck
+        history={history}
+        toggleModal={toggleModal}
+      />
+    )
+
     if (!activity.name) return <div>No activity</div>;
     return (
-      <Segment
-        style={{
-          textAlign: "center",
-       
-        }}
+      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}
       >
-        <SiteHeader name="Activities" />
+        <Header as="h2">FamilyLife Activities</Header>
         <Button
           primary
           icon="add"
@@ -109,8 +113,7 @@ class ActivityPage extends React.Component {
                 }
               />
             ))}
-        </div>    
-        <Navbar />
+        </div>
       </Segment>
     );
   }

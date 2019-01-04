@@ -1,12 +1,21 @@
 import React from 'react';
 import { Segment, Header } from 'semantic-ui-react';
-import Navbar from "../navbar/Navbar";
 
-const CalendarPage = () => {
+import StatusCheck from "../auth/StatusCheck";
+
+const CalendarPage = (props) => {
+  const { currentUser, history, toggleModal } = props;
+
+  if (!currentUser) return (
+    <StatusCheck
+      history={history}
+      toggleModal={toggleModal}
+    />
+  )
+
   return (
-    <Segment>
-    <Navbar />
-      <Header as="h2">Calendar Page</Header>
+    <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
+      <Header as="h1">FamilyLife Calendar</Header>
     </Segment>
   );
 }
