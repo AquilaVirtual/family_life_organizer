@@ -26,6 +26,7 @@ class Register extends Component {
   };
   createUser = event => {
     event.preventDefault();
+
     if (this.state.password !== this.state.confirmPassword) {
       this.setState({
         errorMessage: "Passwords don't match!"
@@ -38,29 +39,35 @@ class Register extends Component {
       email: this.state.email,
       username: this.state.username,
       password: this.state.password,
-      child: this.state.child,
-      id:    this.state.id
+      // child: this.state.child,
+      // id:    this.state.id
     };
-    axios
-      .post(`https://vast-hollows-12854.herokuapp.com/api/register`, user)
-      .then(response => {
-        console.log("Fire response here", response)
-        console.log("Fire error here", this.state.errorMessage)
+
+    let token = this.state.password;
+    let name = this.state.firstname;
+    localStorage.setItem("token", token)
+    localStorage.setItem("name", name)
+ 
+    // axios
+    //   .post(`https://vast-hollows-12854.herokuapp.com/api/register`, user)
+    //   .then(response => {
+    //     console.log("Fire response here", response)
+    //     console.log("Fire error here", this.state.errorMessage)
 
         
-        this.props.history.push(`/login`);
-        this.setState({
-          error: false
-        });
-      })
-      .catch(err => {
-        // this.setState({
-        //   error: true,
-        //   errorMessage: err.response.data.error
-        // });
+         this.props.history.push(`/login`);
+    //     this.setState({
+    //       error: false
+    //     });
+    //   })
+    //   .catch(err => {
+    //     // this.setState({
+    //     //   error: true,
+    //     //   errorMessage: err.response.data.error
+    //     // });
 
-        console.log("Error in catch", err)
-      });
+    //     console.log("Error in catch", err)
+    //   });
   };
   render() {
     return (
