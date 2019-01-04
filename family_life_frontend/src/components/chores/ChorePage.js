@@ -68,7 +68,7 @@ class ChorePage extends React.Component {
   render() {
     const { users } = this.state;
 
-    const { currentUser, history, toggleModal } = this.props;
+    const { currentUser, history, toggleModal, type } = this.props;
 
     if (!currentUser) return (
       <StatusCheck
@@ -76,11 +76,17 @@ class ChorePage extends React.Component {
         toggleModal={toggleModal}
       />
     )
+
+    let chores = [...users];
+
+    if (type === 'child') {
+      chores = chores.filter(chore => chore.name === currentUser)
+    }
     return (
       <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
         <Header as="h1">FamilyLife Chores</Header>
 
-        {users.map((user, i) => (
+        {chores.map((user, i) => (
           <ChoreCard
             key={user.id}
             index={i}

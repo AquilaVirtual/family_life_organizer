@@ -56,7 +56,7 @@ class AssignmentPage extends React.Component {
 
   render() {
     const { assignments, modal } = this.state;
-    const { currentUser, history, toggleModal } = this.props;
+    const { currentUser, history, toggleModal, type } = this.props;
 
     if (!currentUser) return (
       <StatusCheck
@@ -64,6 +64,12 @@ class AssignmentPage extends React.Component {
         toggleModal={toggleModal}
       />
     )
+
+    let homework = [...assignments];
+    if (type === "child") {
+      homework = homework.filter(item => item.user === currentUser);
+    }
+
     return (
       <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
         <Header as="h1">FamilyLife Assignment</Header>
@@ -80,7 +86,7 @@ class AssignmentPage extends React.Component {
             flexWrap: "wrap"
           }}
         >
-          {assignments.map((assignment, i) => (
+          {homework.map((assignment, i) => (
             <AssignmentCard
               key={i}
               assignment={assignment}

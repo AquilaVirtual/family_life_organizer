@@ -21,7 +21,7 @@ const LandingPage = ({ signout }) => {
         <NavLink to="/chores">Chores</NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink to="/homeworks">Homeworks</NavLink>
+        <NavLink to="/homeworks">Assignment</NavLink>
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item>
