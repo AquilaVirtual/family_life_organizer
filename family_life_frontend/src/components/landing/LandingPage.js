@@ -12,6 +12,7 @@ import {
   Icon,
   Image,
   List,
+  Dropdown,
   Menu,
   Responsive,
   Segment,
@@ -42,10 +43,10 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? "0.5em" : "1.5em"
       }}
     />
-    <Button primary size="huge">
+    <NavLink to="login"><Button primary size="huge">
       Get Organized!
       <Icon name="right arrow" />
-    </Button>
+    </Button> </NavLink>
   </Container>
 );
 
@@ -100,7 +101,8 @@ class DesktopContainer extends Component {
                   FamilyLife
                 </Menu.Item>
                 <Menu.Item position="right">
-                  {localStorage.getItem("token") ? ( <NavLink to="/users">{`${localStorage.getItem("name").split(" ")[0]}`}</NavLink>):( <div><NavLink to="/login">
+                  {localStorage.getItem("token") ? ( 
+                    <NavLink to="/users">{`${localStorage.getItem("name").split(" ")[0]}`}</NavLink>):( <div><NavLink to="/login">
                     {" "}
                     <Button as="a" inverted={!fixed}>
                       Log in
@@ -177,14 +179,10 @@ class MobileContainer extends Component {
         >
           <Menu.Item as="a" active>
             Home
-          </Menu.Item>
-          <Menu.Item as="a">Work</Menu.Item>
-          <Menu.Item as="a">Company</Menu.Item>
-          <Menu.Item as="a">Careers</Menu.Item>
-          <Menu.Item as="a">Log in</Menu.Item>
-          <Menu.Item as="a">Sign Up</Menu.Item>
+          </Menu.Item>       
+          <NavLink to="/login"><Menu.Item as="a">Log in</Menu.Item></NavLink> 
+          <NavLink to="/register"><Menu.Item as="a">Sign Up</Menu.Item></NavLink> 
         </Sidebar>
-
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             inverted
@@ -262,7 +260,7 @@ const LandingPage = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column id="landingPage--getStarted" textAlign="center">
-            <Button size="huge">Get Started with a free account!</Button>
+            <NavLink to="register"><Button size="huge">Get Started with a free account!</Button></NavLink>
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -66,6 +66,7 @@ class LogIn extends Component {
             type="text"
             value={this.state.username}
             onChange={this.handleInputChange}
+            required
           />
         </Form.Field>
         <Form.Field>
@@ -76,6 +77,7 @@ class LogIn extends Component {
             type="password"
             value={this.state.password}
             onChange={this.handleInputChange}
+            required
           />
         </Form.Field>
         <Button className="form-controlBtn" primary onClick={()=>{this.props.history.push('/')}}>
