@@ -76,6 +76,7 @@ class Register extends Component {
         <Form onSubmit={this.createUser} className="form-group form-group--register">
           <Form.Field>
             <input
+              required
               id="form-control"
               placeholder="First Name"
               name="firstname"
@@ -86,6 +87,7 @@ class Register extends Component {
           </Form.Field>
           <Form.Field>
             <input
+              required
               id="form-control"
               placeholder="Last Name"
               name="lastname"
@@ -96,6 +98,7 @@ class Register extends Component {
           </Form.Field>
           <Form.Field>
             <input
+              required
               id="form-control"
               placeholder="Email"
               name="email"
@@ -106,6 +109,7 @@ class Register extends Component {
           </Form.Field>
           <Form.Field>
             <input
+              required
               id="form-control"
               placeholder="Username"
               name="username"
@@ -116,6 +120,7 @@ class Register extends Component {
           </Form.Field>
           <Form.Field>
             <input
+              required
               id="form-control"
               placeholder="Password"
               name="password"
@@ -126,6 +131,7 @@ class Register extends Component {
           </Form.Field>
           <Form.Field>
             <input
+              required
               id="form-control"
               placeholder="Confirm Password"
               name="confirmPassword"
