@@ -101,7 +101,7 @@ class DesktopContainer extends Component {
                   FamilyLife
                 </Menu.Item>
                 <Menu.Item position="right">
-                  {localStorage.getItem("token") ? ( 
+                  {localStorage.getItem("token") && localStorage.getItem("name") ? ( 
                     <NavLink to="/users">{`${localStorage.getItem("name").split(" ")[0]}`}</NavLink>):( <div><NavLink to="/login">
                     {" "}
                     <Button as="a" inverted={!fixed}>
