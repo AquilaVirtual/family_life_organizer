@@ -1,6 +1,8 @@
 import React from "react";
 import { Segment, Header, Button } from "semantic-ui-react";
 
+import axios from "axios";
+
 import { homework } from "../../dummyData";
 
 import Navbar from "../navbar/Navbar";
@@ -35,11 +37,15 @@ class AssignmentPage extends React.Component {
   };
 
   addAssignment = assignment => {
-    this.setState(state => ({
-      assignments: [...state.assignments, assignment]
-    }))
+    console.log("Passing on", assignment)
+    axios.post(`http://localhost:3002/api/assignment/create`, assignment)
+    .then(response => {
+      console.log("Logging Assignment", response)
+    })
+    .catch(err => {
+      console.log("Something Bahd!", err)
+    })   
   }
-
   changeStatus = id => {
     this.setState(state => ({
       assignments: state.assignments.map((assignment, i) => {
