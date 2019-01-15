@@ -33,10 +33,12 @@ class LogIn extends Component {
     axios
       .post(`http://localhost:3002/api/user/login`, user)
       .then(response => {
-        console.log("Fire", response);
+        console.log("Fire", response.data);
         this.setState({
           error: false
         });
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("name", response.data.userFound.name);
         setTimeout(() => {
           this.props.history.push("/");
         }, 200);
