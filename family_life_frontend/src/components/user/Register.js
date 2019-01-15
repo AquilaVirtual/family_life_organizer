@@ -44,7 +44,7 @@ class Register extends Component {
       .post(`http://localhost:3002/api/user/register`, user)
       .then(response => {
         console.log("Fire response here", response);
-        console.log("Fire error here", this.state.errorMessage);
+        console.log("Fire error here", this.state.errorMessage);        
         this.props.history.push(`/login`);
         this.setState({
           error: false
