@@ -1,0 +1,48 @@
+.form-group {
+  width: 36%;
+  height: 300px;
+  border: 0.1rem solid lightgray;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  position: absolute;
+  top: 350px;
+  left: 30%;
+  background-color: rgba(169,169,169 , .7);
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group--register {
+  height: 550px;
+  top: 275px;
+}
+.form-group .form-controlBtn:last-child {
+  margin: 20px auto;
+}
+.form-group .form-controlBtn {
+  width: 30%;
+  margin: 10px auto 0 auto;
+  font-size: 1.5rem;
+  padding: 7px 20px  29px  20px;
+}
+
+#form-control{
+  width: 70%;
+  font-size: 1.5rem;
+}
+.loginHeaderContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-image: linear-gradient(to right, rgba(169,169,169 ,.5 ), rgba(169,169,169 , .5) ),url(https://images.unsplash.com/photo-1516050327434-9d06ea9bfae8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1636&q=80);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.loginHeaderContainer .loginHeader {
+  /* margin-top: 2rem; */
+  display: inline-block;
+  font-size: 5rem;
+  margin-top: 120px;
+  color: rgba(11,102,203 ,.8 );
+}

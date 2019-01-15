@@ -1,11 +1,13 @@
 import React from "react";
-import { Segment, Grid, Header, Icon, Button } from "semantic-ui-react";
+import { Segment, Grid, Header, Icon, Button, Confirm } from "semantic-ui-react";
 
 import ChoreModal from "./ChoreModal";
 
 class ChoreCard extends React.Component {
   state = {
     modal: false,
+    confirmDelete: false,
+    deleteIndex: null,
   }
 
   handleModalToggle = () => {
@@ -13,8 +15,10 @@ class ChoreCard extends React.Component {
       modal: !state.modal
     }))
   }
+
   render() {
-    const { user, index, chores } = this.props;
+    const { user, id, index, chores, addChore, deleteChore, updateStatus } = this.props;
+    const { confirmDelete } = this.state;
     return (
       <Segment
         style={{
@@ -57,13 +61,19 @@ class ChoreCard extends React.Component {
                   chore.status !== "completed" &&
                   <Icon className={`${
                     chore.status === "not started" ?
-                    "arrow alternate circle right yellow" :
-                    "stop circle outline green"
+                      "arrow alternate circle right yellow" :
+                      "stop circle outline green"
                     } icon`}
-                    style = {{ cursor: "pointer", fontSize: "1.4rem" }}
+                    style={{ cursor: "pointer", fontSize: "1.4rem" }}
+                    onClick={() => updateStatus(id, i)}
                   />
                 }
-                <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }} className="trash alternate outline" />
+                <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
+                  className="trash alternate outline"
+                  onClick={() => {
+                    this.setState({ confirmDelete: true, deleteIndex: i })
+                  }}
+                />
               </Grid.Column>
             </React.Fragment>
           ))}
@@ -71,9 +81,19 @@ class ChoreCard extends React.Component {
         <Button primary icon="add" content="New Chore"
           onClick={this.handleModalToggle}
         />
+        <Confirm open={confirmDelete}
+          content="Are you sure you want to delete this chore?"
+          onCancel={() => this.setState({ confirmDelete: false })}
+          onConfirm={() => {
+            deleteChore(id, this.state.deleteIndex);
+            this.setState({ confirmDelete: false })}
+          }
+        />
         <ChoreModal
           open={this.state.modal}
           user={user}
+          id={id}
+          addChore={addChore}
           handleModalToggle={this.handleModalToggle}
         />
       </Segment>

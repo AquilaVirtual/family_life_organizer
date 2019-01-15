@@ -1,36 +1,17 @@
 import React from "react";
-import { Menu, Button } from "semantic-ui-react";
+import { Menu } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import './Navbar.css'
 
 const LandingPage = () => {
-  return (   
-      <div className="navbar">
-        <Menu>
-          <Menu.Item>
-            <NavLink to="/">Home</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="/users">Users</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="/activities">Activities</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="/calendar">Calendar</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="/chores">Chores</NavLink>
-          </Menu.Item>
-          <Menu.Item>
-            <NavLink to="/homeworks">Homeworks</NavLink>
-          </Menu.Item>
-          <NavLink to="/login">
-       <Button primary>Login</Button></NavLink>
-          <NavLink to="/register">
-          <Button primary>Register</Button></NavLink>
-            
-        </Menu>
-       </div>       
+  return (
+    <div className="navbar">
+      <div><NavLink className="navbar--btn" to="/users">Users</NavLink></div>
+      <div><NavLink className="navbar--btn navbar--btn-activities"  to="/activities">Activities</NavLink></div>
+      <div><NavLink className="navbar--btn navbar--btn-calendar"  to="/calendar">Calendar</NavLink></div>
+      <div><NavLink className="navbar--btn navbar--btn-chores" to="/chores">Chores</NavLink></div>
+      <div><div ><NavLink className="navbar--btn navbar--btn-homework" to="/homeworks">Assignments</NavLink></div></div>
+    </div>
   );
 };
 

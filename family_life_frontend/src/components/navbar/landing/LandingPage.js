@@ -12,7 +12,6 @@ import {
   Icon,
   Image,
   List,
-  Dropdown,
   Menu,
   Responsive,
   Segment,
@@ -43,10 +42,10 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? "0.5em" : "1.5em"
       }}
     />
-    <NavLink to="login"><Button primary size="huge">
+    <Button primary size="huge">
       Get Organized!
       <Icon name="right arrow" />
-    </Button> </NavLink>
+    </Button>
   </Container>
 );
 
@@ -101,8 +100,7 @@ class DesktopContainer extends Component {
                   FamilyLife
                 </Menu.Item>
                 <Menu.Item position="right">
-                  {localStorage.getItem("token") && localStorage.getItem("name") ? ( 
-                    <NavLink to="/users">{`${localStorage.getItem("name").split(" ")[0]}`}</NavLink>):( <div><NavLink to="/login">
+                  <NavLink to="/login">
                     {" "}
                     <Button as="a" inverted={!fixed}>
                       Log in
@@ -118,24 +116,7 @@ class DesktopContainer extends Component {
                     >
                       Sign Up
                     </Button>
-                  </NavLink></div>)}
-                  {/* <NavLink to="/login">
-                    {" "}
-                    <Button as="a" inverted={!fixed}>
-                      Log in
-                    </Button>
                   </NavLink>
-                  <NavLink to="/register">
-                    {" "}
-                    <Button
-                      as="a"
-                      inverted={!fixed}
-                      primary={fixed}
-                      style={{ marginLeft: "0.5em" }}
-                    >
-                      Sign Up
-                    </Button>
-                  </NavLink> */}
                 </Menu.Item>
               </Container>
             </Menu>
@@ -179,10 +160,14 @@ class MobileContainer extends Component {
         >
           <Menu.Item as="a" active>
             Home
-          </Menu.Item>       
-          <NavLink to="/login"><Menu.Item as="a">Log in</Menu.Item></NavLink> 
-          <NavLink to="/register"><Menu.Item as="a">Sign Up</Menu.Item></NavLink> 
+          </Menu.Item>
+          <Menu.Item as="a">Work</Menu.Item>
+          <Menu.Item as="a">Company</Menu.Item>
+          <Menu.Item as="a">Careers</Menu.Item>
+          <Menu.Item as="a">Log in</Menu.Item>
+          <Menu.Item as="a">Sign Up</Menu.Item>
         </Sidebar>
+
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
             inverted
@@ -260,7 +245,7 @@ const LandingPage = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column id="landingPage--getStarted" textAlign="center">
-            <NavLink to="register"><Button size="huge">Get Started with a free account!</Button></NavLink>
+            <Button size="huge">Get Started with a free account!</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

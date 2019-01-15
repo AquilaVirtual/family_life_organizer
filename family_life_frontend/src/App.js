@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import { Menu } from 'semantic-ui-react';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
 import LandingPage from "./components/landing/LandingPage";
 import UserPage from "./components/user/UserPage";
@@ -10,17 +9,17 @@ import ChorePage from "./components/chores/ChorePage";
 import AssignmentPage from "./components/assignments/AssignmentPage";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Navbar from "./components/navbar/Navbar";
+// import Navbar from "./components/navbar/Navbar";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navbar />
         {/* Available routes */}
         <Route exact path="/" component={LandingPage} />
+        {/* <Route path="/:path" component={Navbar} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/users" component={UserPage} />

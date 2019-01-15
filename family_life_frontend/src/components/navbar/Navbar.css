@@ -1,0 +1,48 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: absolute;
+    font-size: 1.8rem;
+    padding: 50px 0 0 0;
+    z-index: 5;
+    left: 0;
+    top: 25%;
+    
+}
+
+.navbar--btn {
+    /* border: red 1px solid; */
+    padding: 30px;
+    display: block;
+    width: 200px;
+    height: 100%;
+    background-color: lightblue;
+    border-radius: 5px;
+    color: #201F26;
+    margin-bottom: 20px;
+}
+
+
+.navbar--btn-activities {
+    background-color: #C7DFC5;
+}
+
+.navbar--btn-calendar {
+    background-color: #A6808C;
+}
+
+.navbar--btn-chores {
+    background-color: #EF959D;
+}
+
+.navbar--btn-homework {
+    background-color: #FCDDBC;
+}
+
+/* .active{
+  color: white;
+} */
