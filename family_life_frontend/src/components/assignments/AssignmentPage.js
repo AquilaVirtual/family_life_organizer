@@ -17,9 +17,16 @@ class AssignmentPage extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({
-      assignments: homework
-    });
+    axios.get(`http://localhost:3002/api/assignment/all`)
+    .then(response => {
+      console.log("Getting Assignment", response.data)
+      this.setState({
+        assignments: response.data
+      });
+    })
+    .catch(err => {
+      console.log("Something Bahd!", err)
+    })   
   }
 
   handleModalToggle = (action, member) => {
@@ -35,7 +42,7 @@ class AssignmentPage extends React.Component {
       assignments: state.assignments.filter((assignment, i) => i !== id)
     }));
   };
-
+  
   addAssignment = assignment => {
     console.log("Passing on", assignment)
     axios.post(`http://localhost:3002/api/assignment/create`, assignment)
