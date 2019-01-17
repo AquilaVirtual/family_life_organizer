@@ -6,6 +6,7 @@ class AssignmentCard extends React.Component{
     super();
     this.state= {
       confirmDelete: false,
+      confirmEdit: false,
     }
   } 
   
@@ -30,6 +31,7 @@ class AssignmentCard extends React.Component{
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
             className="edit green"
+            onClick={() => this.setState({confirmEdit: true})}
           />
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
