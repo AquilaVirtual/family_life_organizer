@@ -2,13 +2,18 @@ import React from "react";
 import { Segment, Header, Icon, Confirm } from "semantic-ui-react";
 
 class AssignmentCard extends React.Component{
-  state= {
-    confirmDelete: false,
-  }
-
-  render() {
-    const { assignment, deleteAssignment, changeStatus, id } = this.props;
+  constructor(){
+    super();
+    this.state= {
+      confirmDelete: false,
+      confirmEdit: false,
+    }
+  } 
+  
+  render() {  
+    const { assignment, deleteAssignment, changeStatus} = this.props;
     const { confirmDelete } = this.state;
+    const { _id } = this.props.assignment;
     return (
       <Segment style={{ width: "18rem", margin: "1rem" }}>
         <Header textAlign="center" as="h2">
@@ -21,11 +26,12 @@ class AssignmentCard extends React.Component{
               assignment.status === "initial" ? "play circle outline" : "time yellow"
               }`}
             style={{ cursor: "pointer", margin: "0 .5rem" }}
-            onClick={() => changeStatus(id)}
+            onClick={() => changeStatus(_id)}
           />
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
             className="edit green"
+            onClick={() => this.setState({confirmEdit: true})}
           />
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
@@ -37,7 +43,7 @@ class AssignmentCard extends React.Component{
             onCancel={() => this.setState({ confirmDelete: false })}
             content={`Remove ${assignment.user}'s ${assignment.title}?`}
             onConfirm={() => {
-              deleteAssignment(id);
+              deleteAssignment( _id);     
               this.setState({ confirmDelete: false })}
             }
           />

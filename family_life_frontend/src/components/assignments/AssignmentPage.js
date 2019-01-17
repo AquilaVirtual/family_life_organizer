@@ -3,18 +3,19 @@ import { Segment, Header, Button } from "semantic-ui-react";
 
 import axios from "axios";
 
-import { homework } from "../../dummyData";
-
 import Navbar from "../navbar/Navbar";
 import AssignmentCard from "./AssignmentCard";
 import SiteHeader from '../header/SiteHeader';
 import AssignmentModal from "./AssignmentModal";
 
 class AssignmentPage extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+  this.state = {
     assignments: [],
     modal: false,
   };
+}
 
   componentDidMount() {
     axios.get(`http://localhost:3002/api/assignment/all`)
@@ -36,13 +37,18 @@ class AssignmentPage extends React.Component {
       member
     }));
   };
+  deleteAssignment = id => { 
 
-  deleteAssignment = id => {
-    this.setState(state => ({
-      assignments: state.assignments.filter((assignment, i) => i !== id)
-    }));
+    console.log("Some ID here", id)
+    axios.delete(`http://localhost:3002/api/assignment/${id}`)
+    .then(response => {
+      console.log("Deleted Assignment", response)
+    })
+    .catch(err => {
+      console.log("Something Bahd!", err)
+    })  
   };
-  
+
   addAssignment = assignment => {
     console.log("Passing on", assignment)
     axios.post(`http://localhost:3002/api/assignment/create`, assignment)
