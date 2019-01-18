@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Button, Modal, Form, TextArea } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
@@ -14,11 +14,14 @@ class EditAssignment extends Component {
     description: "",
     _id: null
   };
-  
+
   componentDidMount() {
-   this.setState({
-      user: this.props.assignment.user, title: this.props.assignment.title, description: this.props.assignment.description, _id: this.props.assignment._id
-   })
+    this.setState({
+      user: this.props.assignment.user,
+      title: this.props.assignment.title,
+      description: this.props.assignment.description,
+      _id: this.props.assignment._id
+    });
   }
 
   changeDate = date => {
@@ -28,45 +31,46 @@ class EditAssignment extends Component {
   };
 
   handleSelect = (e, data) => {
-    this.setState({ [data.name]: data.value
-    });
+    this.setState({ [data.name]: data.value });
   };
 
-  handleChange = (event) => {  
+  handleChange = event => {
     console.log(event.target.name);
-    this.setState({ [event.target.name]: [event.target.value]});
+    this.setState({ [event.target.name]: [event.target.value] });
   };
 
   handleSubmit = () => {
     const { user, due, title, description, _id } = this.state;
 
-    axios.put(`http://localhost:3002/api/assignment/${_id}`, {user, due, title, description})
-    .then(response => {
-    })
-    .catch(err => {
-        console.log("Fire!", err)
-    })
+    axios
+      .put(`http://localhost:3002/api/assignment/${_id}`, {
+        user,
+        due,
+        title,
+        description
+      })
+      .then(response => {})
+      .catch(err => {
+        console.log("Fire!", err);
+      });
     this.props.toggleEdit();
   };
   render() {
     const { open, toggleEdit } = this.props;
-    const { user, title, due, description } = this.state;   
+    const { user, title, due, description } = this.state;
     return (
       <Modal size="mini" open={open}>
         <Modal.Header>Edit Assignment for {user}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleSubmit}>
-            <Form.Input            
-              onChange={this.handleChange}
-              name="user"
-              value={user}
-            />
-            <Form.Input       
+            <Form.Input onChange={this.handleChange} name="user" value={user} />
+            <Form.Input
               onChange={this.handleChange}
               name="title"
               value={title}
             />
-            <DatePicker selected={due}
+            <DatePicker
+              selected={due}
               onChange={this.changeDate}
               dateFormat="yyyy/MM/dd"
             />
@@ -90,7 +94,9 @@ class EditAssignment extends Component {
               type="cancel"
               icon="cancel"
               content="Cancel"
-              onClick={() => { toggleEdit()}}
+              onClick={() => {
+                toggleEdit();
+              }}
             />
           </Form>
         </Modal.Content>
