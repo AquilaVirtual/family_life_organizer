@@ -39,18 +39,12 @@ class EditAssignment extends Component {
 
   handleSubmit = () => {
     const { user, due, title, description, _id } = this.state;
-    // const newAssignment = {
-    //   user: user,
-    //   due: due,
-    //   title: title,
-    //   description: description,    
-    // };
+
     axios.put(`http://localhost:3002/api/assignment/${_id}`, {user, due, title, description})
     .then(response => {
-        console.log("Properly working", response)
     })
     .catch(err => {
-        console.log("Damn error!", err)
+        console.log("Fire!", err)
     })
     this.props.onCancel();
   };

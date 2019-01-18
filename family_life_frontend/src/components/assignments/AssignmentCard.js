@@ -10,13 +10,11 @@ class AssignmentCard extends Component{
       confirmDelete: false,
       confirmEdit: false,
     }
-  } 
-  
+  }   
   render() {  
     const { assignment, deleteAssignment, changeStatus} = this.props;
     const { confirmDelete,  confirmEdit } = this.state;
     const { _id } = this.props.assignment;
-    console.log("Deleted bastard", this.props.assignment)
     return (
       <Segment style={{ width: "18rem", margin: "1rem" }}>
         <Header textAlign="center" as="h2">
