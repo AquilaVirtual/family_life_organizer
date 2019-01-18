@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Component} from "react";
 import { Segment, Header, Icon, Confirm } from "semantic-ui-react";
 
-class AssignmentCard extends React.Component{
+import EditAssignment from "./EditAssignment"
+
+class AssignmentCard extends Component{
   constructor(){
     super();
     this.state= {
@@ -12,8 +14,9 @@ class AssignmentCard extends React.Component{
   
   render() {  
     const { assignment, deleteAssignment, changeStatus} = this.props;
-    const { confirmDelete } = this.state;
+    const { confirmDelete,  confirmEdit } = this.state;
     const { _id } = this.props.assignment;
+    console.log("Deleted bastard", this.props.assignment)
     return (
       <Segment style={{ width: "18rem", margin: "1rem" }}>
         <Header textAlign="center" as="h2">
@@ -36,16 +39,20 @@ class AssignmentCard extends React.Component{
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
             className="trash alternate outline red"
-            onClick={() => this.setState({confirmEdit: true})}
+            onClick={() => this.setState({confirmDelete: true})}
           />
           <Confirm open={confirmDelete}
             size="mini"
             onCancel={() => this.setState({ confirmDelete: false })}
             content={`Remove ${assignment.user}'s ${assignment.title}?`}
             onConfirm={() => {
-              deleteAssignment( _id);     
-              this.setState({ confirmDelete: false })}
+            deleteAssignment( _id);     
+            this.setState({ confirmDelete: false })}
             }
+          />
+          <EditAssignment open={confirmEdit}
+           onCancel={() => this.setState({ confirmEdit: false })}
+           assignment={this.props.assignment}
           />
         </p>
         <div style={{ widht: "100%", textAlign: "left" }}>
