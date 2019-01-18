@@ -36,7 +36,7 @@ class AssignmentCard extends React.Component{
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
             className="trash alternate outline red"
-            onClick={() => this.setState({confirmDelete: true})}
+            onClick={() => this.setState({confirmEdit: true})}
           />
           <Confirm open={confirmDelete}
             size="mini"

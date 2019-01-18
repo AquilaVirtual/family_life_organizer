@@ -1,7 +1,7 @@
-import React from "react";
+import React, { Component} from "react";
 import { Button, Modal, Form } from "semantic-ui-react";
 
-class ChoreModal extends React.Component {
+class ChoreModal extends Component {
   state = {
     choreText: ""
   };

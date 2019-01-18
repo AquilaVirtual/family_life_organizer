@@ -1,4 +1,4 @@
-import React from "react";
+import React,  { Component } from "react";
 import { Segment, Header } from "semantic-ui-react";
 
 import ChoreCard from "./ChoreCard";
@@ -6,7 +6,7 @@ import ChoreCard from "./ChoreCard";
 import { users } from "../../dummyData";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from '../header/SiteHeader';
-class ChorePage extends React.Component {
+class ChorePage extends Component {
   state = {
     users: []
   };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component} from "react";
 import { Segment, Header, Button } from "semantic-ui-react";
 
 import axios from "axios";
@@ -8,7 +8,7 @@ import AssignmentCard from "./AssignmentCard";
 import SiteHeader from '../header/SiteHeader';
 import AssignmentModal from "./AssignmentModal";
 
-class AssignmentPage extends React.Component {
+class AssignmentPage extends Component {
   constructor(props) {
     super(props);
   this.state = {

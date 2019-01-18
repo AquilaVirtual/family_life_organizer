@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component} from "react";
 import { Button, Modal, Form, TextArea } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 
 // needed for DatePicker to work
 import "react-datepicker/dist/react-datepicker.css";
 
-class AssignmentModal extends React.Component {
+class AssignmentModal extends Component {
   state = {
     user: "",
     due: new Date(),

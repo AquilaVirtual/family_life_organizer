@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component} from "react";
 import { Segment, Grid, Header, Icon, Button, Confirm } from "semantic-ui-react";
 
 import ChoreModal from "./ChoreModal";
 
-class ChoreCard extends React.Component {
+class ChoreCard extends Component {
   state = {
     modal: false,
     confirmDelete: false,
