@@ -46,10 +46,10 @@ class EditAssignment extends Component {
     .catch(err => {
         console.log("Fire!", err)
     })
-    this.props.onCancel();
+    this.props.toggleEdit();
   };
   render() {
-    const { open, onCancel } = this.props;
+    const { open, toggleEdit } = this.props;
     const { user, title, due, description } = this.state;   
     return (
       <Modal size="mini" open={open}>
@@ -90,7 +90,7 @@ class EditAssignment extends Component {
               type="cancel"
               icon="cancel"
               content="Cancel"
-              onClick={() => { onCancel()}}
+              onClick={() => { toggleEdit()}}
             />
           </Form>
         </Modal.Content>

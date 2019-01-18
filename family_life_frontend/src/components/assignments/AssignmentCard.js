@@ -49,7 +49,7 @@ class AssignmentCard extends Component{
             }
           />
           <EditAssignment open={confirmEdit}
-           onCancel={() => this.setState({ confirmEdit: false })}
+           toggleEdit={() => this.setState({ confirmEdit: false })}
            assignment={this.props.assignment}
           />
         </p>
