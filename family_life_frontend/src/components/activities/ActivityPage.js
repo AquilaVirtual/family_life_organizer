@@ -2,6 +2,7 @@ import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
 import React from "react";
+import axios from "axios";
 import { Segment, Button, Header } from "semantic-ui-react";
 
 import { activities } from "../../dummyData";
@@ -18,11 +19,17 @@ class ActivityPage extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({
-      activities: activities
-    });
+    axios.get('http://localhost:3002/api/activity/all')
+    .then(activities => {
+      console.log("We have activity", activities.data)
+      this.setState({
+        // activities: activities
+      });
+    })
+    .catch(err => {
+      console.log("We have a problem", err)
+    })
   }
-
   handleModalToggle = () => {
     this.setState(({
       modal: !this.state.modal    

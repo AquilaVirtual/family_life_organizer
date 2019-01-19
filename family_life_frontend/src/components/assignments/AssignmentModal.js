@@ -81,7 +81,7 @@ class AssignmentModal extends Component {
             />
             <TextArea
               style={{ margin: "1rem 0" }}
-              placeholder="Tell us more"
+              placeholder="Assignment's description"
               value={description}
               name="description"
               onChange={this.handleChange}
