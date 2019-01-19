@@ -5,7 +5,6 @@ import React from "react";
 import axios from "axios";
 import { Segment, Button, Header } from "semantic-ui-react";
 
-import { activities } from "../../dummyData";
 
 import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
@@ -14,8 +13,7 @@ class ActivityPage extends React.Component {
   state = {
     activities: [],
     modal: false,
-    action: "add",
-    activity: { name: "Row", type: "sports" }
+    action: "add",   
   };
 
   componentDidMount() {
@@ -23,7 +21,7 @@ class ActivityPage extends React.Component {
     .then(activities => {
       console.log("We have activity", activities.data)
       this.setState({
-        // activities: activities
+        activities: activities.data
       });
     })
     .catch(err => {
@@ -43,39 +41,38 @@ class ActivityPage extends React.Component {
         activities: [...state.activities, activity]
       }));
     } 
-    // else if (!id && id !== 0) {
-    //   this.setState(state => ({
-    //     ...state.activities,
-    //     name: activity.name,
-    //     type: activity.type
-    //   }));
-    // } else {
-    //   this.setState(state => ({
-    //     ...state.activities,
-    //     activities: state.activities.map((currentActivity, i) => {
-    //       if (i === id) {
-    //         return activity;
-    //       }
-    //       return currentActivity;
-    //     })
-    //   }));
-    // }
+    else if (!id && id !== 0) {
+      this.setState(state => ({
+        ...state.activities,
+        name: activity.name,
+        type: activity.type
+      }));
+    } else {
+      this.setState(state => ({
+        ...state.activities,
+        activities: state.activities.map((currentActivity, i) => {
+          if (i === id) {
+            return activity;
+          }
+          return currentActivity;
+        })
+      }));
+    }
   };
   deleteActivity = id => {
-    // if (!id && id !== 0) {
-    //   this.setState({
-    //     activities: []
-    //   });
-    // } else {
+    if (!id && id !== 0) {
+      this.setState({
+        activities: []
+      });
+    } else {
       this.setState(state => ({
         ...state.activities,
         activities: state.activities.filter((activity, i) => i !== id)
       }));
-   // }
+   }
   };
   render() {
     const { activities, modal, action, activity } = this.state;
-    if (!activity.name) return <div>No activity</div>;
     return (
       <Segment
         style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}
@@ -87,29 +84,20 @@ class ActivityPage extends React.Component {
           content="Activity"
           onClick={() => this.handleModalToggle("Add")}
         />
-        <ActivityCard
-          activity={{ name: activity.name, type: activity.type }}
-          deleteActivity={() => this.deleteActivity()}
-          handleModalToggle={() =>
-            this.handleModalToggle("Edit", {
-              activity: { name: activity.name, type: activity.type }
-            })
-          }
-        />
         <div
           style={{
             alignItems: "center"
           }}
         >
-          {activities &&
-            activities.map((activity, id) => (
+          { activities &&
+            activities.map((activity) => (
               <ActivityCard
-                key={id}
-                activity={activity}
-                deleteActivity={() => this.deleteActivity(id)}
+              activity={activity}
+                key={activity._id}            
+                deleteActivity={() => this.deleteActivity(activity._id)}
                 handleModalToggle={() =>
                   this.handleModalToggle("Edit", {
-                    id: id,
+                    _id: activity._id,
                     activity: activity
                   })
                 }
