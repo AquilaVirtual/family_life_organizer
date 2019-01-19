@@ -6,16 +6,16 @@ class UserCard extends React.Component {
     confirmDelete: false,
   }
   render() {
+    console.log("Props here", this.props)
     const { activity, deleteActivity, handleModalToggle } = this.props;
     const { confirmDelete } = this.state;
-
     return (
       <Segment style={{
         width: "18rem",
         margin: "1rem auto"
       }}
         textAlign="center"
-      >  
+      >        
         <Header as="h1">{activity.name}</Header>
         <p>{activity.type}</p>
 
