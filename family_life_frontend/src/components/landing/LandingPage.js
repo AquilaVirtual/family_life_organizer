@@ -118,24 +118,7 @@ class DesktopContainer extends Component {
                     >
                       Sign Up
                     </Button>
-                  </NavLink></div>)}
-                  {/* <NavLink to="/login">
-                    {" "}
-                    <Button as="a" inverted={!fixed}>
-                      Log in
-                    </Button>
-                  </NavLink>
-                  <NavLink to="/register">
-                    {" "}
-                    <Button
-                      as="a"
-                      inverted={!fixed}
-                      primary={fixed}
-                      style={{ marginLeft: "0.5em" }}
-                    >
-                      Sign Up
-                    </Button>
-                  </NavLink> */}
+                  </NavLink></div>)}       
                 </Menu.Item>
               </Container>
             </Menu>

@@ -14,7 +14,6 @@ class EditAssignment extends Component {
     description: "",
     _id: null
   };
-
   componentDidMount() {
     this.setState({
       user: this.props.assignment.user,
@@ -23,7 +22,6 @@ class EditAssignment extends Component {
       _id: this.props.assignment._id
     });
   }
-
   changeDate = date => {
     this.setState({
       due: date
@@ -38,10 +36,8 @@ class EditAssignment extends Component {
     console.log(event.target.name);
     this.setState({ [event.target.name]: [event.target.value] });
   };
-
   handleSubmit = () => {
     const { user, due, title, description, _id } = this.state;
-
     axios
       .put(`http://localhost:3002/api/assignment/${_id}`, {
         user,
