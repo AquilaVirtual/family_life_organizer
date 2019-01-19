@@ -45,7 +45,7 @@ class ActivityModal extends React.Component {
       typeText: "",
     });
 
-    addActivity(newActivity, id);
+    addActivity(newActivity);
     handleModalToggle();
   };
 
