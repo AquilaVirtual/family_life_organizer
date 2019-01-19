@@ -13,7 +13,7 @@ class ActivityPage extends React.Component {
   state = {
     activities: [],
     modal: false,
-    action: "add",   
+    action: "Add",   
   };
 
   componentDidMount() {
@@ -28,18 +28,22 @@ class ActivityPage extends React.Component {
       console.log("We have a problem", err)
     })
   }
-  handleModalToggle = () => {
+  handleModalToggle = (action) => {
     this.setState(({
-      modal: !this.state.modal    
+      modal: !this.state.modal,
+      action: action    
     }));
   };
-
   handleActivityAction = (activity, id) => {
-    if (this.state.action === "add") {
-      this.setState(state => ({
-        ...state.activities,
-        activities: [...state.activities, activity]
-      }));
+    console.log("Befor post", activity)
+    if (this.state.action === "Add") {
+      axios.post(`http://localhost:3002/api/activity/create`, activity)
+      .then(activity => {
+        console.log("Created an activity", activity)     
+      })
+      .catch(err => {
+        console.log("We have a problem", err)
+      }) 
     } 
     else if (!id && id !== 0) {
       this.setState(state => ({

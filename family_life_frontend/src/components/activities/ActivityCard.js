@@ -17,7 +17,7 @@ class UserCard extends React.Component {
         textAlign="center"
       >        
         <Header as="h1">{activity.name}</Header>
-        <p>{activity.type}</p>
+        <p key={activity._id}>{activity.type}</p>
 
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
