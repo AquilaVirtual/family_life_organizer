@@ -37,7 +37,7 @@ class UserCard extends React.Component {
           content={`Are you sure you want to remove ${activity.name} ?`}
           onCancel={() => this.setState({ confirmDelete: false })}
           onConfirm={() => {
-            deleteActivity();
+            deleteActivity(activity._id);
             this.setState({ confirmDelete: false })}
           }
         />
