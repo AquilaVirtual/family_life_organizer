@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 
@@ -8,7 +9,6 @@ class ActivityModal extends React.Component {
     nameText: "",
     typeText: "",
   };
-
   componentWillReceiveProps(props) {
     if (props.activity) {
       this.setState({
@@ -30,27 +30,45 @@ class ActivityModal extends React.Component {
   }
 
   handleAddMember = () => {
-    const { addActivity, handleModalToggle, activity } = this.props;
+    const { addActivity, handleModalToggle, activity, editActivity } = this.props;
     const { nameText, typeText } = this.state;
 
     const newActivity = {
       name: nameText,
       type: typeText,
-    };
-
-    const id = activity ? activity.id : null;
-
+    };     
     this.setState({
       nameText: "",
       typeText: "",
     });
 
-    addActivity(newActivity);
-    handleModalToggle();
+    if(this.props.action === "Edit") {
+       console.log("Edited in bastard!", activity._id, newActivity)
+      axios.put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
+      .then(activities => {
+      console.log("We Edited activity", activities)     
+    })
+    .catch(err => {
+      console.log("We have a problem", err)
+    })
+      this.props.toggleEdit();
+    }
+    else if(this.props.action === "Add") {
+      addActivity(newActivity);
+      handleModalToggle();
+    }   
   };
-
+  toggleAction = () => {
+    if(this.props.action === "Edit") {
+      this.props.toggleEdit();
+    }
+    else   if(this.props.action === "Add") {
+      this.props.handleModalToggle();
+    }
+  }
   render() {
-    const { action, open, handleModalToggle } = this.props;
+    const { action, open, handleModalToggle, _id } = this.props;
+    console.log("Some Id in Activity", _id)
     const { nameText, typeText } = this.state;
     return (
       <Modal size="mini" open={open}>
@@ -84,7 +102,7 @@ class ActivityModal extends React.Component {
                 type="cancel"
                 icon="cancel"
                 content="Cancel"
-                onClick={handleModalToggle}
+                onClick={this.toggleAction}
               />
             </div>
           </Form>
