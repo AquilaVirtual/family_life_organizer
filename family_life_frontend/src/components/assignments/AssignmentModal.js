@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { Button, Modal, Form, TextArea } from "semantic-ui-react";
 import DatePicker from "react-datepicker";
 
@@ -75,7 +75,8 @@ class AssignmentModal extends Component {
               name="title"
               value={title}
             />
-            <DatePicker selected={due}
+            <DatePicker
+              selected={due}
               onChange={this.changeDate}
               dateFormat="yyyy/MM/dd"
             />

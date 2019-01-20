@@ -34,8 +34,7 @@ class ActivityPage extends React.Component {
       action: action    
     }));
   };
-  handleActivityAction = (activity, id) => {
-    console.log("Befor post", activity)
+  handleActivityAction = (activity, id) => {   
     if (this.state.action === "Add") {
       axios.post(`http://localhost:3002/api/activity/create`, activity)
       .then(activity => {
@@ -44,25 +43,21 @@ class ActivityPage extends React.Component {
       .catch(err => {
         console.log("We have a problem", err)
       }) 
-    } 
-    else if (!id && id !== 0) {
-      this.setState(state => ({
-        ...state.activities,
-        name: activity.name,
-        type: activity.type
-      }));
-    } else {
-      this.setState(state => ({
-        ...state.activities,
-        activities: state.activities.map((currentActivity, i) => {
-          if (i === id) {
-            return activity;
-          }
-          return currentActivity;
-        })
-      }));
-    }
-  };
+    }   
+  };   
+  editActivity = (activity) => {
+    console.log("Getting something in Edit activity", activity)  
+  // if (this.state.action === "Edit") {  
+    console.log("Edit", activity)  
+      axios.put(`http://localhost:3002/api/activity/${activity._id}`, activity)
+      .then(activity => {
+        console.log("Created an activity", activity)     
+      })
+      .catch(err => {
+        console.log("We have a problem", err)
+      })      
+  // }
+}
   deleteActivity = id => {
     if (!id && id !== 0) {
       this.setState({
@@ -96,15 +91,10 @@ class ActivityPage extends React.Component {
           { activities &&
             activities.map((activity) => (
               <ActivityCard
-              activity={activity}
+               activity={activity}
+               action={action}
                 key={activity._id}            
-                deleteActivity={() => this.deleteActivity(activity._id)}
-                handleModalToggle={() =>
-                  this.handleModalToggle("Edit", {
-                    _id: activity._id,
-                    activity: activity
-                  })
-                }
+                deleteActivity={() => this.deleteActivity(activity._id)}             
               />
             ))}
         </div>
@@ -112,6 +102,7 @@ class ActivityPage extends React.Component {
           open={modal}
           action={action}
           addActivity={this.handleActivityAction}
+          editActivity={this.editActivity}
           handleModalToggle={() => this.handleModalToggle()}
           activity={activity}
         />

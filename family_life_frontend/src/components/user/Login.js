@@ -29,7 +29,7 @@ class LogIn extends Component {
       username: this.state.username,
       password: this.state.password
     };
-
+    console.log("Before login", user)
     axios
       .post(`http://localhost:3002/api/user/login`, user)
       .then(response => {
