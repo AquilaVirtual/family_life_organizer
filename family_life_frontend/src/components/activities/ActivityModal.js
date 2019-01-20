@@ -17,18 +17,15 @@ class ActivityModal extends React.Component {
       })
     }
   }
-
   handleChange =  event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-
   handleSelect = (e, data) => {
     this.setState({
       [data.name]: data.value
     })
   }
-
   handleAddMember = () => {
     const { addActivity, handleModalToggle, activity, editActivity } = this.props;
     const { nameText, typeText } = this.state;
@@ -43,10 +40,8 @@ class ActivityModal extends React.Component {
     });
 
     if(this.props.action === "Edit") {
-       console.log("Edited in bastard!", activity._id, newActivity)
       axios.put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
-      .then(activities => {
-      console.log("We Edited activity", activities)     
+      .then(activities => {     
     })
     .catch(err => {
       console.log("We have a problem", err)
@@ -62,7 +57,7 @@ class ActivityModal extends React.Component {
     if(this.props.action === "Edit") {
       this.props.toggleEdit();
     }
-    else   if(this.props.action === "Add") {
+    else if(this.props.action === "Add") {
       this.props.handleModalToggle();
     }
   }
