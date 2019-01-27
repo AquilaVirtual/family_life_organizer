@@ -16,9 +16,11 @@ class AssignmentPage extends React.Component {
     modal: false,
   };
 }
-
   componentDidMount() {
-    axios.get(`http://localhost:3002/api/assignment/all`)
+    const token = localStorage.getItem('token');
+    console.log("Getting some token", token)
+    const headers = { "headers": { "authorization": token } };
+    axios.get(`http://localhost:3002/api/assignment`, headers)
     .then(response => {
       console.log("Getting Assignment", response.data)
       this.setState({
@@ -48,10 +50,14 @@ class AssignmentPage extends React.Component {
       console.log("Something Bahd!", err)
     })  
   };
-
+ 
   addAssignment = assignment => {
+    const token = localStorage.getItem('token');
+    console.log("Getting some token", token)
+    const headers = { "headers": { "authorization": token } };
+
     console.log("Passing on", assignment)
-    axios.post(`http://localhost:3002/api/assignment/create`, assignment)
+    axios.post(`http://localhost:3002/api/assignment/create`, assignment, headers)
     .then(response => {
       console.log("Logging Assignment", response)
     })
