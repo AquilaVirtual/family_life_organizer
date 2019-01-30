@@ -17,8 +17,10 @@ class ActivityPage extends React.Component {
   };
 
   componentDidMount() {
+    const token = localStorage.getItem('token');   
+    const headers = { "headers": { "authorization": token } };
     axios
-      .get("http://localhost:3002/api/activity/all")
+      .get("http://localhost:3002/api/activity", headers)
       .then(activities => {
         console.log("We have activity", activities.data);
         this.setState({
@@ -37,8 +39,10 @@ class ActivityPage extends React.Component {
   };
   handleActivityAction = activity => {
     if (this.state.action === "Add") {
+      const token = localStorage.getItem('token');   
+    const headers = { "headers": { "authorization": token } };
       axios
-        .post(`http://localhost:3002/api/activity/create`, activity)
+        .post(`http://localhost:3002/api/activity/create`, activity, headers)
         .then(activity => {
           console.log("Created an activity", activity);
         })
