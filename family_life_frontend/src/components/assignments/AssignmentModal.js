@@ -11,7 +11,7 @@ class AssignmentModal extends Component {
     due: new Date(),
     title: "",
     description: "",
-    username: "moss"
+    username: localStorage.getItem("username")
   };
 
   changeDate = date => {
@@ -51,7 +51,7 @@ class AssignmentModal extends Component {
       due: new Date(),
       title: "",
       description: "",
-      username: "moss"
+    
     });
 
     addAssignment(newAssignment);

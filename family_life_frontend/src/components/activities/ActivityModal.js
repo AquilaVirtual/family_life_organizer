@@ -33,6 +33,7 @@ class ActivityModal extends React.Component {
     const newActivity = {
       name: nameText,
       type: typeText,
+      username: localStorage.getItem("username")
     };     
     this.setState({
       nameText: "",
