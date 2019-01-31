@@ -18,9 +18,10 @@ class ActivityPage extends React.Component {
 
   componentDidMount() {
     const token = localStorage.getItem('token');   
+    const username = localStorage.getItem("username");
     const headers = { "headers": { "authorization": token } };
     axios
-      .get("http://localhost:3002/api/activity", headers)
+      .get(`http://localhost:3002/api/activity/${username}`, headers)
       .then(activities => {
         console.log("We have activity", activities.data);
         this.setState({

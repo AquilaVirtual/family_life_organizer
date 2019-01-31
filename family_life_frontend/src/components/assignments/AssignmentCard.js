@@ -18,7 +18,7 @@ class AssignmentCard extends Component {
     return (
       <Segment style={{ width: "18rem", margin: "1rem" }}>
         <Header textAlign="center" as="h2">
-          {`${assignment.user}'s ${assignment.title}`}
+          {`${assignment.name}'s ${assignment.title}`}
         </Header>
         <p style={{ fontSize: "1.4rem" }}>
           <Icon

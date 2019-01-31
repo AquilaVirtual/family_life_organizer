@@ -7,7 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 class AssignmentModal extends Component {
   state = {
-    user: "",
+    name: "",
     due: new Date(),
     title: "",
     description: "",
@@ -35,10 +35,10 @@ class AssignmentModal extends Component {
 
   handleSubmit = () => {
     const { addAssignment, handleModalToggle } = this.props;
-    const { user, due, title, description, username } = this.state;
+    const {name, due, title, description, username } = this.state;
 
     const newAssignment = {
-      user,
+      name,
       due,
       title,
       description,
@@ -60,17 +60,17 @@ class AssignmentModal extends Component {
 
   render() {
     const { open, handleModalToggle } = this.props;
-    const { user, title, due, description } = this.state;
+    const { name, title, due, description } = this.state;
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>Add an Assignment for {user}</Modal.Header>
+        <Modal.Header>Add an Assignment for {name}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
               placeholder="Add a child's name..."
               onChange={this.handleChange}
-              name="user"
-              value={user}
+              name="name"
+              value={name}
             />
             <Form.Input
               placeholder="Add assignment's title..."

@@ -10,6 +10,8 @@ class MemberModal extends React.Component {
   state = {
     nameText: "",
     accountText: "",
+    usernameText: "", 
+    emailText: ""
   };
 
   componentWillReceiveProps(props) {
@@ -35,10 +37,12 @@ class MemberModal extends React.Component {
 
   handleAddMember = () => {
     const { addMember, handleModalToggle, member } = this.props;
-    const { nameText, accountText } = this.state;
+    const { nameText, usernameText, emailText, accountText } = this.state;
 
     const newMember = {
       name: nameText,
+      username: usernameText, 
+      email: emailText,
       type: accountText,
     };
 
@@ -55,7 +59,7 @@ class MemberModal extends React.Component {
 
   render() {
     const { action, open, handleModalToggle } = this.props;
-    const { nameText, accountText } = this.state;
+    const {usernameText, emailText, nameText, accountText } = this.state;
     return (
       <Modal size="mini" open={open}>
         <Modal.Header>{`${action} a Family Member`}</Modal.Header>
@@ -67,6 +71,20 @@ class MemberModal extends React.Component {
               onChange={this.handleChange}
               name="nameText"
               value={nameText}
+            />
+            <Form.Input
+              required
+              placeholder="Add member username..."
+              onChange={this.handleChange}
+              name="usernameText"
+              value={usernameText}
+            />
+            <Form.Input
+              required
+              placeholder="Add member email..."
+              onChange={this.handleChange}
+              name="emailText"
+              value={emailText}
             />
             <Select
               style={{ width: "100%"}}
