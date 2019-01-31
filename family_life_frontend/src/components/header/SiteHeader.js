@@ -10,6 +10,8 @@ const Header = (props) => {
     const logOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
+        localStorage.removeItem("userId");
+
 
     }
         return(

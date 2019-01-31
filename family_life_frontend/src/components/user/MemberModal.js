@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 const memberType = [
-  {key: "parent", value: "parent", text:"Parent"},
+  {key: "spouse", value: "spouse", text:"Spouse"},
   {key: "child", value: "child", text:"Child"}
 ]
 

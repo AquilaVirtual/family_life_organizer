@@ -18,9 +18,10 @@ class AssignmentPage extends React.Component {
 }
   componentDidMount() {
     const token = localStorage.getItem('token');
+    const username = localStorage.getItem("username")
     console.log("Getting some token", token)
     const headers = { "headers": { "authorization": token } };
-    axios.get(`http://localhost:3002/api/assignment`, headers)
+    axios.get(`http://localhost:3002/api/assignment/${username}`, headers)
     .then(response => {
       console.log("Getting Assignment", response.data)
       this.setState({

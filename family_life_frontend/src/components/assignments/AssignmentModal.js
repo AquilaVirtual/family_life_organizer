@@ -10,7 +10,8 @@ class AssignmentModal extends Component {
     user: "",
     due: new Date(),
     title: "",
-    description: ""
+    description: "",
+    username: "moss"
   };
 
   changeDate = date => {
@@ -34,13 +35,14 @@ class AssignmentModal extends Component {
 
   handleSubmit = () => {
     const { addAssignment, handleModalToggle } = this.props;
-    const { user, due, title, description } = this.state;
+    const { user, due, title, description, username } = this.state;
 
     const newAssignment = {
       user,
       due,
       title,
       description,
+      username,
       status: "initial"
     };
 
@@ -48,7 +50,8 @@ class AssignmentModal extends Component {
       user: "",
       due: new Date(),
       title: "",
-      description: ""
+      description: "",
+      username: "moss"
     });
 
     addAssignment(newAssignment);
