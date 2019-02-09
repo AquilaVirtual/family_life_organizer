@@ -3,7 +3,8 @@ import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 const memberType = [
   {key: "spouse", value: "spouse", text:"Spouse"},
-  {key: "child", value: "child", text:"Child"}
+  {key: "child", value: "child", text:"Child"},
+  {key: "relative", value: "relative", text:"Relative"}
 ]
 
 class MemberModal extends React.Component {
@@ -18,6 +19,8 @@ class MemberModal extends React.Component {
     if (props.member) {
       this.setState({
         nameText: props.member.member.name,
+        usernameText: props.member.member.username,
+        emailText: props.member.member.email,
         accountText: props.member.member.type
       })
     }
@@ -67,21 +70,21 @@ class MemberModal extends React.Component {
           <Form onSubmit={this.handleAddMember}>
             <Form.Input
               required
-              placeholder="Add member name..."
+              placeholder="Full Name"
               onChange={this.handleChange}
               name="nameText"
               value={nameText}
             />
             <Form.Input
               required
-              placeholder="Add member username..."
+              placeholder="Username"
               onChange={this.handleChange}
               name="usernameText"
               value={usernameText}
             />
             <Form.Input
               required
-              placeholder="Add member email..."
+              placeholder="Email"
               onChange={this.handleChange}
               name="emailText"
               value={emailText}
