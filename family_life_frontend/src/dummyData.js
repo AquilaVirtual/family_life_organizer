@@ -33,11 +33,11 @@ export const users = [
 export const account = {
   id: 123,
   name: "Dad",
-  type: "Parent",
+  type: "Primary",
   familyMembers: [
     {
       name: "Mom",
-      type: "Parent"
+      type: "Spouse"
     },
     {
       name: "Jan",

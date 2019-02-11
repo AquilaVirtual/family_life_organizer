@@ -17,7 +17,7 @@ class ActivityPage extends React.Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem('token');   
+    const token = localStorage.getItem("token");   
     const username = localStorage.getItem("username");
     const headers = { "headers": { "authorization": token } };
     axios
@@ -39,8 +39,9 @@ class ActivityPage extends React.Component {
     });
   };
   handleActivityAction = activity => {
+    console.log("Activity payload", activity)
     if (this.state.action === "Add") {
-      const token = localStorage.getItem('token');   
+      const token = localStorage.getItem("token");   
     const headers = { "headers": { "authorization": token } };
       axios
         .post(`http://localhost:3002/api/activity/create`, activity, headers)
@@ -52,7 +53,6 @@ class ActivityPage extends React.Component {
         });
     }
   };
-
   deleteActivity = id => {
     console.log("Deleting activity", id);
     axios

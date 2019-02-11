@@ -39,7 +39,7 @@ class MemberModal extends React.Component {
   }
 
   handleAddMember = () => {
-    const { addMember, handleModalToggle, member } = this.props;
+    const { addMember, handleModalToggle } = this.props;
     const { nameText, usernameText, emailText, accountText } = this.state;
 
     const newMember = {
@@ -47,16 +47,15 @@ class MemberModal extends React.Component {
       username: usernameText, 
       email: emailText,
       type: accountText,
-    };
-
-    const id = member ? member.id : null;
-
+      username_primary: localStorage.getItem("username")
+    }; 
+    
+    addMember(newMember);
     this.setState({
       nameText: "",
       accountText: "",
-    });
-
-    addMember(newMember, id);
+      email: emailText,
+      });
     handleModalToggle();
   };
 

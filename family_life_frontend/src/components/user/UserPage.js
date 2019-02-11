@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
 
 import { account } from "../../dummyData";
@@ -30,35 +31,44 @@ class UserPage extends React.Component {
     }));
   };
 
-  handleMemberAction = (member, id) => {
-    if (this.state.action === "Add") {
-      this.setState(state => ({
-        user: {
-          ...state.user,
-          familyMembers: [...state.user.familyMembers, member]
-        }
-      }));
-    } else if (!id && id!==0) {
-      this.setState(state => ({
-        user: {
-          ...state.user,
-          name: member.name,
-          type: member.type
-        }
-      }));
-    } else {
-      this.setState(state => ({
-        user: {
-          ...state.user,
-          familyMembers: state.user.familyMembers.map((currentMember, i) => {
-            if (i === id) {
-              return member;
-            }
-            return currentMember;
-          })
-        }
-      }));
-    }
+  handleMemberAction = (member) => {  
+    console.log("New member", member) 
+    const token = localStorage.getItem("token");   
+    const headers = { headers: { authorization: token } };
+    axios.post("http://localhost:3002/api/member/create", member, headers)
+    .then(resonse => {
+    })
+    .catch(err => {
+      console.log("Error adding member", err)
+    })
+    // if (this.state.action === "Add") {
+    //   this.setState(state => ({
+    //     user: {
+    //       ...state.user,
+    //       familyMembers: [...state.user.familyMembers, member]
+    //     }
+    //   }));
+    // } else if (!id && id!==0) {
+    //   this.setState(state => ({
+    //     user: {
+    //       ...state.user,
+    //       name: member.name,
+    //       type: member.type
+    //     }
+    //   }));
+    // } else {
+    //   this.setState(state => ({
+    //     user: {
+    //       ...state.user,
+    //       familyMembers: state.user.familyMembers.map((currentMember, i) => {
+    //         if (i === id) {
+    //           return member;
+    //         }
+    //         return currentMember;
+    //       })
+    //     }
+    //   }));
+    // }
   };
 
   deleteUser = id => {
