@@ -46,7 +46,12 @@ class MemberModal extends React.Component {
       name: nameText,
       username: usernameText, 
       email: emailText,
-      type: accountText,
+      accountType: accountText,
+      //Here we randomly generate a number and add it to the username of newly added family member. 
+      //This will be used as password for new member to log in and change password.
+      //When app is fully functional, this new member informatiom  //will be sent via email or text message. 
+      //Only a primary account can add family members, but they can't have access to log in credentials for added members
+      password: usernameText + Math.floor(Math.random() * 100000),
       username_primary: localStorage.getItem("username")
     }; 
     
