@@ -6,8 +6,8 @@ import { account } from "../../dummyData";
 
 import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";
-import Navbar from '../navbar/Navbar';
-import SiteHeader from '../header/SiteHeader';
+import Navbar from "../navbar/Navbar";
+import SiteHeader from "../header/SiteHeader";
 
 class UserPage extends React.Component {
   state = {
@@ -18,9 +18,20 @@ class UserPage extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({
-      user: account
-    });
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
+    const headers = { headers: { authorization: token } };
+    axios
+      .get(`http://localhost:3002/api/user/family/${username}`, headers)
+      .then(response => {
+        console.log("Getting family", response);
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(err => {
+        console.log("Error adding member", err);
+      });
   }
 
   handleModalToggle = (action, member) => {
@@ -31,17 +42,18 @@ class UserPage extends React.Component {
     }));
   };
 
-  handleMemberAction = (member) => {  
-    console.log("New member", member) 
-    const token = localStorage.getItem("token");   
+  handleMemberAction = member => {
+    console.log("New member", member);
+    const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
-    axios.post("http://localhost:3002/api/member/create", member, headers)
-    .then(response => {
-      console.log("Adding New Member", response) 
-    })
-    .catch(err => {
-      console.log("Error adding member", err)
-    })    
+    axios
+      .post("http://localhost:3002/api/member/create", member, headers)
+      .then(response => {
+        console.log("Adding New Member", response);
+      })
+      .catch(err => {
+        console.log("Error adding member", err);
+      });
   };
   deleteUser = id => {
     if (!id && id !== 0) {
@@ -65,7 +77,16 @@ class UserPage extends React.Component {
     if (!user.name) return <div>No User</div>;
 
     return (
-      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px', marginBottom: '30px'}}>
+      <Segment
+        style={{
+          textAlign: "center",
+          border: "none",
+          boxShadow: "0px 0px 0px",
+          height: "100vh",
+          padding: "0px 0px",
+          marginBottom: "30px"
+        }}
+      >
         <Navbar />
         <SiteHeader name="Users" />
         <UserCard
