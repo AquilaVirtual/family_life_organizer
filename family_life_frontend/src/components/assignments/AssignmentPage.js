@@ -43,8 +43,10 @@ class AssignmentPage extends React.Component {
   };
   deleteAssignment = id => {
     console.log("Some ID here", id);
+    const token = localStorage.getItem("token");   
+    const headers = { "headers": { "authorization": token } };
     axios
-      .delete(`http://localhost:3002/api/assignment/${id}`)
+      .delete(`http://localhost:3002/api/assignment/${id}`, headers)
       .then(response => {
         console.log("Deleted Assignment", response);
       })

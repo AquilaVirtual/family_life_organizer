@@ -43,7 +43,6 @@ class UserPage extends React.Component {
       console.log("Error adding member", err)
     })    
   };
-
   deleteUser = id => {
     if (!id && id !== 0) {
       this.setState({
@@ -60,7 +59,6 @@ class UserPage extends React.Component {
       }));
     }
   };
-
   render() {
     const { user, modal, action, member } = this.state;
 

@@ -52,6 +52,7 @@ class MemberModal extends React.Component {
       //When app is fully functional, this new member informatiom  //will be sent via email or text message. 
       //Only a primary account can add family members, but they can't have access to log in credentials for added members
       password: usernameText + Math.floor(Math.random() * 100000),
+      //Username of primary account holder is used to associate with newly added for query
       username_primary: localStorage.getItem("username")
     }; 
     

@@ -6,6 +6,7 @@ class UserCard extends React.Component {
     confirmDelete: false,
   }
   render() {
+    console.log("User in card", this.props.user)
     const { user, deleteUser, handleModalToggle } = this.props;
     const { confirmDelete } = this.state;
 
@@ -27,7 +28,7 @@ class UserCard extends React.Component {
           circular
         />
         <Header as="h1">{user.name}</Header>
-        <p>{user.type}</p>
+        <p>{user.accountType}</p>
 
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"

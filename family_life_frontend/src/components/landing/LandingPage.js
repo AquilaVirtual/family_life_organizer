@@ -251,7 +251,7 @@ const LandingPage = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column id="landingPage--getStarted" textAlign="center">
-            <NavLink to="register"><Button size="huge">Get Started with a free account!</Button></NavLink>
+            <NavLink to="/register"><Button size="huge">Get Started with a free account!</Button></NavLink>
           </Grid.Column>
         </Grid.Row>
       </Grid>
