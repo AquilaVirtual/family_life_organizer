@@ -29,7 +29,10 @@ class UserCard extends React.Component {
         />
         <Header as="h1">{user.name}</Header>
         <p>{user.accountType}</p>
-
+        {/* Show the edit and delete icons if the logged in user's account type is primary.
+            Only a primary account holder can delete and/or add family members. 
+        */}
+        { localStorage.getItem("accountType") === "Primary" ? (<div>
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
           onClick={handleModalToggle}
@@ -37,7 +40,8 @@ class UserCard extends React.Component {
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="trash alternate outline red"
           onClick={() => this.setState({ confirmDelete: true })}
-        />
+        /> </div>):(null)
+         }
         <Confirm open={confirmDelete}
           size="mini"
           content={`Are you sure you want to remove ${user.name} ?`}
