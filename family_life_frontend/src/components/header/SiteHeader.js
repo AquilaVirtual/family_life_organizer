@@ -11,6 +11,7 @@ const Header = (props) => {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         localStorage.removeItem("userId");
+        localStorage.removeItem("accountType");
         localStorage.removeItem("username");
     }
         return(

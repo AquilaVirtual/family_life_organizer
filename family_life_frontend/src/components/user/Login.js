@@ -39,6 +39,7 @@ class LogIn extends Component {
         });
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.userFound.name);
+        localStorage.setItem("accountType", response.data.userFound.accountType);
         localStorage.setItem("username", response.data.userFound.username);
         localStorage.setItem("userId", response.data.userId);
         setTimeout(() => {
