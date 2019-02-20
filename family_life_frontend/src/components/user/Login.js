@@ -16,6 +16,7 @@ class LogIn extends Component {
       selectedOption: "",
       primary: "primary",
       other: "other",
+      url:"",
       error: false,
       open: false,
       errorMessage: ""
@@ -43,8 +44,19 @@ class LogIn extends Component {
       })
     }   
     else if(this.state.selectedOption === "primary") {
+      this.setState({
+        url: "http://localhost:3002/api/user/login"
+      })
+    }
+    else if(this.state.selectedOption === "other") {
+      this.setState({
+        url: "http://localhost:3002/api/member/login"
+      })
+      }
+      const url = this.state.url;
+      console.log("Current url", url)
     axios
-      .post(`http://localhost:3002/api/user/login`, user)
+      .post(`${url}`, user)
       .then(response => {
         console.log("Fire", response.data);
         this.setState({
@@ -66,14 +78,9 @@ class LogIn extends Component {
         console.log("What's happening here", err);
         this.setState({
           error: true,
-          errorMessage: err.response.data.error
+         // errorMessage: err.response.data.error
         });
-      });
-    }
-
-    else if(this.state.selectedOption === "other") {
-      
-    }
+      });    
   };
 
   render() {
@@ -108,7 +115,6 @@ class LogIn extends Component {
             <div className="radio">
               <label>
                 <input
-                  name="primary"
                   type="radio"
                   checked={this.state.selectedOption === "primary"}
                   value={this.state.primary}
@@ -120,7 +126,6 @@ class LogIn extends Component {
             <div className="radio">
               <label>
                 <input
-                  name="other"
                   type="radio"
                   checked={this.state.selectedOption === "other"}
                   value={this.state.other}
