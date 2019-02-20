@@ -12,11 +12,10 @@ class LogIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",      
+      password: "",
       selectedOption: "",
       primary: "primary",
       other: "other",
-      url:"",
       error: false,
       open: false,
       errorMessage: ""
@@ -33,28 +32,22 @@ class LogIn extends Component {
   };
 
   login = event => {
+    let url = "";
     event.preventDefault();
     const user = {
       username: this.state.username,
       password: this.state.password
     };
-    if(this.state.selectedOption === "") {
+    if (this.state.selectedOption === "") {
       this.setState({
         errorMessage: "Please select an account type"
-      })
-    }   
-    else if(this.state.selectedOption === "primary") {
-      this.setState({
-        url: "http://localhost:3002/api/user/login"
-      })
+      });
+    } else if (this.state.selectedOption === "primary") {
+      url = "http://localhost:3002/api/user/login";
+    } else if (this.state.selectedOption === "other") {
+      url = "http://localhost:3002/api/member/login";
     }
-    else if(this.state.selectedOption === "other") {
-      this.setState({
-        url: "http://localhost:3002/api/member/login"
-      })
-      }
-      const url = this.state.url;
-      console.log("Current url", url)
+    console.log("Current url", url);
     axios
       .post(`${url}`, user)
       .then(response => {
@@ -75,20 +68,20 @@ class LogIn extends Component {
         }, 200);
       })
       .catch(err => {
-        console.log("What's happening here", err);
+        console.log("Error here in login", err);
         this.setState({
-          error: true,
-         // errorMessage: err.response.data.error
+          error: true
+          // errorMessage: err.response.data.error
         });
-      });    
+      });
   };
 
   render() {
     return (
       <div>
         <LoginHeader name="Login" />
-        <Form className="form-group" onSubmit={this.login}>  
-        <div className="errorMessage">{this.state.errorMessage}</div>        
+        <Form className="form-group" onSubmit={this.login}>
+          <div className="errorMessage">{this.state.errorMessage}</div>
           <Form.Field>
             <input
               id="form-control"
@@ -134,7 +127,7 @@ class LogIn extends Component {
                 Other account
               </label>
             </div>
-          </div>         
+          </div>
           <Button
             className="form-controlBtn"
             primary

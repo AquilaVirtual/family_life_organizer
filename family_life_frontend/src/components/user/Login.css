@@ -35,8 +35,9 @@
   color: white;
 }
 .errorMessage {
-  color: red;
-  margin-bottom: 20px
+  color: #d41919;
+  margin-bottom: 8px;
+  font-weight: 600
 }
 #form-control{
   width: 70%;
