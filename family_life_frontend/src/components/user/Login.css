@@ -34,7 +34,10 @@
   position: absolute;
   color: white;
 }
-
+.errorMessage {
+  color: red;
+  margin-bottom: 20px
+}
 #form-control{
   width: 70%;
   font-size: 1.5rem;

@@ -37,7 +37,12 @@ class LogIn extends Component {
       username: this.state.username,
       password: this.state.password
     };
-    console.log("Before login", user);
+    if(this.state.selectedOption === "") {
+      this.setState({
+        errorMessage: "Please select an account type"
+      })
+    }   
+    else if(this.state.selectedOption === "primary") {
     axios
       .post(`http://localhost:3002/api/user/login`, user)
       .then(response => {
@@ -64,14 +69,19 @@ class LogIn extends Component {
           errorMessage: err.response.data.error
         });
       });
+    }
+
+    else if(this.state.selectedOption === "other") {
+      
+    }
   };
 
   render() {
     return (
       <div>
         <LoginHeader name="Login" />
-        <Form className="form-group" onSubmit={this.login}>
-          <div style={{ color: "red" }}>{this.state.errorMessage}</div>
+        <Form className="form-group" onSubmit={this.login}>  
+        <div className="errorMessage">{this.state.errorMessage}</div>        
           <Form.Field>
             <input
               id="form-control"
@@ -119,7 +129,7 @@ class LogIn extends Component {
                 Other account
               </label>
             </div>
-          </div>
+          </div>         
           <Button
             className="form-controlBtn"
             primary
