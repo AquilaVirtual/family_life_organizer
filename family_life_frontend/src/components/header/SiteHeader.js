@@ -20,7 +20,7 @@ const Header = (props) => {
             </p>
              <h1 id="header--heading"><NavLink to="/">FamilyLife</NavLink> | {props.name}</h1>
              <div>
-             <Button  size='huge' basic content="Switch User" />
+             <Button  size='huge' basic content="Settings" />
             <NavLink to="/"> <Button  size='huge' basic content="Sign Out" onClick={()=>{ logOut() } } /></NavLink>
              </div>
              

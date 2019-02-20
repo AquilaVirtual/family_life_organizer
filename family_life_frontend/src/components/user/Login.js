@@ -12,7 +12,10 @@ class LogIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",
+      password: "",      
+      selectedOption: "",
+      primary: "primary",
+      other: "other",
       error: false,
       open: false,
       errorMessage: ""
@@ -23,13 +26,18 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleOptionChange = event => {
+    event.preventDefault();
+    this.setState({ selectedOption: event.target.value });
+  };
+
   login = event => {
     event.preventDefault();
     const user = {
       username: this.state.username,
       password: this.state.password
     };
-    console.log("Before login", user)
+    console.log("Before login", user);
     axios
       .post(`http://localhost:3002/api/user/login`, user)
       .then(response => {
@@ -39,7 +47,10 @@ class LogIn extends Component {
         });
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.userFound.name);
-        localStorage.setItem("accountType", response.data.userFound.accountType);
+        localStorage.setItem(
+          "accountType",
+          response.data.userFound.accountType
+        );
         localStorage.setItem("username", response.data.userFound.username);
         localStorage.setItem("userId", response.data.userId);
         setTimeout(() => {
@@ -54,6 +65,7 @@ class LogIn extends Component {
         });
       });
   };
+
   render() {
     return (
       <div>
@@ -82,6 +94,32 @@ class LogIn extends Component {
               required
             />
           </Form.Field>
+          <div className="radio-buttons-wrapp">
+            <div className="radio">
+              <label>
+                <input
+                  name="primary"
+                  type="radio"
+                  checked={this.state.selectedOption === "primary"}
+                  value={this.state.primary}
+                  onChange={this.handleOptionChange}
+                />
+                Primary account
+              </label>
+            </div>
+            <div className="radio">
+              <label>
+                <input
+                  name="other"
+                  type="radio"
+                  checked={this.state.selectedOption === "other"}
+                  value={this.state.other}
+                  onChange={this.handleOptionChange}
+                />
+                Other account
+              </label>
+            </div>
+          </div>
           <Button
             className="form-controlBtn"
             primary

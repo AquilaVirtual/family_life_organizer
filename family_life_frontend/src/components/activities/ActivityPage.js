@@ -13,7 +13,7 @@ class ActivityPage extends React.Component {
   state = {
     activities: [],
     modal: false,
-    action: "Add"
+    action: ""
   };
 
   componentDidMount() {
@@ -32,6 +32,8 @@ class ActivityPage extends React.Component {
         console.log("We have a problem", err);
       });
   }
+
+
   handleModalToggle = action => {
     this.setState({
       modal: !this.state.modal,

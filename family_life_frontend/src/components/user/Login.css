@@ -26,6 +26,15 @@
   padding: 7px 20px  29px  20px;
 }
 
+.radio-buttons-wrapp {
+  display: flex;
+  margin-top: 195px;
+  flex-direction: column;
+  align-items: baseline;
+  position: absolute;
+  color: white;
+}
+
 #form-control{
   width: 70%;
   font-size: 1.5rem;

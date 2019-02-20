@@ -2,9 +2,9 @@ import React from "react";
 import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 const memberType = [
-  {key: "spouse", value: "spouse", text:"Spouse"},
-  {key: "child", value: "child", text:"Child"},
-  {key: "relative", value: "relative", text:"Relative"}
+  {key: "Spouse", value: "Spouse", text:"Spouse"},
+  {key: "Child", value: "Child", text:"Child"},
+  {key: "Relative", value: "Relative", text:"Relative"}
 ]
 
 class MemberModal extends React.Component {
