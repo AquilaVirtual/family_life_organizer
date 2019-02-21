@@ -28,15 +28,20 @@ class DesktopContainer extends Component {
   hideFixedMenu = () => this.setState({ fixed: false });
   showFixedMenu = () => this.setState({ fixed: true });
 
+   logOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("accountType");
+    localStorage.removeItem("username");
+
+    this.props.history.push("/");
+}
+
   render() {
     const { children } = this.props;
     const { fixed } = this.state;
 
-    const options = [
-      { key: 1, text: "users", value: 1 },
-      { key: 2, text: "settings", value: 2 },
-      { key: 3, text: "logout", value: 3 }
-    ];
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
@@ -69,10 +74,10 @@ class DesktopContainer extends Component {
                 <Menu.Item as="a" active>
                   FamilyLife
                 </Menu.Item>
-                <Menu.Item position="right" className="menu">
+                <Menu.Item position="right">
                   {localStorage.getItem("token") &&
                   localStorage.getItem("name") ? (
-                    <Menu compact>
+                    <Menu className="menu" compact>
                       {" "}
                       <Dropdown
                         style={{ color: "white", backgroundColor: "lightgrey" }}
@@ -112,7 +117,7 @@ class DesktopContainer extends Component {
                         users
                       </li>
                       <li>settings</li>
-                      <li>logout</li>
+                      <li onClick={this.logOut}>logout</li>
                     </ul>
                   </div>
                 </Menu.Item>
