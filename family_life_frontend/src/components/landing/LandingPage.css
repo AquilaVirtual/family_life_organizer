@@ -12,3 +12,36 @@
     margin-top: 30px;
     margin-bottom: -30px;
 }
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    margin-top: 64px;    
+}
+
+
+.menu:hover .dropdown-menu {
+    display: block;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;    
+    padding: 2px;
+    width: 91px;
+}
+
+li {
+    align-self: baseline;
+    background: lightgray;
+    margin: 2px 0;
+    padding: 3px;
+    font-size: 1.3rem;
+    width: 84px;
+}
+
+li:hover {
+    background: darkgrey;
+}
