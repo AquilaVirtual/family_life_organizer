@@ -40,7 +40,6 @@ class UserPage extends React.Component {
       console.log("Error adding member", err)
     })    
   }
-
   handleModalToggle = (action, member) => {
     this.setState(state => ({
       modal: !state.modal,
@@ -49,32 +48,27 @@ class UserPage extends React.Component {
     }));
   };
 
-  handleMemberAction = (member) => {  
+  addMember = (member) => {  
     const token = localStorage.getItem("token");   
     const headers = { headers: { authorization: token } };
     axios.post("http://localhost:3002/api/member/create", member, headers)
     .then(response => {
-      console.log("Adding New Member", response) 
     })
     .catch(err => {
       console.log("Error adding member", err)
     })    
   };
   deleteUser = id => {
-    if (!id && id !== 0) {
-      this.setState({
-        user: {}
-      });
-    } else {
-      this.setState(state => ({
-        user: {
-          ...state.user,
-          familyMembers: state.user.familyMembers.filter(
-            (member, i) => i !== id
-          )
-        }
-      }));
-    }
+    console.log("Confirming Delete", id)
+    const token = localStorage.getItem("token");   
+    const headers = { headers: { authorization: token } };
+    axios.delete(`http://localhost:3002/api/member/${id}`, headers)
+    .then(response => {
+      console.log("Getting response from delete", response)
+       })
+    .catch(err => {
+      console.log("Error deleting member", err)
+    })
   };
   render() {
     const { user, modal, action, member } = this.state;
@@ -128,7 +122,7 @@ class UserPage extends React.Component {
         <MemberModal
           open={modal}
           action={action}
-          addMember={this.handleMemberAction}
+          addMember={this.addMember}
           handleModalToggle={() => this.handleModalToggle()}
           member={member}
         />
