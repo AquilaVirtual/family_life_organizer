@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
 
 import { account } from "../../dummyData";
 
@@ -65,6 +66,7 @@ class UserPage extends React.Component {
     axios.delete(`http://localhost:3002/api/member/${id}`, headers)
     .then(response => {
       console.log("Getting response from delete", response)
+      this.props.history.push("/users")
        })
     .catch(err => {
       console.log("Error deleting member", err)
@@ -131,4 +133,4 @@ class UserPage extends React.Component {
   }
 }
 
-export default UserPage;
+export default withRouter(UserPage);
