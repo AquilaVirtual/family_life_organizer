@@ -22,7 +22,7 @@ const CalendarPage = () => {
       <Button
         primary
         icon="add"
-        content="Activity"
+        content="Add event"
         onClick={() => this.handleModalToggle("Add")}
       />
 

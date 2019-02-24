@@ -9,7 +9,8 @@ import Navbar from "../navbar/Navbar";
 import SiteHeader from '../header/SiteHeader';
 class ChorePage extends Component {
   state = {
-    users: []
+    users: [],
+    user: []
   };
 
   componentWillMount() {
@@ -17,7 +18,29 @@ class ChorePage extends Component {
       users
     });
   }
-
+  componentDidMount() {    
+    let url = "";
+    const accountType = localStorage.getItem("accountType");
+    if (accountType === "Primary") {
+       url = "http://localhost:3002/api/user/family";
+    }
+   else if (accountType === "Child" || accountType === "Spouse" || accountType === "Relative") {
+       url = "http://localhost:3002/api/member/family";
+    }
+    const username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");   
+    const headers = { headers: { authorization: token } };
+    axios.get(`${url}/${username}`, headers)
+    .then(response => {
+      console.log("Getting users for chores", response.data) 
+      this.setState({
+        users: response.data 
+      });
+    })
+    .catch(err => {
+      console.log("Error adding member", err)
+    })    
+  }
   addChore = (userId, newChore) => {
     this.setState(state => ({
       users: state.users.map(user => {
