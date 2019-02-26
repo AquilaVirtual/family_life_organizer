@@ -99,7 +99,7 @@ class ChorePage extends Component {
 
         {users.map((user, i) => (
           <ChoreCard
-            key={user.id}
+            key={user._id}
             index={i}
             id={user.id}
             user={user.name}
