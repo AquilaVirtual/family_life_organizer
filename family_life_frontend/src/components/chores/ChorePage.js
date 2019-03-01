@@ -17,15 +17,7 @@ class ChorePage extends Component {
   //     users
   //   });
   // }
-  componentDidMount() {    
-    let url = "";
-    const accountType = localStorage.getItem("accountType");
-    if (accountType === "Primary") {
-       url = "http://localhost:3002/api/chore/all";
-    }
-   else if (accountType === "Child" || accountType === "Spouse" || accountType === "Relative") {
-       url = "http://localhost:3002/api/member/family";
-    }
+  componentDidMount() {        
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");   
     const headers = { headers: { authorization: token } };
