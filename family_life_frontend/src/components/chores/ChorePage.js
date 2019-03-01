@@ -9,20 +9,19 @@ import Navbar from "../navbar/Navbar";
 import SiteHeader from '../header/SiteHeader';
 class ChorePage extends Component {
   state = {
-    users: [],
-    user: []
+    users: [],    
   };
 
-  componentWillMount() {
-    this.setState({
-      users
-    });
-  }
+  // componentWillMount() {
+  //   this.setState({
+  //     users
+  //   });
+  // }
   componentDidMount() {    
     let url = "";
     const accountType = localStorage.getItem("accountType");
     if (accountType === "Primary") {
-       url = "http://localhost:3002/api/user/family";
+       url = "http://localhost:3002/api/chore/all";
     }
    else if (accountType === "Child" || accountType === "Spouse" || accountType === "Relative") {
        url = "http://localhost:3002/api/member/family";
@@ -30,7 +29,7 @@ class ChorePage extends Component {
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");   
     const headers = { headers: { authorization: token } };
-    axios.get(`${url}/${username}`, headers)
+    axios.get(`http://localhost:3002/api/chore/${username}`)
     .then(response => {
       console.log("Getting users for chores", response.data) 
       this.setState({
@@ -41,15 +40,23 @@ class ChorePage extends Component {
       console.log("Error adding member", err)
     })    
   }
-  addChore = (userId, newChore) => {
-    this.setState(state => ({
-      users: state.users.map(user => {
-        if (user.id === userId) {
-          return { ...user, chores: [...user.chores, newChore] };
-        }
-        return user;
-      })
-    }));
+  addChore = (newChore) => {
+    console.log("Adding new chore", newChore)
+    axios.post("http://localhost:3002/api/chore/create", newChore)
+    .then(response => {
+      console.log("Successfully adding chores", response)
+    })
+    .catch(err => {
+      console.log("Error add chore", err)
+    })
+    // this.setState(state => ({
+    //   users: state.users.map(user => {
+    //     if (user.id === userId) {
+    //       return { ...user, chores: [...user.chores, newChore] };
+    //     }
+    //     return user;
+    //   })
+    // }));
   };
 
   deleteChore = (userId, choreId) => {
@@ -64,7 +71,7 @@ class ChorePage extends Component {
         return user;
       })
     }));
-  };
+  }; 
 
   updateStatus = (userId, choreId) => {
     this.setState(state => ({
@@ -90,6 +97,7 @@ class ChorePage extends Component {
   };
 
   render() {
+    console.log("What we have on state", this.state.users)
     const { users } = this.state;
     return (
       <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>

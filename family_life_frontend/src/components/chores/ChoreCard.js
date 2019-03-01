@@ -33,12 +33,12 @@ class ChoreCard extends Component {
                 {user}
               </Header>
             </Grid.Column>
-            <Grid.Column>
+            {/* <Grid.Column>
               <Header as="h4">{index === 0 && "Status"}</Header>
             </Grid.Column>
             <Grid.Column>
               <Header as="h4">{index === 0 && "Actions"}</Header>
-            </Grid.Column>
+            </Grid.Column> */}
           </Grid.Row>
           {chores.map((chore, i) => (
             <React.Fragment key={i}>

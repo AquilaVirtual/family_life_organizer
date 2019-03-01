@@ -13,19 +13,21 @@ class ChoreModal extends Component {
   };
 
   handleAddChore = () => {
-    const { addChore, id, handleModalToggle } = this.props;
+    const { addChore, id, handleModalToggle, user } = this.props;
     const { choreText } = this.state;
 
     const newChore = {
       title: choreText,
-      status: "not started"
+      name: user,
+      status: "not started",
+      username: localStorage.getItem("username")
     };
 
     this.setState({
       choreText: ""
     });
 
-    addChore(id, newChore);
+    addChore(newChore);
     handleModalToggle();
   };
 
