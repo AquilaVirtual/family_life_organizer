@@ -40,29 +40,17 @@ class ChorePage extends Component {
     })
     .catch(err => {
       console.log("Error add chore", err)
-    })
-    // this.setState(state => ({
-    //   users: state.users.map(user => {
-    //     if (user.id === userId) {
-    //       return { ...user, chores: [...user.chores, newChore] };
-    //     }
-    //     return user;
-    //   })
-    // }));
+    })    
   };
 
-  deleteChore = (userId, choreId) => {
-    this.setState(state => ({
-      users: state.users.map(user => {
-        if (user.id === userId) {
-          return {
-            ...user,
-            chores: user.chores.filter((chore, id) => id !== choreId)
-          };
-        }
-        return user;
-      })
-    }));
+  deleteChore = (id) => {
+    console.log("Deletable ID", id)    
+    axios.delete(`http://localhost:3002/api/chore/deletechore/${id}`)
+    .then(response => {
+    })
+    .catch(err => {
+      console.log("Something went wrong while deleteing chore", err)
+    })
   }; 
 
   updateStatus = (userId, choreId) => {

@@ -15,7 +15,9 @@ class ChoreCard extends Component {
       modal: !state.modal
     }))
   }
+handleDelete = () => {
 
+}
   render() {
     const { user, id, index, chores, addChore, deleteChore, updateStatus } = this.props;
     const { confirmDelete } = this.state;
@@ -33,15 +35,15 @@ class ChoreCard extends Component {
                 {user}
               </Header>
             </Grid.Column>
-            {/* <Grid.Column>
+            <Grid.Column>
               <Header as="h4">{index === 0 && "Status"}</Header>
             </Grid.Column>
             <Grid.Column>
               <Header as="h4">{index === 0 && "Actions"}</Header>
-            </Grid.Column> */}
+            </Grid.Column>
           </Grid.Row>
-          {chores.map((chore, i) => (
-            <React.Fragment key={i}>
+          {chores.map((chore) => (
+            <React.Fragment key={chore._id}>
               <Grid.Column
                 style={{ paddingLeft: "3rem", textAlign: "left" }}
               >{chore.title}</Grid.Column>
@@ -65,13 +67,13 @@ class ChoreCard extends Component {
                       "stop circle outline green"
                     } icon`}
                     style={{ cursor: "pointer", fontSize: "1.4rem" }}
-                    onClick={() => updateStatus(id, i)}
+                    onClick={() => updateStatus(chore._id)}
                   />
                 }
                 <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
                   className="trash alternate outline"
                   onClick={() => {
-                    this.setState({ confirmDelete: true, deleteIndex: i })
+                    this.setState({ confirmDelete: true, deleteIndex: chore._id })
                   }}
                 />
               </Grid.Column>
@@ -85,7 +87,7 @@ class ChoreCard extends Component {
           content="Are you sure you want to delete this chore?"
           onCancel={() => this.setState({ confirmDelete: false })}
           onConfirm={() => {
-            deleteChore(id, this.state.deleteIndex);
+            deleteChore(this.state.deleteIndex);
             this.setState({ confirmDelete: false })}
           }
         />
