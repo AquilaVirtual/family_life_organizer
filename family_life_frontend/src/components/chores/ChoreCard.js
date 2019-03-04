@@ -15,9 +15,7 @@ class ChoreCard extends Component {
       modal: !state.modal
     }))
   }
-handleDelete = () => {
 
-}
   render() {
     const { user, id, index, chores, addChore, deleteChore, updateStatus } = this.props;
     const { confirmDelete } = this.state;
@@ -80,9 +78,12 @@ handleDelete = () => {
             </React.Fragment>
           ))}
         </Grid>
+        {/* Only allow parents to add new chores */}
+        { localStorage.getItem("accountType") === "Primary" || localStorage.getItem("accountType") === "Spouse" ? (
         <Button primary icon="add" content="New Chore"
           onClick={this.handleModalToggle}
-        />
+        />):(null)
+        }
         <Confirm open={confirmDelete}
           content="Are you sure you want to delete this chore?"
           onCancel={() => this.setState({ confirmDelete: false })}
