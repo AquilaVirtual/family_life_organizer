@@ -89,13 +89,16 @@ class UserPage extends React.Component {
             })
           }
         />
-        <Button
+        {/* Only give ability to add family members if logged-in user is a parent */}
+        { localStorage.getItem("accountType") === "Primary" || localStorage.getItem("accountType") === "Spouse" ? (<Button
           circular
           primary
           icon="add"
           content="Family Member"
           onClick={() => this.handleModalToggle("Add")}
-        />
+        />):(null)
+        
+        }
         <div
           style={{
             maxWidth: "60rem",
