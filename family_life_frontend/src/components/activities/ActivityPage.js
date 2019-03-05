@@ -73,6 +73,7 @@ class ActivityPage extends React.Component {
   };
   render() {
     const { activities, modal, action, activity } = this.state;
+    const accountType = localStorage.getItem("accountType");
     return (
       <Segment
         style={{
@@ -83,13 +84,17 @@ class ActivityPage extends React.Component {
           padding: "0px 0px"
         }}
       >
-        <SiteHeader name="Activities" />
+        <SiteHeader name="Activities" /> 
+        {
+          accountType === "Primary" || accountType === "Spouse" ? (
         <Button
           primary
           icon="add"
           content="Activity"
           onClick={() => this.handleModalToggle("Add")}
         />
+          ) : (null)
+        }
         <div
           style={{
             alignItems: "center"

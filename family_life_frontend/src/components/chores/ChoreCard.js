@@ -23,7 +23,7 @@ class ChoreCard extends Component {
       <Segment
         style={{
           maxWidth: "40rem",
-          margin: "0 auto"
+          margin: "0.5rem auto"
         }}
       >
         <Grid style={{ marginBottom: "2rem" }} columns={3}>

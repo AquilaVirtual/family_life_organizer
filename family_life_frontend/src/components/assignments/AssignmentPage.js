@@ -86,6 +86,8 @@ class AssignmentPage extends React.Component {
 
   render() {
     const { assignments, modal } = this.state;
+    const accountType = localStorage.getItem("accountType");
+
     return (
       <Segment
         style={{
@@ -98,12 +100,16 @@ class AssignmentPage extends React.Component {
       >
         <Navbar />
         <SiteHeader name="Assignments" />{" "}
+        { 
+          accountType === "Primary" || accountType === "Spouse" ? (
         <Button
           icon="add"
           primary
           content="New Assignment"
           onClick={this.handleModalToggle}
         />
+          ) : (null)
+    }
         <div
           style={{
             maxWidth: "80rem",
@@ -114,13 +120,13 @@ class AssignmentPage extends React.Component {
             flexWrap: "wrap"
           }}
         >
-          {assignments.map((assignment, i) => (
+               
+          {assignments.map((assignment) => (            
             <AssignmentCard
-              key={i}
+              key={assignment._id}
               assignment={assignment}
               deleteAssignment={this.deleteAssignment}
               changeStatus={this.changeStatus}
-              id={i}
             />
           ))}
         </div>
