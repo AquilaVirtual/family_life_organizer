@@ -13,7 +13,7 @@ class UserCard extends React.Component {
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
     const { confirmDelete, confirmEdit,  action } = this.state;
-    console.log("activity here", activity._id)
+    const accountType = localStorage.getItem("accountType");    
     return (
       <Segment style={{
         width: "18rem",
@@ -28,10 +28,12 @@ class UserCard extends React.Component {
           className="edit outline green"
           onClick={() => this.setState({ confirmEdit: true, action: "Edit" })}
         />
+        {accountType === "Primary" || accountType === "Spouse" ? (
         <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="trash alternate outline red"
           onClick={() => this.setState({ confirmDelete: true })}
-        />
+        />):(null)
+        }
         <Confirm open={confirmDelete}
           size="mini"
           content={`Are you sure you want to remove ${activity.name} ?`}
