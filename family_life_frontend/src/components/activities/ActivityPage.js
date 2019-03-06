@@ -2,7 +2,7 @@ import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
 import React from "react";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Segment, Button, Header } from "semantic-ui-react";
 
@@ -17,9 +17,9 @@ class ActivityPage extends React.Component {
   };
 
   componentDidMount() {
-    const token = localStorage.getItem("token");   
+    const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
-    const headers = { "headers": { "authorization": token } };
+    const headers = { headers: { authorization: token } };
     axios
       .get(`http://localhost:3002/api/activity/${username}`, headers)
       .then(activities => {
@@ -33,7 +33,6 @@ class ActivityPage extends React.Component {
       });
   }
 
-
   handleModalToggle = action => {
     this.setState({
       modal: !this.state.modal,
@@ -41,10 +40,10 @@ class ActivityPage extends React.Component {
     });
   };
   handleActivityAction = activity => {
-    console.log("Activity payload", activity)
+    console.log("Activity payload", activity);
     if (this.state.action === "Add") {
-      const token = localStorage.getItem("token");   
-    const headers = { "headers": { "authorization": token } };
+      const token = localStorage.getItem("token");
+      const headers = { headers: { authorization: token } };
       axios
         .post(`http://localhost:3002/api/activity/create`, activity, headers)
         .then(activity => {
@@ -56,16 +55,16 @@ class ActivityPage extends React.Component {
     }
   };
   deleteActivity = id => {
-    console.log("Delete activity called");    
-    const token = localStorage.getItem("token");   
-    const headers = { "headers": { "authorization": token } };       
+    console.log("Delete activity called");
+    const token = localStorage.getItem("token");
+    const headers = { headers: { authorization: token } };
     axios
       .delete(`http://localhost:3002/api/activity/${id}`, headers)
       .then(activity => {
         console.log("Created an activity", activity);
         setTimeout(() => {
-          this.props.history.push("/activities")
-        }, 200)
+          this.props.history.push("/activities");
+        }, 200);
       })
       .catch(err => {
         console.log("We have a problem", err);
@@ -84,17 +83,16 @@ class ActivityPage extends React.Component {
           padding: "0px 0px"
         }}
       >
-        <SiteHeader name="Activities" /> 
-        {
-          accountType === "Primary" || accountType === "Spouse" ? (
-        <Button
-          primary
-          icon="add"
-          content="Activity"
-          onClick={() => this.handleModalToggle("Add")}
-        />
-          ) : (null)
-        }
+        <SiteHeader name="Activities" />
+        {/* { accountType ==="child" ? (null) : ("You don't have any activity")} */}
+        {accountType === "Primary" || accountType === "Spouse" ? (
+          <Button
+            primary
+            icon="add"
+            content="Activity"
+            onClick={() => this.handleModalToggle("Add")}
+          /> 
+        ) : null}
         <div
           style={{
             alignItems: "center"

@@ -15,6 +15,7 @@ class AssignmentCard extends Component {
     const { assignment, deleteAssignment, changeStatus } = this.props;
     const { confirmDelete, confirmEdit } = this.state;
     const { _id } = this.props.assignment;
+    const accountType = localStorage.getItem("accountType");
     return (
       <Segment style={{ width: "18rem", margin: "1rem" }}>
         <Header textAlign="center" as="h2">
@@ -37,11 +38,12 @@ class AssignmentCard extends Component {
             className="edit green"
             onClick={() => this.setState({ confirmEdit: true })}
           />
+          {accountType === "Primary" || accountType === "Spouse" ? (
           <Icon
             style={{ cursor: "pointer", margin: "0 .5rem" }}
             className="trash alternate outline red"
             onClick={() => this.setState({ confirmDelete: true })}
-          />
+          /> ) : (null)}
           <Confirm
             open={confirmDelete}
             size="mini"
