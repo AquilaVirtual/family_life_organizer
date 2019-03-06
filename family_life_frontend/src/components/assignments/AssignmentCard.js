@@ -39,11 +39,12 @@ class AssignmentCard extends Component {
             onClick={() => this.setState({ confirmEdit: true })}
           />
           {accountType === "Primary" || accountType === "Spouse" ? (
-          <Icon
-            style={{ cursor: "pointer", margin: "0 .5rem" }}
-            className="trash alternate outline red"
-            onClick={() => this.setState({ confirmDelete: true })}
-          /> ) : (null)}
+            <Icon
+              style={{ cursor: "pointer", margin: "0 .5rem" }}
+              className="trash alternate outline red"
+              onClick={() => this.setState({ confirmDelete: true })}
+            />
+          ) : null}
           <Confirm
             open={confirmDelete}
             size="mini"
