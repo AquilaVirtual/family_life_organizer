@@ -19,6 +19,7 @@ class ChoreCard extends Component {
   render() {
     const { user, id, index, chores, addChore, deleteChore, updateStatus } = this.props;
     const { confirmDelete } = this.state;
+    const accountType = localStorage.getItem("accountType");
     return (
       <Segment
         style={{
@@ -68,12 +69,14 @@ class ChoreCard extends Component {
                     onClick={() => updateStatus(chore._id)}
                   />
                 }
+                {accountType === "Primary" || accountType === "Spouse" ? (
                 <Icon style={{ cursor: "pointer", fontSize: "1.4rem" }}
                   className="trash alternate outline"
                   onClick={() => {
                     this.setState({ confirmDelete: true, deleteIndex: chore._id })
                   }}
-                />
+                />):(null)
+                }
               </Grid.Column>
             </React.Fragment>
           ))}
