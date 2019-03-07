@@ -38,6 +38,7 @@ class ActivityPage extends React.Component {
       modal: !this.state.modal,
       action: action
     });
+    console.log("Handle Toggle Called in Activity Page: ", this.state.action)
   };
   handleActivityAction = activity => {
     console.log("Activity payload", activity);
@@ -89,7 +90,7 @@ class ActivityPage extends React.Component {
           <Button
             primary
             icon="add"
-            content="Activity"
+            content="New Activity"
             onClick={() => this.handleModalToggle("Add")}
           /> 
         ) : null}
@@ -104,6 +105,7 @@ class ActivityPage extends React.Component {
                 activity={activity}
                 action={action}
                 key={activity._id}
+                handleModalToggle={() => this.handleModalToggle()}
                 deleteActivity={() => this.deleteActivity(activity._id)}
               />
             ))}

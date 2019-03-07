@@ -23,7 +23,7 @@ const CalendarPage = () => {
         primary
         icon="add"
         content="Add event"
-        onClick={() => this.handleModalToggle("Add")}
+        onClick={() => alert("This functionality is not available yet!")}
       />
 
       <Calendar />

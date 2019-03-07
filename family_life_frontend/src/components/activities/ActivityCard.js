@@ -1,14 +1,18 @@
 import React from "react";
-import { Segment, Header, Icon, Confirm } from "semantic-ui-react";
+import { Segment, Header, Icon, Confirm, Button } from "semantic-ui-react";
 
 import ActivityModal from "./ActivityModal";
 
-class UserCard extends React.Component {
+class UserCard extends React.Component {  
   state = {
     confirmDelete: false,
     confirmEdit: false,
     action: ""
   };
+  addMemberToActivity = () => {
+   this.setState({ confirmEdit: true, action: "Add Person" })
+   this.props.handleModalToggle("Add Person") 
+  }
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
     const { confirmDelete, confirmEdit, action } = this.state;
@@ -28,7 +32,7 @@ class UserCard extends React.Component {
           style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
           onClick={() => this.setState({ confirmEdit: true, action: "Edit" })}
-        />
+        />        
         {accountType === "Primary" || accountType === "Spouse" ? (
           <Icon
             style={{ cursor: "pointer", fontSize: "1.4rem" }}
@@ -36,6 +40,12 @@ class UserCard extends React.Component {
             onClick={() => this.setState({ confirmDelete: true })}
           />
         ) : null}
+        <Button
+          icon="add"
+          primary
+          content="Person"
+          onClick={() => this.setState({ confirmEdit: true, action: "Add Person"})}
+          />
         <Confirm
           open={confirmDelete}
           size="mini"
