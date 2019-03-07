@@ -6,16 +6,16 @@ import ActivityModal from "./ActivityModal";
 class UserCard extends React.Component {  
   state = {
     confirmDelete: false,
-    confirmEdit: false,
+    modal: false,
     action: ""
   };
   addMemberToActivity = () => {
-   this.setState({ confirmEdit: true, action: "Add Person" })
+   this.setState({ modal: true, action: "Add Person" })
    this.props.handleModalToggle("Add Person") 
   }
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
-    const { confirmDelete, confirmEdit, action } = this.state;
+    const { confirmDelete, modal, action } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -31,7 +31,7 @@ class UserCard extends React.Component {
         <Icon
           style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
-          onClick={() => this.setState({ confirmEdit: true, action: "Edit" })}
+          onClick={() => this.setState({ modal: true, action: "Edit" })}
         />        
         {accountType === "Primary" || accountType === "Spouse" ? (
           <Icon
@@ -41,10 +41,9 @@ class UserCard extends React.Component {
           />
         ) : null}
         <Button
-          icon="add"
-          primary
-          content="Person"
-          onClick={() => this.setState({ confirmEdit: true, action: "Add Person"})}
+          icon="user plus"
+          primary          
+          onClick={() => this.setState({ modal: true, action: "Add Person"})}
           />
         <Confirm
           open={confirmDelete}
@@ -57,8 +56,8 @@ class UserCard extends React.Component {
           }}
         />
         <ActivityModal
-          open={confirmEdit}
-          toggleEdit={() => this.setState({ confirmEdit: false })}
+          open={modal}
+          handleActivityToggle={() => this.setState({ modal: false })}
           activity={this.props.activity}
           _id={this.props.activity._id}
           action={action}

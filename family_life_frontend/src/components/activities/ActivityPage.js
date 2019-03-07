@@ -54,6 +54,9 @@ class ActivityPage extends React.Component {
           console.log("We have a problem", err);
         });
     }
+    else if(this.state.action === "Add Person") {
+      console.log("Adding Person")
+    }
   };
   deleteActivity = id => {
     console.log("Delete activity called");

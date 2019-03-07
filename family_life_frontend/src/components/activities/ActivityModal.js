@@ -6,14 +6,15 @@ import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 class ActivityModal extends React.Component {
   state = {
-    nameText: "",
-    typeText: "",
+    activityName: "",
+    activityType: "",
+    memberName: ""
   };
   componentWillReceiveProps(props) {
     if (props.activity) {
       this.setState({
-        nameText: props.activity.name,
-        typeText: props.activity.type
+        activityName: props.activity.name,
+        activityType: props.activity.type
       })
     }
   }
@@ -28,16 +29,16 @@ class ActivityModal extends React.Component {
   }
   handleAddMember = () => {
     const { addActivity, handleModalToggle, activity, editActivity } = this.props;
-    const { nameText, typeText } = this.state;
+    const { activityName, activityType } = this.state;
 
     const newActivity = {
-      name: nameText,
-      type: typeText,
+      name: activityName,
+      type: activityType,
       username: localStorage.getItem("username")
     };     
     this.setState({
-      nameText: "",
-      typeText: "",
+      activityName: "",
+      activityType: "",
     });
 
     if(this.props.action === "Edit") {
@@ -47,7 +48,7 @@ class ActivityModal extends React.Component {
     .catch(err => {
       console.log("We have a problem", err)
     })
-      this.props.toggleEdit();
+      this.props.handleActivityToggle();
     }
     else if(this.props.action === "Add") {
       addActivity(newActivity);
@@ -56,26 +57,26 @@ class ActivityModal extends React.Component {
   };
   toggleAction = () => {
     if(this.props.action === "Edit") {
-      this.props.toggleEdit();
+      this.props.handleActivityToggle();
     }
     else if(this.props.action === "Add") {
       this.props.handleModalToggle();
     }
     else if(this.props.action === "Add Person") {
-      this.props.handleModalToggle("Add Person");
+      this.props.handleActivityToggle();
     }
   }
   render() {
     const { action, open, handleModalToggle, _id } = this.props;
     console.log("Some Id in Activity", _id)
-    const { nameText, typeText } = this.state;
+    const { activityName, activityType, memberName } = this.state;
     console.log("Action has been fired: ", this.props.action)
     return (
       <Modal size="mini" open={open}>
        { action ==="Edit" || action ==="Add" ? (
         <Modal.Header>{`${action} an activity`}</Modal.Header>
        ): (
-        <Modal.Header>{`Add family member to this activity`}</Modal.Header>
+        <Modal.Header>{`Add a family member to this activity`}</Modal.Header>
        )
        }
         <Modal.Content style={{ marginBottom: "2rem" }}>
@@ -86,15 +87,15 @@ class ActivityModal extends React.Component {
               required
               placeholder="Add an activity..."
               onChange={this.handleChange}
-              name="nameText"
-              value={nameText}
+              name="activityName"
+              value={activityName}
             />
             <Form.Input
               style={{ width: "100%"}}
               placeholder="Add activity type..."
               onChange={this.handleChange}
-              name="typeText"
-              value={typeText}        
+              name="activityType"
+              value={activityType}        
             />
             <div style={{ padding: "1rem 0"}}>
               <Button
@@ -117,8 +118,8 @@ class ActivityModal extends React.Component {
             <Form.Input          
               placeholder="Type full name of person"
               onChange={this.handleChange}
-              name="nameText"
-              value={nameText}
+              name="activityName"
+              value={memberName}
             />            
             <div style={{ padding: "1rem 0"}}>
               <Button
