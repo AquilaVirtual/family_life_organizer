@@ -30,7 +30,7 @@ class ActivityModal extends React.Component {
   handleAddMember = () => {
     const { addActivity, handleModalToggle, activity, editActivity } = this.props;
     const { activityName, activityType } = this.state;
-
+    
     const newActivity = {
       name: activityName,
       type: activityType,
@@ -40,14 +40,14 @@ class ActivityModal extends React.Component {
       activityName: "",
       activityType: "",
     });
-
+    
     if(this.props.action === "Edit") {
       axios.put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
       .then(activities => {     
-    })
-    .catch(err => {
-      console.log("We have a problem", err)
-    })
+      })
+      .catch(err => {
+        console.log("We have a problem", err)
+      })
       this.props.handleActivityToggle();
     }
     else if(this.props.action === "Add") {
@@ -55,6 +55,19 @@ class ActivityModal extends React.Component {
       handleModalToggle();
     }   
   };
+  addMemberToActivity = () => {    
+    const { activity } = this.props;
+    const username = localStorage.getItem("username");
+    axios.put(`http://localhost:3002/api/activity/add_member_to_activity/${activity._id}`, {username})
+    .then(activities => {     
+      console.log("Add member fired!")
+    })
+    .catch(err => {
+      console.log("We have a problem", err)
+    })  
+      this.props.handleActivityToggle(); 
+     }
+
   toggleAction = () => {
     if(this.props.action === "Edit") {
       this.props.handleActivityToggle();
@@ -104,6 +117,7 @@ class ActivityModal extends React.Component {
                 type="submit"
                 icon={`${action ===  "Add" ? "add" : "edit"}`}
                 content={`${action ===  "Add" ? "Add" : "Edit"}`}
+                onClick={handleModalToggle("Add Person")}
               />
               <Button
                 floated="right"
@@ -114,7 +128,7 @@ class ActivityModal extends React.Component {
               />
             </div>
           </Form> ) : (
-            <Form onSubmit={this.handleAddMember}>
+            <Form onSubmit={this.addMemberToActivity}>
             <Form.Input          
               placeholder="Type full name of person"
               onChange={this.handleChange}
