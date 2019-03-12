@@ -38,7 +38,7 @@ class ActivityPage extends React.Component {
       modal: !this.state.modal,
       action: action
     });
-    console.log("Handle Toggle Called in Activity Page: ", this.state.action)
+    console.log("Handle Toggle Called in Activity Page: ", this.state.action);
   };
   handleActivityAction = activity => {
     console.log("Activity payload", activity);
@@ -53,9 +53,8 @@ class ActivityPage extends React.Component {
         .catch(err => {
           console.log("We have a problem", err);
         });
-    }
-    else if(this.state.action === "Add Person") {
-      console.log("Adding Person")
+    } else if (this.state.action === "Add Person") {
+      console.log("Adding Person");
     }
   };
   deleteActivity = id => {
@@ -95,7 +94,7 @@ class ActivityPage extends React.Component {
             icon="add"
             content="New Activity"
             onClick={() => this.handleModalToggle("Add")}
-          /> 
+          />
         ) : null}
         <div
           style={{

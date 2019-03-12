@@ -8,7 +8,7 @@ class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",     
+      name: "",
       email: "",
       username: "",
       password: "",
@@ -33,7 +33,7 @@ class Register extends Component {
       return;
     }
     const user = {
-      name: this.state.name,   
+      name: this.state.name,
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
@@ -44,7 +44,7 @@ class Register extends Component {
       .post(`http://localhost:3002/api/user/register`, user)
       .then(response => {
         console.log("Fire response here", response);
-        console.log("Fire error here", this.state.errorMessage);        
+        console.log("Fire error here", this.state.errorMessage);
         this.props.history.push(`/login`);
         this.setState({
           error: false
@@ -76,7 +76,7 @@ class Register extends Component {
               value={this.state.firstname}
               onChange={this.handleInputChange}
             />
-          </Form.Field>          
+          </Form.Field>
           <Form.Field>
             <input
               required

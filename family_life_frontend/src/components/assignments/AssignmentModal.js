@@ -35,7 +35,7 @@ class AssignmentModal extends Component {
 
   handleSubmit = () => {
     const { addAssignment, handleModalToggle } = this.props;
-    const {name, due, title, description, username } = this.state;
+    const { name, due, title, description, username } = this.state;
 
     const newAssignment = {
       name,
@@ -50,8 +50,7 @@ class AssignmentModal extends Component {
       user: "",
       due: new Date(),
       title: "",
-      description: "",
-    
+      description: ""
     });
 
     addAssignment(newAssignment);

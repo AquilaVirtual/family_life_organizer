@@ -43,8 +43,8 @@ class AssignmentPage extends React.Component {
   };
   deleteAssignment = id => {
     console.log("Some ID here", id);
-    const token = localStorage.getItem("token");   
-    const headers = { "headers": { "authorization": token } };
+    const token = localStorage.getItem("token");
+    const headers = { headers: { authorization: token } };
     axios
       .delete(`http://localhost:3002/api/assignment/${id}`, headers)
       .then(response => {
@@ -100,16 +100,14 @@ class AssignmentPage extends React.Component {
       >
         <Navbar />
         <SiteHeader name="Assignments" />{" "}
-        { 
-          accountType === "Primary" || accountType === "Spouse" ? (
-        <Button
-          icon="add"
-          primary
-          content="New Assignment"
-          onClick={this.handleModalToggle}
-        />
-          ) : (null)
-    }
+        {accountType === "Primary" || accountType === "Spouse" ? (
+          <Button
+            icon="add"
+            primary
+            content="New Assignment"
+            onClick={this.handleModalToggle}
+          />
+        ) : null}
         <div
           style={{
             maxWidth: "80rem",
@@ -120,8 +118,7 @@ class AssignmentPage extends React.Component {
             flexWrap: "wrap"
           }}
         >
-               
-          {assignments.map((assignment) => (            
+          {assignments.map(assignment => (
             <AssignmentCard
               key={assignment._id}
               assignment={assignment}

@@ -1,4 +1,4 @@
-import React,  { Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Segment, Header } from "semantic-ui-react";
 
@@ -6,10 +6,10 @@ import ChoreCard from "./ChoreCard";
 
 import { users } from "../../dummyData";
 import Navbar from "../navbar/Navbar";
-import SiteHeader from '../header/SiteHeader';
+import SiteHeader from "../header/SiteHeader";
 class ChorePage extends Component {
   state = {
-    users: [],    
+    users: []
   };
 
   // componentWillMount() {
@@ -17,41 +17,43 @@ class ChorePage extends Component {
   //     users
   //   });
   // }
-  componentDidMount() {        
+  componentDidMount() {
     const username = localStorage.getItem("username");
-    const token = localStorage.getItem("token");   
+    const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
-    axios.get(`http://localhost:3002/api/chore/${username}`)
-    .then(response => {
-      console.log("Getting users for chores", response.data) 
-      this.setState({
-        users: response.data 
+    axios
+      .get(`http://localhost:3002/api/chore/${username}`)
+      .then(response => {
+        console.log("Getting users for chores", response.data);
+        this.setState({
+          users: response.data
+        });
+      })
+      .catch(err => {
+        console.log("Error adding member", err);
       });
-    })
-    .catch(err => {
-      console.log("Error adding member", err)
-    })    
   }
-  addChore = (newChore) => {
-    console.log("Adding new chore", newChore)
-    axios.post("http://localhost:3002/api/chore/create", newChore)
-    .then(response => {
-      console.log("Successfully adding chores", response)
-    })
-    .catch(err => {
-      console.log("Error add chore", err)
-    })    
+  addChore = newChore => {
+    console.log("Adding new chore", newChore);
+    axios
+      .post("http://localhost:3002/api/chore/create", newChore)
+      .then(response => {
+        console.log("Successfully adding chores", response);
+      })
+      .catch(err => {
+        console.log("Error add chore", err);
+      });
   };
 
-  deleteChore = (id) => {
-    console.log("Deletable ID", id)    
-    axios.delete(`http://localhost:3002/api/chore/deletechore/${id}`)
-    .then(response => {
-    })
-    .catch(err => {
-      console.log("Something went wrong while deleteing chore", err)
-    })
-  }; 
+  deleteChore = id => {
+    console.log("Deletable ID", id);
+    axios
+      .delete(`http://localhost:3002/api/chore/deletechore/${id}`)
+      .then(response => {})
+      .catch(err => {
+        console.log("Something went wrong while deleteing chore", err);
+      });
+  };
 
   updateStatus = (userId, choreId) => {
     this.setState(state => ({
@@ -77,13 +79,21 @@ class ChorePage extends Component {
   };
 
   render() {
-    console.log("What we have on state", this.state.users)
+    console.log("What we have on state", this.state.users);
     const { users } = this.state;
     return (
-      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px'}}>
+      <Segment
+        style={{
+          textAlign: "center",
+          border: "none",
+          boxShadow: "0px 0px 0px",
+          height: "100vh",
+          padding: "0px 0px"
+        }}
+      >
         <Navbar />
-        
-        <SiteHeader name='Chores'></SiteHeader>
+
+        <SiteHeader name="Chores" />
 
         {users.map((user, i) => (
           <ChoreCard

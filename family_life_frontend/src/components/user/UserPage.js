@@ -7,39 +7,43 @@ import { account } from "../../dummyData";
 
 import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";
-import Navbar from '../navbar/Navbar';
-import SiteHeader from '../header/SiteHeader';
+import Navbar from "../navbar/Navbar";
+import SiteHeader from "../header/SiteHeader";
 
 class UserPage extends React.Component {
-  state = {  
+  state = {
     users: [],
     modal: false,
     action: "add",
     member: null
   };
 
-  componentDidMount() {    
+  componentDidMount() {
     let url = "";
     const accountType = localStorage.getItem("accountType");
     if (accountType === "Primary") {
-       url = "http://localhost:3002/api/user/family";
-    }
-   else if (accountType === "Child" || accountType === "Spouse" || accountType === "Relative") {
-       url = "http://localhost:3002/api/member/family";
+      url = "http://localhost:3002/api/user/family";
+    } else if (
+      accountType === "Child" ||
+      accountType === "Spouse" ||
+      accountType === "Relative"
+    ) {
+      url = "http://localhost:3002/api/member/family";
     }
     const username = localStorage.getItem("username");
-    const token = localStorage.getItem("token");   
+    const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
-    axios.get(`${url}/${username}`, headers)
-    .then(response => {
-      console.log("Getting family", response.data) 
-      this.setState({
-        users: response.data 
+    axios
+      .get(`${url}/${username}`, headers)
+      .then(response => {
+        console.log("Getting family", response.data);
+        this.setState({
+          users: response.data
+        });
+      })
+      .catch(err => {
+        console.log("Error adding member", err);
       });
-    })
-    .catch(err => {
-      console.log("Error adding member", err)
-    })    
   }
   handleModalToggle = (action, member) => {
     this.setState(state => ({
@@ -49,39 +53,52 @@ class UserPage extends React.Component {
     }));
   };
 
-  addMember = (member) => {  
-    const token = localStorage.getItem("token");   
+  addMember = member => {
+    const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
-    axios.post("http://localhost:3002/api/member/create", member, headers)
-    .then(response => {
-    })
-    .catch(err => {
-      console.log("Error adding member", err)
-    })    
+    axios
+      .post("http://localhost:3002/api/member/create", member, headers)
+      .then(response => {})
+      .catch(err => {
+        console.log("Error adding member", err);
+      });
   };
   deleteUser = id => {
-    console.log("Confirming Delete", id)
-    const token = localStorage.getItem("token");   
+    console.log("Confirming Delete", id);
+    const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
-    axios.delete(`http://localhost:3002/api/member/${id}`, headers)
-    .then(response => {
-      console.log("Getting response from delete", response)
-      this.props.history.push("/users")
-       })
-    .catch(err => {
-      console.log("Error deleting member", err)
-    })
+    axios
+      .delete(`http://localhost:3002/api/member/${id}`, headers)
+      .then(response => {
+        console.log("Getting response from delete", response);
+        this.props.history.push("/users");
+      })
+      .catch(err => {
+        console.log("Error deleting member", err);
+      });
   };
   render() {
     const { user, modal, action, member } = this.state;
 
     if (!localStorage.getItem("name")) return <div>No User</div>;
     return (
-      <Segment style={{textAlign: "center", border: 'none', boxShadow: '0px 0px 0px', height: '100vh', padding: '0px 0px', marginBottom: '30px'}}>
+      <Segment
+        style={{
+          textAlign: "center",
+          border: "none",
+          boxShadow: "0px 0px 0px",
+          height: "100vh",
+          padding: "0px 0px",
+          marginBottom: "30px"
+        }}
+      >
         <Navbar />
         <SiteHeader name="Users" />
-        <UserCard         
-          user={{ name: localStorage.getItem("name"), accountType: localStorage.getItem("accountType") }}
+        <UserCard
+          user={{
+            name: localStorage.getItem("name"),
+            accountType: localStorage.getItem("accountType")
+          }}
           deleteUser={() => this.deleteUser()}
           handleModalToggle={() =>
             this.handleModalToggle("Edit", {
@@ -90,15 +107,16 @@ class UserPage extends React.Component {
           }
         />
         {/* Only give ability to add family members if logged-in user is a parent */}
-        { localStorage.getItem("accountType") === "Primary" || localStorage.getItem("accountType") === "Spouse" ? (<Button
-          circular
-          primary
-          icon="add"
-          content="Family Member"
-          onClick={() => this.handleModalToggle("Add")}
-        />):(null)
-        
-        }
+        {localStorage.getItem("accountType") === "Primary" ||
+        localStorage.getItem("accountType") === "Spouse" ? (
+          <Button
+            circular
+            primary
+            icon="add"
+            content="Family Member"
+            onClick={() => this.handleModalToggle("Add")}
+          />
+        ) : null}
         <div
           style={{
             maxWidth: "60rem",
@@ -111,14 +129,14 @@ class UserPage extends React.Component {
           }}
         >
           {this.state.users &&
-            this.state.users.map((member) => (
+            this.state.users.map(member => (
               <UserCard
                 key={member._id}
                 user={member}
                 deleteUser={() => this.deleteUser(member._id)}
                 handleModalToggle={() =>
                   this.handleModalToggle("Edit", {
-                  member: member
+                    member: member
                   })
                 }
               />
