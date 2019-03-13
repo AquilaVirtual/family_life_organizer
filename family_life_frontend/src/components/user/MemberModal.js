@@ -25,13 +25,11 @@ class MemberModal extends React.Component {
       });
     }
   }
-
   handleChange = ({ target }) => {
     this.setState({
       [target.name]: target.value
     });
-  };
-
+  }; 
   handleSelect = (e, data) => {
     this.setState({
       [data.name]: data.value

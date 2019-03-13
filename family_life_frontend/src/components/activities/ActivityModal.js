@@ -55,19 +55,19 @@ class ActivityModal extends React.Component {
       handleModalToggle();
     }   
   };
-  addMemberToActivity = () => {    
-    console.log("New member", this.state.memberName)
-    const { activity } = this.props;
-    const username = localStorage.getItem("username");
-    axios.put(`http://localhost:3002/api/activity/add_member_to_activity/${activity._id}`, {username})
-    .then(activities => {     
-      console.log("Add member fired!")
-    })
-    .catch(err => {
-      console.log("We have a problem", err)
-    })  
-      this.props.handleActivityToggle(); 
-     }
+  // addMemberToActivity = () => {    
+  //   console.log("New member", this.state.memberName)
+  //   const { activity } = this.props;
+  //   const username = localStorage.getItem("username");
+  //   axios.put(`http://localhost:3002/api/activity/add_member_to_activity/${activity._id}`, {username})
+  //   .then(activities => {     
+  //     console.log("Add member fired!")
+  //   })
+  //   .catch(err => {
+  //     console.log("We have a problem", err)
+  //   })  
+  //     this.props.handleActivityToggle(); 
+  //    }
 
   toggleAction = () => {
     if(this.props.action === "Edit") {
@@ -87,15 +87,8 @@ class ActivityModal extends React.Component {
     console.log("Action has been fired: ", this.props.action)
     return (
       <Modal size="mini" open={open}>
-       { action ==="Edit" || action ==="Add" ? (
-        <Modal.Header>{`${action} an activity`}</Modal.Header>
-       ): (
-        <Modal.Header>{`Add a family member to this activity`}</Modal.Header>
-       )
-       }
+        <Modal.Header>{`${action} an activity`}</Modal.Header>       
         <Modal.Content style={{ marginBottom: "2rem" }}>
-          { 
-          action ==="Edit" || action ==="Add" ? (
           <Form onSubmit={this.handleAddMember}>
             <Form.Input
               required
@@ -118,7 +111,7 @@ class ActivityModal extends React.Component {
                 type="submit"
                 icon={`${action ===  "Add" ? "add" : "edit"}`}
                 content={`${action ===  "Add" ? "Add" : "Edit"}`}
-                onClick={handleModalToggle("Edit")}
+                
               />
               <Button
                 floated="right"
@@ -128,32 +121,8 @@ class ActivityModal extends React.Component {
                 onClick={this.toggleAction}
               />
             </div>
-          </Form> ) : (
-            <Form onSubmit={this.addMemberToActivity}>
-            <Form.Input          
-              placeholder="Type full name of person"
-              onChange={this.handleChange}
-              name="activityName"
-              value={memberName}
-            />            
-            <div style={{ padding: "1rem 0"}}>
-              <Button
-                primary
-                floated="right"
-                type="submit"
-                content="Member"
-                icon={`${action ===  "Add Person" ? "add" : "add"}`}            
-              />
-              <Button
-                floated="right"
-                type="cancel"
-                icon="cancel"
-                content="Cancel"
-                onClick={this.toggleAction}
-              />
-            </div>
-          </Form>
-          )}
+          </Form> 
+          
         </Modal.Content>
       </Modal>
     );

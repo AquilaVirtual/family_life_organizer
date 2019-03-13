@@ -115,10 +115,6 @@ class ActivityPage extends React.Component {
         <ActivityModal
           open={modalPage}
           action={action}
-          addActivity={this.handleActivityAction}
-          editActivity={this.editActivity}
-          handleModalToggle={() => this.handleModalToggle()}
-          activity={activity}
         />
         <Navbar />
       </Segment>

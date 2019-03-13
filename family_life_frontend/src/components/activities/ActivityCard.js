@@ -2,6 +2,8 @@ import React from "react";
 import { Segment, Header, Icon, Confirm, Button } from "semantic-ui-react";
 
 import ActivityModal from "./ActivityModal";
+import addMemberToActivity from "./AddMemberToActivityModal"
+import AddMemberToActivityModal from "./AddMemberToActivityModal";
 
 class UserCard extends React.Component {
   state = {
@@ -11,11 +13,11 @@ class UserCard extends React.Component {
   };
   addMemberToActivity = () => {
     this.setState({ modal: true, action: "Add Person" });
-    this.props.handleModalToggle("Add Person");
+    //this.props.handleModalToggle("Add Person");
   };
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
-    const { confirmDelete, modalCard, action } = this.state;
+    const { confirmDelete, modal, action } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -31,7 +33,7 @@ class UserCard extends React.Component {
         <Icon
           style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
-          onClick={() => this.setState({ modalCard: true, action: "Edit" })}
+          onClick={() => this.setState({ modal: true, action: "Edit" })}
         />
         {accountType === "Primary" || accountType === "Spouse" ? (
           <Icon
@@ -43,7 +45,7 @@ class UserCard extends React.Component {
         <Button
           icon="user plus"
           primary
-          onClick={() => this.setState({ modalCard: true, action: "Add Person" })}
+          onClick={this.addMemberToActivity}
         />
         <Confirm
           open={confirmDelete}
@@ -55,13 +57,16 @@ class UserCard extends React.Component {
             this.setState({ confirmDelete: false });
           }}
         />
-        <ActivityModal
-          open={modalCard}
-          handleActivityToggle={() => this.setState({ modalCard: false })}
+        <AddMemberToActivityModal 
+          open={modal}  
+        />
+        {/* <ActivityModal
+          open={modal}
+          handleActivityToggle={() => this.setState({ modal: false })}
           activity={this.props.activity}
           _id={this.props.activity._id}
           action={action}
-        />
+        /> */}
       </Segment>
     );
   }
