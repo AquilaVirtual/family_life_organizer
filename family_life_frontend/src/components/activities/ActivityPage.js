@@ -12,7 +12,7 @@ import ActivityModal from "./ActivityModal";
 class ActivityPage extends React.Component {
   state = {
     activities: [],
-    modal: false,
+    modalPage: false,
     action: ""
   };
 
@@ -35,7 +35,7 @@ class ActivityPage extends React.Component {
 
   handleModalToggle = action => {
     this.setState({
-      modal: !this.state.modal,
+      modalPage: !this.state.modalPage,
       action: action
     });
     console.log("Handle Toggle Called in Activity Page: ", this.state.action);
@@ -74,7 +74,7 @@ class ActivityPage extends React.Component {
       });
   };
   render() {
-    const { activities, modal, action, activity } = this.state;
+    const { activities, modalPage, action, activity } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -113,7 +113,7 @@ class ActivityPage extends React.Component {
             ))}
         </div>
         <ActivityModal
-          open={modal}
+          open={modalPage}
           action={action}
           addActivity={this.handleActivityAction}
           editActivity={this.editActivity}

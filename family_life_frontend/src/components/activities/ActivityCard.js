@@ -15,7 +15,7 @@ class UserCard extends React.Component {
   };
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
-    const { confirmDelete, modal, action } = this.state;
+    const { confirmDelete, modalCard, action } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -31,7 +31,7 @@ class UserCard extends React.Component {
         <Icon
           style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
-          onClick={() => this.setState({ modal: true, action: "Edit" })}
+          onClick={() => this.setState({ modalCard: true, action: "Edit" })}
         />
         {accountType === "Primary" || accountType === "Spouse" ? (
           <Icon
@@ -43,7 +43,7 @@ class UserCard extends React.Component {
         <Button
           icon="user plus"
           primary
-          onClick={() => this.setState({ modal: true, action: "Add Person" })}
+          onClick={() => this.setState({ modalCard: true, action: "Add Person" })}
         />
         <Confirm
           open={confirmDelete}
@@ -56,8 +56,8 @@ class UserCard extends React.Component {
           }}
         />
         <ActivityModal
-          open={modal}
-          handleActivityToggle={() => this.setState({ modal: false })}
+          open={modalCard}
+          handleActivityToggle={() => this.setState({ modalCard: false })}
           activity={this.props.activity}
           _id={this.props.activity._id}
           action={action}
