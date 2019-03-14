@@ -54,7 +54,7 @@ class AddMemberToActivity extends React.Component {
     }
   }
   render() {
-    const { action, open, handleModalToggle, _id } = this.props
+    const { action, open, addMemberToggle, _id } = this.props
     const {  memberName } = this.state;
     console.log("Action has been fired: ", this.props.action)
     return (
@@ -82,7 +82,7 @@ class AddMemberToActivity extends React.Component {
                 type="cancel"
                 icon="cancel"
                 content="Cancel"
-                onClick={this.toggleAction}
+                onClick={addMemberToggle}
               />
             </div>
           </Form>

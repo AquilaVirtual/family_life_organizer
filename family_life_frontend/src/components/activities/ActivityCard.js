@@ -11,8 +11,8 @@ class UserCard extends React.Component {
     modal: false,
     action: ""
   };
-  addMemberToActivity = () => {
-    this.setState({ modal: true, action: "Add Person" });
+  addMemberToggle = () => {
+    this.setState({ modal: !this.state.modal });
     // this.props.handleModalToggle("Add Person");
   };
   render() {
@@ -45,7 +45,7 @@ class UserCard extends React.Component {
         <Button
           icon="user plus"
           primary
-          onClick={this.addMemberToActivity}
+          onClick={this.addMemberToggle}
         />
         <Confirm
           open={confirmDelete}
@@ -58,7 +58,8 @@ class UserCard extends React.Component {
           }}
         />
         <AddMemberToActivityModal 
-          open={modal}  
+          open={modal}
+          addMemberToggle={this.addMemberToggle}  
         />
         {/* <ActivityModal
           open={modal}
