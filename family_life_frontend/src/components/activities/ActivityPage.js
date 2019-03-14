@@ -115,6 +115,7 @@ class ActivityPage extends React.Component {
         <ActivityModal
           open={modalPage}
           action={action}
+          handleActivityToggle={() => this.setState({ modal: false })}
         />
         <Navbar />
       </Segment>

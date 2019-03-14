@@ -118,7 +118,7 @@ class ActivityModal extends React.Component {
                 type="cancel"
                 icon="cancel"
                 content="Cancel"
-                onClick={this.toggleAction}
+                onClick={this.props.handleActivityToggle}
               />
             </div>
           </Form> 
