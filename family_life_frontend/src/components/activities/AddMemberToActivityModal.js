@@ -21,14 +21,20 @@ class AddMemberToActivity extends React.Component {
       name: memberName
     };
     console.log("Current Activity", activity, member);
-    // const username = localStorage.getItem("username");
-    // axios.put(`http://localhost:3002/api/activity/add_member_to_activity/${activity._id}`, {username})
-    // .then(activities => {
-    //   console.log("Add member fired!")
-    // })
-    // .catch(err => {
-    //   console.log("We have a problem", err)
-    // })
+    const username = localStorage.getItem("username");
+    axios
+      .put(
+        `http://localhost:3002/api/activity/add_member_to_activity/${
+          activity._id
+        }`,
+        { username, member }
+      )
+      .then(activities => {
+        console.log("Add member fired!");
+      })
+      .catch(err => {
+        console.log("We have a problem", err);
+      });
     this.setState({
       memberName: ""
     });
