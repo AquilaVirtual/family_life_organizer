@@ -1,81 +1,63 @@
 import React from "react";
 import axios from "axios";
-import { Button, Modal, Form, Select } from "semantic-ui-react";
-
+import { Button, Modal, Form } from "semantic-ui-react";
 
 class AddMemberToActivity extends React.Component {
   state = {
-    memberName: ""
+    memberName: "",
+    errorMessage: ""
   };
-  componentWillReceiveProps(props) {
-    if (props.activity) {
-      this.setState({
-        memberName:  props.activity.memberName,        
-      })
-    }
-  }
-  handleChange =  event => {
+
+  handleChange = event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
+    console.log("Our Current state", this.state.memberName);
   };
-  
-  handleAddMember = () => {
-    const { handleModalToggle, activity } = this.props;
-    const { memberName, } = this.state;    
-   
-    this.setState({
-        memberName: ""    
-    });
 
-  };
-  addMemberToActivity = () => {    
-    // console.log("New member", this.state.memberName)
-    // const { activity } = this.props;
+  addMemberToActivity = () => {
+    const { errorMessage, memberName } = this.state;
+    const { addMemberToggle, activity } = this.props;
+    const member = {
+      name: memberName
+    };
+    console.log("Current Activity", activity, member);
     // const username = localStorage.getItem("username");
     // axios.put(`http://localhost:3002/api/activity/add_member_to_activity/${activity._id}`, {username})
-    // .then(activities => {     
+    // .then(activities => {
     //   console.log("Add member fired!")
     // })
     // .catch(err => {
     //   console.log("We have a problem", err)
-    // })  
-    //   this.props.handleActivityToggle(); 
-     }
+    // })
+    this.setState({
+      memberName: ""
+    });
+    if (!errorMessage) {
+      addMemberToggle();
+    }
+  };
 
-  toggleAction = () => {
-    if(this.props.action === "Edit") {
-      this.props.handleActivityToggle();
-    }
-    else if(this.props.action === "Add") {
-      this.props.handleModalToggle();
-    }
-    else if(this.props.action === "Add Person") {
-      this.props.handleActivityToggle();
-    }
-  }
   render() {
-    const { action, open, addMemberToggle, _id } = this.props
-    const {  memberName } = this.state;
-    console.log("Action has been fired: ", this.props.action)
+    const { open, addMemberToggle } = this.props;
+    const { memberName } = this.state;
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>{`Add a family member to this activity`}</Modal.Header>     
+        <Modal.Header>{`Add a family member to this activity`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
-    
-            <Form onSubmit={this.addMemberToActivity}>
-            <Form.Input          
-              placeholder="Type full name of person"
+          <Form onSubmit={this.addMemberToActivity}>
+            <Form.Input
+              placeholder="Type full name of family member"
               onChange={this.handleChange}
               name="memberName"
               value={memberName}
-            />            
-            <div style={{ padding: "1rem 0"}}>
+            />
+            <div style={{ padding: "1rem 0" }}>
               <Button
                 primary
                 floated="right"
                 type="submit"
                 content="Member"
-                icon={`${action ===  "Add Person" ? "add" : "add"}`}            
+                icon="add"
               />
               <Button
                 floated="right"
@@ -86,7 +68,6 @@ class AddMemberToActivity extends React.Component {
               />
             </div>
           </Form>
-          
         </Modal.Content>
       </Modal>
     );

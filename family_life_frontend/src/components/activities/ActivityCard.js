@@ -60,11 +60,11 @@ class UserCard extends React.Component {
         <AddMemberToActivityModal 
           open={modal}
           addMemberToggle={this.addMemberToggle}  
+          activity={this.props.activity}
         />
         {/* <ActivityModal
           open={modal}
           handleActivityToggle={() => this.setState({ modal: false })}
-          activity={this.props.activity}
           _id={this.props.activity._id}
           action={action}
         /> */}
