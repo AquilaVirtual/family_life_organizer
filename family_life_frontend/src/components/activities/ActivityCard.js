@@ -13,7 +13,7 @@ class UserCard extends React.Component {
   };
   addMemberToActivity = () => {
     this.setState({ modal: true, action: "Add Person" });
-    this.props.handleModalToggle("Add Person");
+    // this.props.handleModalToggle("Add Person");
   };
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;

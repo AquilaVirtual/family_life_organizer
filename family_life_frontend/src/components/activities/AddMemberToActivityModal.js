@@ -66,7 +66,7 @@ class AddMemberToActivity extends React.Component {
             <Form.Input          
               placeholder="Type full name of person"
               onChange={this.handleChange}
-              name="activityName"
+              name="memberName"
               value={memberName}
             />            
             <div style={{ padding: "1rem 0"}}>
