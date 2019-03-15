@@ -2,22 +2,25 @@ import React from "react";
 import { Segment, Header, Icon, Confirm, Button } from "semantic-ui-react";
 
 import ActivityModal from "./ActivityModal";
-import addMemberToActivity from "./AddMemberToActivityModal"
+import EditActivity from "./EditActivity"
 import AddMemberToActivityModal from "./AddMemberToActivityModal";
 
 class UserCard extends React.Component {
   state = {
     confirmDelete: false,
-    modal: false,
+    modalMember: false,
+    modalEdit: false,
     action: ""
   };
   addMemberToggle = () => {
-    this.setState({ modal: !this.state.modal });
-    // this.props.handleModalToggle("Add Person");
+    this.setState({ modalMember: !this.state.modalMember });    
+  };
+  editToggle = () => {
+    this.setState({ modalEdit: !this.state.modalEdit });    
   };
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
-    const { confirmDelete, modal, action } = this.state;
+    const { confirmDelete, modalMember, modalEdit } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -33,7 +36,7 @@ class UserCard extends React.Component {
         <Icon
           style={{ cursor: "pointer", fontSize: "1.4rem" }}
           className="edit outline green"
-          onClick={() => this.setState({ modal: true, action: "Edit" })}
+          onClick={this.editToggle}
         />
         {accountType === "Primary" || accountType === "Spouse" ? (
           <Icon
@@ -58,16 +61,15 @@ class UserCard extends React.Component {
           }}
         />
         <AddMemberToActivityModal 
-          open={modal}
+          open={modalMember}
           addMemberToggle={this.addMemberToggle}  
           activity={this.props.activity}
         />
-        {/* <ActivityModal
-          open={modal}
-          handleActivityToggle={() => this.setState({ modal: false })}
-          _id={this.props.activity._id}
-          action={action}
-        /> */}
+        <EditActivity
+          open={modalEdit}
+          editToggle={this.editToggle}
+          activity={activity}
+        />
       </Segment>
     );
   }

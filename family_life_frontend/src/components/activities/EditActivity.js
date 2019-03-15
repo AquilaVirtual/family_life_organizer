@@ -48,11 +48,11 @@ class EditActivity extends React.Component {
 
   toggleAction = () => {};
   render() {
-    const { open } = this.props;
+    const { open, editToggle, activity } = this.props;
     const { activityName, activityType } = this.state;
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>{`Edit activity`}</Modal.Header>
+        <Modal.Header>{`Edit this activity`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleEdit}>
             <Form.Input
@@ -60,14 +60,14 @@ class EditActivity extends React.Component {
               placeholder="Add an activity..."
               onChange={this.handleChange}
               name="activityName"
-              value={activityName}
+              value={activity.name}
             />
             <Form.Input
               style={{ width: "100%" }}
               placeholder="Add activity type..."
               onChange={this.handleChange}
               name="activityType"
-              value={activityType}
+              value={activity.type}
             />
             <div style={{ padding: "1rem 0" }}>
               <Button primary floated="right" type="submit" content="Edit" />
@@ -76,7 +76,7 @@ class EditActivity extends React.Component {
                 type="cancel"
                 icon="cancel"
                 content="Cancel"
-                onClick={this.toggleAction}
+                onClick={editToggle}
               />
             </div>
           </Form>
