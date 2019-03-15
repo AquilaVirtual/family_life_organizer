@@ -12,7 +12,7 @@ import ActivityModal from "./ActivityModal";
 class ActivityPage extends React.Component {
   state = {
     activities: [],
-    modalPage: false,
+    modal: false,
     action: ""
   };
 
@@ -33,29 +33,11 @@ class ActivityPage extends React.Component {
       });
   }
 
-  handleModalToggle = action => {
+  handleModalToggle = () => {
     this.setState({
-      modalPage: !this.state.modalPage,
-      action: action
+      modal: !this.state.modal,      
     });
     console.log("Handle Toggle Called in Activity Page: ", this.state.action);
-  };
-  handleActivityAction = activity => {
-    console.log("Activity payload", activity);
-    if (this.state.action === "Add") {
-      const token = localStorage.getItem("token");
-      const headers = { headers: { authorization: token } };
-      axios
-        .post(`http://localhost:3002/api/activity/create`, activity, headers)
-        .then(activity => {
-          console.log("Created an activity", activity);
-        })
-        .catch(err => {
-          console.log("We have a problem", err);
-        });
-    } else if (this.state.action === "Add Person") {
-      console.log("Adding Person");
-    }
   };
   deleteActivity = id => {
     console.log("Delete activity called");
@@ -74,7 +56,7 @@ class ActivityPage extends React.Component {
       });
   };
   render() {
-    const { activities, modalPage, action, activity } = this.state;
+    const { activities, modal, action, activity } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -93,7 +75,7 @@ class ActivityPage extends React.Component {
             primary
             icon="add"
             content="New Activity"
-            onClick={() => this.handleModalToggle("Add")}
+            onClick={() => this.handleModalToggle()}
           />
         ) : null}
         <div
@@ -113,9 +95,9 @@ class ActivityPage extends React.Component {
             ))}
         </div>
         <ActivityModal
-          open={modalPage}
+          open={modal}
           action={action}
-          handleActivityToggle={() => this.setState({ modal: false })}
+          handleModalToggle={() => this.setState({ modal: false })}
         />
         <Navbar />
       </Segment>

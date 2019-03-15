@@ -27,8 +27,8 @@ class ActivityModal extends React.Component {
       [data.name]: data.value
     })
   }
-  handleAddMember = () => {
-    const { addActivity, handleModalToggle, activity, editActivity } = this.props;
+  addActivity = () => {
+    const { handleModalToggle } = this.props;
     const { activityName, activityType } = this.state;
     
     const newActivity = {
@@ -39,60 +39,60 @@ class ActivityModal extends React.Component {
     this.setState({
       activityName: "",
       activityType: "",
+    });   
+      
+  const token = localStorage.getItem("token");
+  const headers = { headers: { authorization: token } };
+  axios
+    .post(`http://localhost:3002/api/activity/create`, newActivity, headers)
+    .then(activity => {
+      console.log("Created an activity", activity);
+    })
+    .catch(err => {
+      console.log("We have a problem", err);
     });
+    handleModalToggle();
+  
     
-    if(this.props.action === "Edit") {
-      axios.put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
-      .then(activities => {     
-      })
-      .catch(err => {
-        console.log("We have a problem", err)
-      })
-      this.props.handleActivityToggle();
-    }
-    else if(this.props.action === "Add") {
-      addActivity(newActivity);
-      handleModalToggle();
-    }   
+    // if(this.props.action === "Edit") {
+    //   axios.put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
+    //   .then(activities => {     
+    //   })
+    //   .catch(err => {
+    //     console.log("We have a problem", err)
+    //   })
+    //   this.props.handleModalToggle();
+    // }
+    // else if(this.props.action === "Add") {
+    //   addActivity(newActivity);
+    //   handleModalToggle();
+    // }   
   };
-  // addMemberToActivity = () => {    
-  //   console.log("New member", this.state.memberName)
-  //   const { activity } = this.props;
-  //   const username = localStorage.getItem("username");
-  //   axios.put(`http://localhost:3002/api/activity/add_member_to_activity/${activity._id}`, {username})
-  //   .then(activities => {     
-  //     console.log("Add member fired!")
-  //   })
-  //   .catch(err => {
-  //     console.log("We have a problem", err)
-  //   })  
-  //     this.props.handleActivityToggle(); 
-  //    }
 
   toggleAction = () => {
     if(this.props.action === "Edit") {
-      this.props.handleActivityToggle();
+      this.props.handleModalToggle();
     }
     else if(this.props.action === "Add") {
       this.props.handleModalToggle();
     }
     else if(this.props.action === "Add Person") {
-      this.props.handleActivityToggle();
+      this.props.handleModalToggle();
     }
   }
   render() {
-    const { action, open, handleModalToggle, _id } = this.props;
+    const { open, _id } = this.props;
     console.log("Some Id in Activity", _id)
-    const { activityName, activityType, memberName } = this.state;
+    const { activityName, activityType } = this.state;
     console.log("Action has been fired: ", this.props.action)
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>{`${action} an activity`}</Modal.Header>       
+        <Modal.Header>{`Add an activity`}</Modal.Header>       
         <Modal.Content style={{ marginBottom: "2rem" }}>
-          <Form onSubmit={this.handleAddMember}>
+          <Form onSubmit={this.addActivity}>
             <Form.Input
               required
-              placeholder="Add an activity..."
+              placeholder="Add activity name..."
               onChange={this.handleChange}
               name="activityName"
               value={activityName}
@@ -109,16 +109,15 @@ class ActivityModal extends React.Component {
                 primary
                 floated="right"
                 type="submit"
-                icon={`${action ===  "Add" ? "add" : "edit"}`}
-                content={`${action ===  "Add" ? "Add" : "Edit"}`}
-                
+                icon= "plus"
+                content="Add"                 
               />
               <Button
                 floated="right"
                 type="cancel"
                 icon="cancel"
                 content="Cancel"
-                onClick={this.props.handleActivityToggle}
+                onClick={this.props.handleModalToggle}
               />
             </div>
           </Form> 

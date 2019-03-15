@@ -17,9 +17,8 @@ class AddMemberToActivity extends React.Component {
   addMemberToActivity = () => {
     const { errorMessage, memberName } = this.state;
     const { addMemberToggle, activity } = this.props;
-    const member = {
-      name: memberName
-    };
+    const member = memberName.trim();
+    
     console.log("Current Activity", activity, member);
     const username = localStorage.getItem("username");
     axios
