@@ -19,9 +19,17 @@ class ActivityPage extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     const username = localStorage.getItem("username");
+    const accountType = localStorage.getItem("accountType");
     const headers = { headers: { authorization: token } };
+    let url = "";
+    if(accountType === "Primary") {
+      url = "http://localhost:3002/api/activity/get/primary";
+    }
+    else if ( accountType === "Child" || accountType === "Spouse" || accountType === "Relative" ) {
+      url = "http://localhost:3002/api/activity/get/member"
+    }
     axios
-      .get(`http://localhost:3002/api/activity/${username}`, headers)
+      .get(`${url}/${username}`, headers)
       .then(activities => {
         console.log("We have activity", activities.data);
         this.setState({
