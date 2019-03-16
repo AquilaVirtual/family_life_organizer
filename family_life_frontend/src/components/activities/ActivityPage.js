@@ -12,8 +12,7 @@ import ActivityModal from "./ActivityModal";
 class ActivityPage extends React.Component {
   state = {
     activities: [],
-    modal: false,
-    action: ""
+    modal: false
   };
 
   componentDidMount() {
@@ -22,11 +21,14 @@ class ActivityPage extends React.Component {
     const accountType = localStorage.getItem("accountType");
     const headers = { headers: { authorization: token } };
     let url = "";
-    if(accountType === "Primary") {
+    if (accountType === "Primary") {
       url = "http://localhost:3002/api/activity/get/primary";
-    }
-    else if ( accountType === "Child" || accountType === "Spouse" || accountType === "Relative" ) {
-      url = "http://localhost:3002/api/activity/get/member"
+    } else if (
+      accountType === "Child" ||
+      accountType === "Spouse" ||
+      accountType === "Relative"
+    ) {
+      url = "http://localhost:3002/api/activity/get/member";
     }
     axios
       .get(`${url}/${username}`, headers)
@@ -43,7 +45,7 @@ class ActivityPage extends React.Component {
 
   handleModalToggle = () => {
     this.setState({
-      modal: !this.state.modal,      
+      modal: !this.state.modal
     });
     console.log("Handle Toggle Called in Activity Page: ", this.state.action);
   };

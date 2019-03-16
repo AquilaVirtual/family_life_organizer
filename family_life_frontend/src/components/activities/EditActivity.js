@@ -37,16 +37,18 @@ class EditActivity extends React.Component {
       activityName: "",
       activityType: ""
     });
-    console.log("Edited activity", newActivity)
-    
+    console.log("Edited activity", newActivity);
+
     axios
-      .put(`http://localhost:3002/api/activity/edit/${activity._id}`, newActivity)
+      .put(
+        `http://localhost:3002/api/activity/edit/${activity._id}`,
+        newActivity
+      )
       .then(activities => {})
       .catch(err => {
-          console.log("We have a problem", err);
-        });
-        editToggle();
-      
+        console.log("We have a problem", err);
+      });
+    editToggle();
   };
 
   toggleAction = () => {};
@@ -73,12 +75,13 @@ class EditActivity extends React.Component {
               value={activityType}
             />
             <div style={{ padding: "1rem 0" }}>
-              <Button 
-              primary 
-              floated="right"
-               type="submit"
+              <Button
+                primary
+                floated="right"
+                type="submit"
                 icon="edit"
-                content="Edit" />
+                content="Edit"
+              />
               <Button
                 floated="right"
                 type="cancel"
