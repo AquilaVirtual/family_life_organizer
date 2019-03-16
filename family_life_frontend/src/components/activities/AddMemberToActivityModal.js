@@ -28,11 +28,11 @@ class AddMemberToActivity extends React.Component {
         }`,
         { username, member }
       )
-      .then(activities => {
-        console.log("Add member fired!");
+      .then(addedMember => {
+        console.log("Add member fired!", addedMember);
       })
       .catch(err => {
-        console.log("We have a problem", err);
+        console.log("We have a problem", err.errorMessage);
       });
     this.setState({
       memberName: ""
@@ -51,6 +51,7 @@ class AddMemberToActivity extends React.Component {
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.addMemberToActivity}>
             <Form.Input
+              required
               placeholder="Type full name of family member"
               onChange={this.handleChange}
               name="memberName"

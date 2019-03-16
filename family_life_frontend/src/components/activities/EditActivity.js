@@ -25,25 +25,28 @@ class EditActivity extends React.Component {
     });
   };
   handleEdit = () => {
-    const { activity } = this.props;
+    const { activity, editToggle } = this.props;
     const { activityName, activityType } = this.state;
 
     const newActivity = {
       name: activityName,
       type: activityType
     };
+
     this.setState({
       activityName: "",
       activityType: ""
     });
-
+    console.log("Edited activity", newActivity)
+    
     axios
-      .put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
+      .put(`http://localhost:3002/api/activity/edit/${activity._id}`, newActivity)
       .then(activities => {})
       .catch(err => {
-        console.log("We have a problem", err);
-      });
-    this.props.handleActivityToggle();
+          console.log("We have a problem", err);
+        });
+        editToggle();
+      
   };
 
   toggleAction = () => {};
@@ -60,17 +63,22 @@ class EditActivity extends React.Component {
               placeholder="Add an activity..."
               onChange={this.handleChange}
               name="activityName"
-              value={activity.name}
+              value={activityName}
             />
             <Form.Input
               style={{ width: "100%" }}
               placeholder="Add activity type..."
               onChange={this.handleChange}
               name="activityType"
-              value={activity.type}
+              value={activityType}
             />
             <div style={{ padding: "1rem 0" }}>
-              <Button primary floated="right" type="submit" content="Edit" />
+              <Button 
+              primary 
+              floated="right"
+               type="submit"
+                icon="edit"
+                content="Edit" />
               <Button
                 floated="right"
                 type="cancel"

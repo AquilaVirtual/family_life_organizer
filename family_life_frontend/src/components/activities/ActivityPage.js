@@ -44,7 +44,7 @@ class ActivityPage extends React.Component {
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .delete(`http://localhost:3002/api/activity/${id}`, headers)
+      .delete(`http://localhost:3002/api/activity/delete/${id}`, headers)
       .then(activity => {
         console.log("Created an activity", activity);
         setTimeout(() => {
