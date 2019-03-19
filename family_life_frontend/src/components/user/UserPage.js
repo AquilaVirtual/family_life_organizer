@@ -97,7 +97,8 @@ class UserPage extends React.Component {
         <UserCard
           user={{
             name: localStorage.getItem("name"),
-            accountType: localStorage.getItem("accountType")
+            accountType: localStorage.getItem("accountType"),
+            userImage: localStorage.getItem("userImage"),
           }}
           deleteUser={() => this.deleteUser()}
           handleModalToggle={() =>

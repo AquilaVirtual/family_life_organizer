@@ -21,8 +21,8 @@ class UserCard extends React.Component {
         <Image
           centered
           src={
-            user && user.url
-              ? user.url
+            user && user.userImage
+              ? user.userImage
               : "https://react.semantic-ui.com/images/wireframe/square-image.png"
           }
           size="small"
