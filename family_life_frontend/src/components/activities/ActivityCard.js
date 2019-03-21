@@ -2,7 +2,7 @@ import React from "react";
 import { Segment, Header, Icon, Confirm, Button } from "semantic-ui-react";
 
 import ActivityModal from "./ActivityModal";
-import EditActivity from "./EditActivity"
+import EditActivity from "./EditActivity";
 import AddMemberToActivityModal from "./AddMemberToActivityModal";
 
 class UserCard extends React.Component {
@@ -13,10 +13,10 @@ class UserCard extends React.Component {
     action: ""
   };
   addMemberToggle = () => {
-    this.setState({ modalMember: !this.state.modalMember });    
+    this.setState({ modalMember: !this.state.modalMember });
   };
   editToggle = () => {
-    this.setState({ modalEdit: !this.state.modalEdit });    
+    this.setState({ modalEdit: !this.state.modalEdit });
   };
   render() {
     const { activity, deleteActivity, handleModalToggle } = this.props;
@@ -45,11 +45,7 @@ class UserCard extends React.Component {
             onClick={() => this.setState({ confirmDelete: true })}
           />
         ) : null}
-        <Button
-          icon="user plus"
-          primary
-          onClick={this.addMemberToggle}
-        />
+        <Button icon="user plus" primary onClick={this.addMemberToggle} />
         <Confirm
           open={confirmDelete}
           size="mini"
@@ -60,9 +56,9 @@ class UserCard extends React.Component {
             this.setState({ confirmDelete: false });
           }}
         />
-        <AddMemberToActivityModal 
+        <AddMemberToActivityModal
           open={modalMember}
-          addMemberToggle={this.addMemberToggle}  
+          addMemberToggle={this.addMemberToggle}
           activity={this.props.activity}
         />
         <EditActivity

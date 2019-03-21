@@ -45,6 +45,10 @@ class UserPage extends React.Component {
         console.log("Error adding member", err);
       });
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("State has been updated!");
+    return this.props.users > this.state.users;
+  }
   handleModalToggle = (action, member) => {
     this.setState(state => ({
       modal: !state.modal,
@@ -98,7 +102,7 @@ class UserPage extends React.Component {
           user={{
             name: localStorage.getItem("name"),
             accountType: localStorage.getItem("accountType"),
-            userImage: localStorage.getItem("userImage"),
+            userImage: localStorage.getItem("userImage")
           }}
           deleteUser={() => this.deleteUser()}
           handleModalToggle={() =>
