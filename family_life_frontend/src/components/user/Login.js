@@ -5,7 +5,7 @@ import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import LoginHeader from "./LoginHeader";
 
-import "./Login.css";
+import "../css/Login.css";
 
 class LogIn extends Component {
   constructor(props) {
