@@ -4,7 +4,6 @@ import { Segment, Header } from "semantic-ui-react";
 
 import ChoreCard from "./ChoreCard";
 
-import { users } from "../../dummyData";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 class ChorePage extends Component {
