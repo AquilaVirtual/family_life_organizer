@@ -4,6 +4,9 @@ import { Button, Form } from "semantic-ui-react";
 import axios from "axios";
 import LoginHeader from "./LoginHeader";
 
+import "../css/Register.css";
+
+
 class Register extends Component {
   constructor(props) {
     super(props);
