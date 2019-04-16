@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
-import "./LandingPage.css";
+import "../css/LandingPage.css";
 
 import {
   Button,

@@ -6,7 +6,7 @@
   border-radius: 0.3rem;
   position: absolute;
   top: 350px;
-  left: 30%;
+  left: 32%;
   background-color: rgba(169,169,169 , .7);
   display: flex;
   flex-direction: column;
@@ -60,24 +60,10 @@
   color: rgba(11,102,203 ,.8 );
 }
 
-/* @media(min-width: 600px) {
-  .loginHeaderContainer .loginHeader {
-    margin-top: 24px;
-  }
-  .form-group {
-    width: 36%;
-    height: 300px;
-    padding: 1rem;
-    border: 0.1rem solid lightgrey;
-    border-radius: 0.3;    
-    top: 350px;
-    left: 30%;
-  }
-}
-*/
 @media (max-width: 1680px) {
 .form-group {
   width: 46%;
+  left: 27%;
 
 }
 } 
@@ -97,5 +83,8 @@
     background-color: rgba(169,169,169 , .7);
     display: flex;
     flex-direction: column;    
+  }
+  .form-group--register {
+    height: auto;
   }
 }
