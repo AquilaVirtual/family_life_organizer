@@ -43,6 +43,14 @@ class ActivityPage extends Component {
       });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("State updated");
+    if(this.state.activities !== nextState.activities) {
+      return true
+    }
+    return false;
+  }
+
   handleModalToggle = () => {
     this.setState({
       modal: !this.state.modal

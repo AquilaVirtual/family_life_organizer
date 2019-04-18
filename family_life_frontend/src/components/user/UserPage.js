@@ -36,7 +36,6 @@ class UserPage extends PureComponent {
     axios
       .get(`${url}/${username}`, headers)
       .then(response => {
-        console.log("Getting family", response.data);
         this.setState({
           users: response.data
         });
@@ -59,26 +58,34 @@ class UserPage extends PureComponent {
     const headers = { headers: { authorization: token } };
     axios
       .post("http://localhost:3002/api/member/create", member, headers)
-      .then(response => {})
+      .then(response => {
+        this.setState({
+          users: [...this.state.users, response.data]
+        })
+      })
       .catch(err => {
         console.log("Error adding member", err);
       });
   };
   deleteUser = id => {
-    console.log("Confirming Delete", id);
+    const { users } = this.state;
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
       .delete(`http://localhost:3002/api/member/${id}`, headers)
       .then(response => {
-        console.log("Getting response from delete", response);
-        this.props.history.push("/users");
+        const newState = users.filter(user => user._id !== response.data._id)
+        this.setState({
+          users: newState
+        })
       })
       .catch(err => {
         console.log("Error deleting member", err);
       });
   };
-  
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state !== nextState  
+  }
   render() {
     const { user, modal, action, member } = this.state;
 
