@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent, Component} from "react";
 import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
@@ -9,13 +9,14 @@ import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-class UserPage extends React.Component {
+class UserPage extends PureComponent {
   state = {
     users: [],
     modal: false,
     action: "add",
     member: null
   };
+ 
 
   componentDidMount() {
     let url = "";
@@ -77,6 +78,7 @@ class UserPage extends React.Component {
         console.log("Error deleting member", err);
       });
   };
+  
   render() {
     const { user, modal, action, member } = this.state;
 

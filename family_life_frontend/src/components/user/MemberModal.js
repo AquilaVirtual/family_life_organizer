@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component} from "react";
 import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 const memberType = [
@@ -7,7 +7,7 @@ const memberType = [
   { key: "Relative", value: "Relative", text: "Relative" }
 ];
 
-class MemberModal extends React.Component {
+class MemberModal extends Component {
   state = {
     nameText: "",
     accountText: "",

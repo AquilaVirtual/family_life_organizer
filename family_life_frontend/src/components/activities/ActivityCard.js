@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Component} from "react";
 import { Segment, Header, Icon, Confirm, Button } from "semantic-ui-react";
 
 import ActivityModal from "./ActivityModal";
 import EditActivity from "./EditActivity";
 import AddMemberToActivityModal from "./AddMemberToActivityModal";
 
-class UserCard extends React.Component {
+class UserCard extends Component {
   state = {
     confirmDelete: false,
     modalMember: false,
@@ -13,7 +13,7 @@ class UserCard extends React.Component {
     action: ""
   };
 
-  
+
   addMemberToggle = () => {
     this.setState({ modalMember: !this.state.modalMember });
   };

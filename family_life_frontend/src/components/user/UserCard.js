@@ -1,15 +1,19 @@
-import React from "react";
+import React, { Component} from "react";
 import { Segment, Image, Header, Icon, Confirm, Button, Form } from "semantic-ui-react";
 
 import "./userCard.css";
 
 
-class UserCard extends React.Component {
+class UserCard extends Component {
   state = {
     confirmDelete: false,
     imageUrl: ""
   };
-
+  
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps.user !== this.props.user;
+  // }
+  
   handleInputChange = event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });

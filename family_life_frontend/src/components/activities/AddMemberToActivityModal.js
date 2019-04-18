@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component} from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
-class AddMemberToActivity extends React.Component {
+class AddMemberToActivity extends Component {
   state = {
     memberName: "",
     errorMessage: ""

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component} from "react";
 import axios from "axios";
 import { Button, Modal, Form, Select } from "semantic-ui-react";
 
-class ActivityModal extends React.Component {
+class ActivityModal extends Component {
   state = {
     activityName: "",
     activityType: "",

@@ -1,7 +1,7 @@
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-import React from "react";
+import React, { Component} from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Segment, Button, Header } from "semantic-ui-react";
@@ -9,7 +9,7 @@ import { Segment, Button, Header } from "semantic-ui-react";
 import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
 
-class ActivityPage extends React.Component {
+class ActivityPage extends Component {
   state = {
     activities: [],
     modal: false

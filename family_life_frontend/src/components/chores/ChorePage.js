@@ -10,12 +10,7 @@ class ChorePage extends Component {
   state = {
     users: []
   };
-
-  // componentWillMount() {
-  //   this.setState({
-  //     users
-  //   });
-  // }
+  
   componentDidMount() {
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
