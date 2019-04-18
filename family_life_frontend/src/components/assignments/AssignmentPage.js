@@ -42,29 +42,31 @@ class AssignmentPage extends Component {
     }));
   };
   deleteAssignment = id => {
-    console.log("Some ID here", id);
+    const { assignments } = this.state;
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
       .delete(`http://localhost:3002/api/assignment/${id}`, headers)
       .then(response => {
-        console.log("Deleted Assignment", response);
+       const currentAssignments = assignments.filter(assignment => assignment._id !== response.data._id)
+       this.setState({
+         assignments: currentAssignments
+       })
       })
       .catch(err => {
         console.log("Something Bahd!", err);
       });
   };
-
   addAssignment = assignment => {
+    const { assignments } = this.state;
     const token = localStorage.getItem("token");
-    console.log("Getting some token", token);
     const headers = { headers: { authorization: token } };
-
-    console.log("Passing on", assignment);
     axios
       .post(`http://localhost:3002/api/assignment/create`, assignment, headers)
       .then(response => {
-        console.log("Logging Assignment", response);
+        this.setState({
+          assignments: [...assignments, response.data]
+        })
       })
       .catch(err => {
         console.log("Something Bahd!", err);
@@ -82,8 +84,7 @@ class AssignmentPage extends Component {
         return assignment;
       })
     }));
-  };
-
+  };   
   render() {
     const { assignments, modal } = this.state;
     const accountType = localStorage.getItem("accountType");
