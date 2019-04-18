@@ -26,7 +26,7 @@ class ActivityModal extends Component {
     });
   };
   addActivity = () => {
-    const { handleModalToggle } = this.props;
+    const { handleModalToggle, handleAddActivity } = this.props;
     const { activityName, activityType } = this.state;
 
     const newActivity = {
@@ -38,17 +38,9 @@ class ActivityModal extends Component {
       activityName: "",
       activityType: ""
     });
+     
+    handleAddActivity(newActivity)
 
-    const token = localStorage.getItem("token");
-    const headers = { headers: { authorization: token } };
-    axios
-      .post(`http://localhost:3002/api/activity/create`, newActivity, headers)
-      .then(activity => {
-        console.log("Created an activity", activity);
-      })
-      .catch(err => {
-        console.log("We have a problem", err);
-      });
     handleModalToggle();
 
     // if(this.props.action === "Edit") {

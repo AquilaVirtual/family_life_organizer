@@ -1,22 +1,20 @@
-import React, { PureComponent, Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
-
 
 import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-class UserPage extends PureComponent {
+class UserPage extends Component {
   state = {
     users: [],
     modal: false,
     action: "add",
     member: null
   };
- 
 
   componentDidMount() {
     let url = "";
@@ -44,7 +42,7 @@ class UserPage extends PureComponent {
         console.log("Error adding member", err);
       });
   }
-  
+
   handleModalToggle = (action, member) => {
     this.setState(state => ({
       modal: !state.modal,
@@ -61,7 +59,7 @@ class UserPage extends PureComponent {
       .then(response => {
         this.setState({
           users: [...this.state.users, response.data]
-        })
+        });
       })
       .catch(err => {
         console.log("Error adding member", err);
@@ -74,17 +72,17 @@ class UserPage extends PureComponent {
     axios
       .delete(`http://localhost:3002/api/member/${id}`, headers)
       .then(response => {
-        const newState = users.filter(user => user._id !== response.data._id)
+        const newState = users.filter(user => user._id !== response.data._id);
         this.setState({
           users: newState
-        })
+        });
       })
       .catch(err => {
         console.log("Error deleting member", err);
       });
   };
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state !== nextState  
+    return this.state !== nextState;
   }
   render() {
     const { user, modal, action, member } = this.state;

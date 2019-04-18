@@ -41,15 +41,7 @@ class ActivityPage extends Component {
       .catch(err => {
         console.log("We have a problem", err);
       });
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("State updated");
-    if(this.state.activities !== nextState.activities) {
-      return true
-    }
-    return false;
-  }
+  }  
 
   handleModalToggle = () => {
     this.setState({
@@ -57,23 +49,47 @@ class ActivityPage extends Component {
     });
     console.log("Handle Toggle Called in Activity Page: ", this.state.action);
   };
+  handleAddActivity = (newActivity) => {
+    const { activities } = this.state;
+    const token = localStorage.getItem("token");
+    const headers = { headers: { authorization: token } };
+    axios
+      .post(`http://localhost:3002/api/activity/create`, newActivity, headers)
+      .then(activity => {
+        console.log("Created an activity", activity);
+        this.setState({
+         activities: [...activities, activity.data]
+        })
+      })
+      .catch(err => {
+        console.log("We have a problem", err);
+      });
+
+  }
   deleteActivity = id => {
+    const { activities } = this.state;
     console.log("Delete activity called");
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
       .delete(`http://localhost:3002/api/activity/delete/${id}`, headers)
-      .then(activity => {
-        console.log("Created an activity", activity);
-        setTimeout(() => {
-          this.props.history.push("/activities");
-        }, 200);
+      .then(response => {
+        console.log("Created an activity", response);
+        const currentActivities = activities.filter(activity => activity._id !== response.data._id)
+       this.setState({
+        activities: currentActivities
+       })
       })
       .catch(err => {
         console.log("We have a problem", err);
       });
   };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state.activities !== nextState.activities    
+  }
   render() {
+    console.log("How fast?")
     const { activities, modal, action, activity } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
@@ -116,6 +132,7 @@ class ActivityPage extends Component {
           open={modal}
           action={action}
           handleModalToggle={() => this.setState({ modal: false })}
+          handleAddActivity={this.handleAddActivity}
         />
         <Navbar />
       </Segment>
