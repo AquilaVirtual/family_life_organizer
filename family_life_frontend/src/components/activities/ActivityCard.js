@@ -12,6 +12,8 @@ class UserCard extends React.Component {
     modalEdit: false,
     action: ""
   };
+
+  
   addMemberToggle = () => {
     this.setState({ modalMember: !this.state.modalMember });
   };

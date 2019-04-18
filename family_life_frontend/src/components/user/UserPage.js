@@ -44,10 +44,7 @@ class UserPage extends React.Component {
         console.log("Error adding member", err);
       });
   }
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("State has been updated!");
-    return this.props.users > this.state.users;
-  }
+  
   handleModalToggle = (action, member) => {
     this.setState(state => ({
       modal: !state.modal,
