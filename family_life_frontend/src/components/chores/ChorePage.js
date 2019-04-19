@@ -10,7 +10,7 @@ class ChorePage extends Component {
   state = {
     users: []
   };
-  
+
   componentDidMount() {
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
@@ -28,11 +28,19 @@ class ChorePage extends Component {
       });
   }
   addChore = newChore => {
+    const { users } = this.state;
     console.log("Adding new chore", newChore);
     axios
       .post("http://localhost:3002/api/chore/create", newChore)
       .then(response => {
-        console.log("Successfully adding chores", response);
+        users.forEach(user => {
+          if (user._id === response.data.createdFor) {
+            user.chores.push(response.data);
+          }
+        });
+        this.setState({
+          users: users
+        });
       })
       .catch(err => {
         console.log("Error add chore", err);
