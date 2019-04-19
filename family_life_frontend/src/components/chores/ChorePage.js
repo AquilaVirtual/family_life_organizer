@@ -18,7 +18,6 @@ class ChorePage extends Component {
     axios
       .get(`http://localhost:3002/api/chore/${username}`)
       .then(response => {
-        console.log("Getting users for chores", response.data);
         this.setState({
           users: response.data
         });
@@ -29,7 +28,6 @@ class ChorePage extends Component {
   }
   addChore = newChore => {
     const { users } = this.state;
-    console.log("Adding new chore", newChore);
     axios
       .post("http://localhost:3002/api/chore/create", newChore)
       .then(response => {
@@ -49,15 +47,20 @@ class ChorePage extends Component {
 
   deleteChore = id => {
     const { users } = this.state;
-    console.log("Deletable ID", id);
     axios
       .delete(`http://localhost:3002/api/chore/deletechore/${id}`)
       .then(response => {
-      const updatedUsers = users.filter(user => user._id !== response.data.createdFor);
-        this.setState({
-          users: updatedUsers
+        users.forEach(user => {
+          if (user._id === response.data.createdFor) {
+            let updatedChores = user.chores.filter(
+              chore => chore._id !== response.data._id
+            );
+            user.chores = updatedChores;
+          }
         });
-        console.log("Updated users Chores", updatedUsers)
+        this.setState({
+          users: users
+        });
       })
       .catch(err => {
         console.log("Something went wrong while deleteing chore", err);
