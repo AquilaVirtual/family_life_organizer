@@ -48,10 +48,17 @@ class ChorePage extends Component {
   };
 
   deleteChore = id => {
+    const { users } = this.state;
     console.log("Deletable ID", id);
     axios
       .delete(`http://localhost:3002/api/chore/deletechore/${id}`)
-      .then(response => {})
+      .then(response => {
+      const updatedUsers = users.filter(user => user._id !== response.data.createdFor);
+        this.setState({
+          users: updatedUsers
+        });
+        console.log("Updated users Chores", updatedUsers)
+      })
       .catch(err => {
         console.log("Something went wrong while deleteing chore", err);
       });
