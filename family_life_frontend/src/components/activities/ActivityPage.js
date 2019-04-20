@@ -140,4 +140,4 @@ class ActivityPage extends Component {
   }
 }
 
-export default withRouter(ActivityPage);
+export default ActivityPage;

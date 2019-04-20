@@ -162,4 +162,4 @@ class UserPage extends Component {
   }
 }
 
-export default withRouter(UserPage);
+export default UserPage;

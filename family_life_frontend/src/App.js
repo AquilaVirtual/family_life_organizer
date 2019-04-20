@@ -20,21 +20,12 @@ class App extends Component {
         {/* Available routes */}
         <Route exact path="/" component={LandingPage} />
         {/* <Route path="/:path" component={Navbar} /> */}
-        {localStorage.getItem("token") ? (
-          <Redirect to="/" />
-        ) : (
+    
         <Route exact path="/login" component={Login} />
-        )}
-        {localStorage.getItem("token") ? (
-          <Redirect to="/" />
-        ) : (
-        <Route exact path="/register" component={Register} />
-        )}
-        {/* {localStorage.getItem("token") ? ( */}
-          <Route exact path="/users" component={UserPage} />
-        {/* ) : (
-          <Redirect to="/" />
-        )} */}
+       
+        <Route exact path="/register" component={Register} />        
+        
+          <Route exact path="/users" component={UserPage} />        
         <Route exact path="/activities" component={ActivityPage} />
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />
