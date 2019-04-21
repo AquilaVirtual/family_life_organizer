@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import HomepageHeading from "./homePageHeading";
 import "../css/LandingPage.css";
@@ -8,18 +8,11 @@ import "../css/LandingPage.css";
 import {
   Button,
   Container,
-  Divider,
-  Grid,
-  Header,
   Icon,
-  Image,
-  List,
-  Dropdown,
   Menu,
   Responsive,
   Segment,
   Sidebar,
-  Visibility
 } from "semantic-ui-react";
 
 class MobileContainer extends Component {

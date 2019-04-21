@@ -8,11 +8,8 @@ class UserCard extends Component {
   state = {
     confirmDelete: false,
     imageUrl: ""
-  };
-  
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   return nextProps.user !== this.props.user;
-  // }
+  }; 
+ 
   
   handleInputChange = event => {
     event.preventDefault();

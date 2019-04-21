@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
+import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 
 import DesktopContainer from "./desktopContainer";
@@ -10,18 +10,11 @@ import "../css/LandingPage.css";
 import {
   Button,
   Container,
-  Divider,
   Grid,
   Header,
-  Icon,
   Image,
   List,
-  Dropdown,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility
+  Segment,  
 } from "semantic-ui-react";
 
 const ResponsiveContainer = ({ children }) => (

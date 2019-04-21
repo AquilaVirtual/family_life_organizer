@@ -7,18 +7,11 @@ import "../css/LandingPage.css";
 
 import {
   Button,
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  List,
+  Container,  
   Dropdown,
   Menu,
   Responsive,
   Segment,
-  Sidebar,
   Visibility
 } from "semantic-ui-react";
 

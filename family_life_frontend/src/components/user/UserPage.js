@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
+
 
 import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";

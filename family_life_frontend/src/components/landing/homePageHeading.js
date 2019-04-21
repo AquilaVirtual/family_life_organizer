@@ -1,23 +1,13 @@
 import PropTypes from "prop-types";
-import React, { Component } from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import React from "react";
+import { NavLink} from "react-router-dom";
 import "../css/LandingPage.css";
 
 import {
   Button,
-  Container,
-  Divider,
-  Grid,
+  Container, 
   Header,
   Icon,
-  Image,
-  List,
-  Dropdown,
-  Menu,
-  Responsive,
-  Segment,
-  Sidebar,
-  Visibility
 } from "semantic-ui-react";
 
 const HomepageHeading = ({ mobile }) => (
