@@ -2,9 +2,8 @@ import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
 import React, { Component} from "react";
-import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { Segment, Button, Header } from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 
 import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
@@ -33,7 +32,6 @@ class ActivityPage extends Component {
     axios
       .get(`${url}/${username}`, headers)
       .then(activities => {
-        console.log("We have activity", activities.data);
         this.setState({
           activities: activities.data
         });
@@ -47,7 +45,6 @@ class ActivityPage extends Component {
     this.setState({
       modal: !this.state.modal
     });
-    console.log("Handle Toggle Called in Activity Page: ", this.state.action);
   };
   handleAddActivity = (newActivity) => {
     const { activities } = this.state;
@@ -56,7 +53,6 @@ class ActivityPage extends Component {
     axios
       .post(`http://localhost:3002/api/activity/create`, newActivity, headers)
       .then(activity => {
-        console.log("Created an activity", activity);
         this.setState({
          activities: [...activities, activity.data]
         })
@@ -68,13 +64,11 @@ class ActivityPage extends Component {
   }
   deleteActivity = id => {
     const { activities } = this.state;
-    console.log("Delete activity called");
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
       .delete(`http://localhost:3002/api/activity/delete/${id}`, headers)
       .then(response => {
-        console.log("Created an activity", response);
         const currentActivities = activities.filter(activity => activity._id !== response.data._id)
        this.setState({
         activities: currentActivities
@@ -89,7 +83,6 @@ class ActivityPage extends Component {
     return this.state.activities !== nextState.activities    
   }
   render() {
-    console.log("How fast?")
     const { activities, modal, action, activity } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (

@@ -40,14 +40,11 @@ class Register extends Component {
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
-      // child: this.state.child,
-      // id:    this.state.id
+    
     };
     axios
       .post(`http://localhost:3002/api/user/register`, user)
       .then(response => {
-        console.log("Fire response here", response);
-        console.log("Fire error here", this.state.errorMessage);
         this.props.history.push(`/login`);
         this.setState({
           error: false

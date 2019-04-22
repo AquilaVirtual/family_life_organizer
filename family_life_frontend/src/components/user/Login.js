@@ -47,11 +47,9 @@ class LogIn extends Component {
     } else if (this.state.selectedOption === "other") {
       url = "http://localhost:3002/api/member/login";
     }
-    console.log("Current url", url);
     axios
       .post(`${url}`, user)
       .then(response => {
-        console.log("Fire", response.data);
         this.setState({
           error: false
         });

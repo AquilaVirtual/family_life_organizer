@@ -1,6 +1,5 @@
 import React, { Component} from "react";
-import axios from "axios";
-import { Button, Modal, Form, Select } from "semantic-ui-react";
+import { Button, Modal, Form } from "semantic-ui-react";
 
 class ActivityModal extends Component {
   state = {
@@ -69,9 +68,7 @@ class ActivityModal extends Component {
   };
   render() {
     const { open, _id } = this.props;
-    console.log("Some Id in Activity", _id);
     const { activityName, activityType } = this.state;
-    console.log("Action has been fired: ", this.props.action);
     return (
       <Modal size="mini" open={open}>
         <Modal.Header>{`Add an activity`}</Modal.Header>
