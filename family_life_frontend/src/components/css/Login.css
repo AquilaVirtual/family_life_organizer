@@ -34,6 +34,10 @@
   position: absolute;
   color: white;
 }
+
+.ui.radio.checkbox .box, .ui.radio.checkbox label  {
+  color: white;
+}
 .errorMessage {
   color: #d41919;
   margin-bottom: 8px;

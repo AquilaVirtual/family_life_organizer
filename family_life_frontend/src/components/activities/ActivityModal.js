@@ -36,25 +36,9 @@ class ActivityModal extends Component {
     this.setState({
       activityName: "",
       activityType: ""
-    });
-     
+    });     
     handleAddActivity(newActivity)
-
     handleModalToggle();
-
-    // if(this.props.action === "Edit") {
-    //   axios.put(`http://localhost:3002/api/activity/${activity._id}`, newActivity)
-    //   .then(activities => {
-    //   })
-    //   .catch(err => {
-    //     console.log("We have a problem", err)
-    //   })
-    //   this.props.handleModalToggle();
-    // }
-    // else if(this.props.action === "Add") {
-    //   addActivity(newActivity);
-    //   handleModalToggle();
-    // }
   };
 
   toggleAction = () => {
