@@ -8,6 +8,12 @@ import { Segment, Button } from "semantic-ui-react";
 import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
 
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
+
 class ActivityPage extends Component {
   state = {
     activities: [],
@@ -21,13 +27,13 @@ class ActivityPage extends Component {
     const headers = { headers: { authorization: token } };
     let url = "";
     if (accountType === "Primary") {
-      url = "http://localhost:3002/api/activity/get/primary";
+      url = `${backend}/api/activity/get/primary`;
     } else if (
       accountType === "Child" ||
       accountType === "Spouse" ||
       accountType === "Relative"
     ) {
-      url = "http://localhost:3002/api/activity/get/member";
+      url = `${backend}/api/activity/get/member`;
     }
     axios
       .get(`${url}/${username}`, headers)
@@ -51,7 +57,7 @@ class ActivityPage extends Component {
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .post(`http://localhost:3002/api/activity/create`, newActivity, headers)
+      .post(`${backend}/api/activity/create`, newActivity, headers)
       .then(activity => {
         this.setState({
          activities: [...activities, activity.data]
@@ -67,7 +73,7 @@ class ActivityPage extends Component {
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .delete(`http://localhost:3002/api/activity/delete/${id}`, headers)
+      .delete(`${backend}/api/activity/delete/${id}`, headers)
       .then(response => {
         const currentActivities = activities.filter(activity => activity._id !== response.data._id)
        this.setState({

@@ -7,6 +7,13 @@ import LoginHeader from "./LoginHeader";
 import "../css/Register.css";
 
 
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
+
+
 class Register extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +50,7 @@ class Register extends Component {
     
     };
     axios
-      .post(`http://localhost:3002/api/user/register`, user)
+      .post(`${backend}/api/user/register`, user)
       .then(response => {
         this.props.history.push(`/login`);
         this.setState({

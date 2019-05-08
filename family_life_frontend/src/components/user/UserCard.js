@@ -4,6 +4,11 @@ import { Segment, Image, Header, Icon, Confirm, Button, Form } from "semantic-ui
 
 import "./userCard.css";
 
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
 
 class UserCard extends Component {
   state = {
@@ -20,7 +25,7 @@ class UserCard extends Component {
   handleImageUpload = () => {
     const image = this.state.image;
     console.log("Our Image", image)
-    axios.post(`http://localhost:3002/api/user/image/${localStorage.getItem("userId")}`, image)
+    axios.post(`${backend}/api/user/image/${localStorage.getItem("userId")}`, image)
     .then(response => {      
       console.log("Image upload response", response)
     })

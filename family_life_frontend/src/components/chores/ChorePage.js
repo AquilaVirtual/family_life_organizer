@@ -6,6 +6,13 @@ import ChoreCard from "./ChoreCard";
 
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
+
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
+
 class ChorePage extends Component {
   state = {
     users: []
@@ -29,7 +36,7 @@ class ChorePage extends Component {
   addChore = newChore => {
     const { users } = this.state;
     axios
-      .post("http://localhost:3002/api/chore/create", newChore)
+      .post(`${backend}/api/chore/create`, newChore)
       .then(response => {
         users.forEach(user => {
           if (user._id === response.data.createdFor) {
@@ -48,7 +55,7 @@ class ChorePage extends Component {
   deleteChore = id => {
     const { users } = this.state;
     axios
-      .delete(`http://localhost:3002/api/chore/deletechore/${id}`)
+      .delete(`${backend}/api/chore/deletechore/${id}`)
       .then(response => {
         users.forEach(user => {
           if (user._id === response.data.createdFor) {

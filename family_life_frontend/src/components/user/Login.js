@@ -7,6 +7,12 @@ import LoginHeader from "./LoginHeader";
 
 import "../css/Login.css";
 
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
+
 class LogIn extends Component {
   constructor(props) {
     super(props);
@@ -36,9 +42,9 @@ class LogIn extends Component {
         errorMessage: "Please select account type"
       });
     } else if (this.state.value === "primary") {
-      url = "http://localhost:3002/api/user/login";
+      url = `${backend}/api/user/login`;
     } else if (this.state.value === "other") {
-      url = "http://localhost:3002/api/member/login";
+      url = `${backend}/api/member/login`;
     }
     axios
       .post(`${url}`, user)

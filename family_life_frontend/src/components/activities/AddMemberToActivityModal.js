@@ -2,6 +2,12 @@ import React, { Component} from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com/';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
+
 class AddMemberToActivity extends Component {
   state = {
     memberName: "",

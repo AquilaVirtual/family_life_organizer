@@ -8,6 +8,12 @@ import AssignmentCard from "./AssignmentCard";
 import SiteHeader from "../header/SiteHeader";
 import AssignmentModal from "./AssignmentModal";
 
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let heroku = 'https://familylife.herokuapp.com';
+if (typeof backend !== 'string') {
+  backend = heroku;
+}
+
 class AssignmentPage extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +50,7 @@ class AssignmentPage extends Component {
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .delete(`http://localhost:3002/api/assignment/${id}`, headers)
+      .delete(`${backend}/api/assignment/${id}`, headers)
       .then(response => {
        const currentAssignments = assignments.filter(assignment => assignment._id !== response.data._id)
        this.setState({
@@ -60,7 +66,7 @@ class AssignmentPage extends Component {
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .post(`http://localhost:3002/api/assignment/create`, assignment, headers)
+      .post(`${backend}/api/assignment/create`, assignment, headers)
       .then(response => {
         this.setState({
           assignments: [...assignments, response.data]
