@@ -43,7 +43,7 @@ class ActivityPage extends Component {
 
   handleModalToggle = () => {
     this.setState({
-      modal: !this.state.modal
+      modal: true
     });
   };
   handleAddActivity = (newActivity) => {
@@ -102,7 +102,7 @@ class ActivityPage extends Component {
             primary
             icon="add"
             content="New Activity"
-            onClick={() => this.handleModalToggle()}
+            onClick={()=>this.handleModalToggle()}
           />
         ) : null}
         <div
