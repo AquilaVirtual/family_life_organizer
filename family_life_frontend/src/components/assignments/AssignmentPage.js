@@ -27,7 +27,7 @@ class AssignmentPage extends Component {
     const username = localStorage.getItem("username");
     const headers = { headers: { authorization: token } };
     axios
-      .get(`http://localhost:3002/api/assignment/${username}`, headers)
+      .get(`${backend}/api/assignment/${username}`, headers)
       .then(response => {
         this.setState({
           assignments: response.data
@@ -73,7 +73,7 @@ class AssignmentPage extends Component {
         })
       })
       .catch(err => {
-        console.log("Something Bahd!", err);
+        console.log("Something Bahd!", err.response);
       });
   };
   changeStatus = id => {

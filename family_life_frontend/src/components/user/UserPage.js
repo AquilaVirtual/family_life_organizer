@@ -8,6 +8,12 @@ import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
+ let backend = process.env.REACT_APP_LOCAL_BACKEND;
+  let heroku = "https://familylife.herokuapp.com";
+ if (typeof backend !== 'string') {
+   backend = heroku; 
+ }
+
 class UserPage extends Component {
   state = {
     users: [],
@@ -20,13 +26,13 @@ class UserPage extends Component {
     let url = "";
     const accountType = localStorage.getItem("accountType");
     if (accountType === "Primary") {
-      url = "http://localhost:3002/api/user/family";
+      url = `${backend}/api/user/family`;
     } else if (
       accountType === "Child" ||
       accountType === "Spouse" ||
       accountType === "Relative"
     ) {
-      url = "http://localhost:3002/api/member/family";
+      url = `${backend}/api/member/family`;
     }
     const username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
@@ -34,12 +40,13 @@ class UserPage extends Component {
     axios
       .get(`${url}/${username}`, headers)
       .then(response => {
+        console.log("Getting users", response)
         this.setState({
           users: response.data
         });
       })
       .catch(err => {
-        console.log("Error adding member", err);
+        console.log("Error getting members", err.response);
       });
   }
 
@@ -52,25 +59,26 @@ class UserPage extends Component {
   };
 
   addMember = member => {
+    console.log("New member credentials", member)
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .post("http://localhost:3002/api/member/create", member, headers)
+      .post(`${backend}/api/member/create`, member, headers)
       .then(response => {
         this.setState({
           users: [...this.state.users, response.data]
         });
       })
       .catch(err => {
-        console.log("Error adding member", err);
+        console.log("Error adding member", err.response);
       });
-  };
+  }; 
   deleteUser = id => {
     const { users } = this.state;
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .delete(`http://localhost:3002/api/member/${id}`, headers)
+      .delete(`${backend}/api/member/${id}`, headers)
       .then(response => {
         const newState = users.filter(user => user._id !== response.data._id);
         this.setState({

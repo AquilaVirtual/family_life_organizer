@@ -1,14 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "../css/LandingPage.css";
 
-import {
-  Button,
-  Container, 
-  Header,
-  Icon,
-} from "semantic-ui-react";
+import { Button, Container, Header, Icon } from "semantic-ui-react";
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
@@ -33,7 +28,8 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? "0.5em" : "1.5em"
       }}
     />
-    <NavLink to="login">
+    {/* If a user is logged in, this should take them to their dashboard, otherwise, to login page */}
+    <NavLink to={localStorage.getItem("token") ? "users" : "login"}>
       <Button primary size="huge">
         Get Organized!
         <Icon name="right arrow" />

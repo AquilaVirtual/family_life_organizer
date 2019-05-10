@@ -4,11 +4,11 @@ import { Segment, Image, Header, Icon, Confirm, Button, Form } from "semantic-ui
 
 import "./userCard.css";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let heroku = 'https://familylife.herokuapp.com';
-if (typeof backend !== 'string') {
-  backend = heroku;
-}
+ //let backend = process.env.REACT_APP_LOCAL_BACKEND;
+ let backend = 'https://familylife.herokuapp.com';
+ // if (typeof backend !== 'string') {
+ //   backend = heroku; 
+ // }
 
 class UserCard extends Component {
   state = {

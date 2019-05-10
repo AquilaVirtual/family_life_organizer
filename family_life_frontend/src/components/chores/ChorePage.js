@@ -9,9 +9,9 @@ import SiteHeader from "../header/SiteHeader";
 
 let backend = process.env.REACT_APP_LOCAL_BACKEND;
 let heroku = 'https://familylife.herokuapp.com';
-if (typeof backend !== 'string') {
-  backend = heroku;
-}
+ if (typeof backend !== 'string') {
+   backend = heroku;
+ }
 
 class ChorePage extends Component {
   state = {
@@ -23,7 +23,7 @@ class ChorePage extends Component {
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
-      .get(`http://localhost:3002/api/chore/${username}`)
+      .get(`${backend}/api/chore/${username}`)
       .then(response => {
         this.setState({
           users: response.data

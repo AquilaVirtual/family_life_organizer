@@ -19,10 +19,10 @@
   margin-top: 64px;
 }
 
-.menu:hover .dropdown-menu {
+/* .menu:hover .dropdown-menu {
   display: block;
   cursor: pointer;
-}
+} */
 ul {
   list-style: none;
   display: flex;

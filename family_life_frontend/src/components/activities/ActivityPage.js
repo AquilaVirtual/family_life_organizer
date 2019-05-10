@@ -10,9 +10,9 @@ import ActivityModal from "./ActivityModal";
 
 let backend = process.env.REACT_APP_LOCAL_BACKEND;
 let heroku = 'https://familylife.herokuapp.com';
-if (typeof backend !== 'string') {
-  backend = heroku;
-}
+ if (typeof backend !== 'string') {
+   backend = heroku;
+ }
 
 class ActivityPage extends Component {
   state = {

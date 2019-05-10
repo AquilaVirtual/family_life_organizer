@@ -7,10 +7,10 @@ import LoginHeader from "./LoginHeader";
 
 import "../css/Login.css";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
+ let backend = process.env.REACT_APP_LOCAL_BACKEND;
 let heroku = 'https://familylife.herokuapp.com';
 if (typeof backend !== 'string') {
-  backend = heroku;
+  backend = heroku; 
 }
 
 class LogIn extends Component {
@@ -65,7 +65,7 @@ class LogIn extends Component {
         }, 200);
       })
       .catch(err => {
-        console.log("Error here in login", err);
+        console.log("Error here in login", err.response);
         this.setState({
           error: true
           // errorMessage: err.response.data.error

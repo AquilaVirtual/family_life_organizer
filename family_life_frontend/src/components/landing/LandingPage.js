@@ -14,7 +14,7 @@ import {
   Header,
   Image,
   List,
-  Segment,  
+  Segment
 } from "semantic-ui-react";
 
 const ResponsiveContainer = ({ children }) => (
@@ -54,13 +54,16 @@ const LandingPage = () => (
             />
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column id="landingPage--getStarted" textAlign="center">
-            <NavLink to="/register">
-              <Button size="huge">Get Started with a free account!</Button>
-            </NavLink>
-          </Grid.Column>
-        </Grid.Row>
+        {/* Don't show this for a logged in user */}
+        {localStorage.getItem("token") ? null : (
+          <Grid.Row>
+            <Grid.Column id="landingPage--getStarted" textAlign="center">
+              <NavLink to="/register">
+                <Button size="huge">Get Started with a free account!</Button>
+              </NavLink>
+            </Grid.Column>
+          </Grid.Row>
+        )}
       </Grid>
     </Segment>
 
