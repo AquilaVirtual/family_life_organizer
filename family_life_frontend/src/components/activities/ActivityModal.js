@@ -41,17 +41,18 @@ class ActivityModal extends Component {
     handleModalToggle();
   };
 
-  toggleAction = () => {
-    if (this.props.action === "Edit") {
-      this.props.handleModalToggle();
-    } else if (this.props.action === "Add") {
-      this.props.handleModalToggle();
-    } else if (this.props.action === "Add Person") {
-      this.props.handleModalToggle();
-    }
-  };
+  // toggleAction = () => {
+  //   if (this.props.action === "Edit") {
+  //     this.props.handleModalToggle();
+  //   } else if (this.props.action === "Add") {
+  //     this.props.handleModalToggle();
+  //   } else if (this.props.action === "Add Person") {
+  //     this.props.handleModalToggle();
+  //   }
+  // };
   render() {
-    const { open, _id } = this.props;
+    console.log("ToggleModal in Activity", this.props)
+    const { open } = this.props;
     const { activityName, activityType } = this.state;
     return (
       <Modal size="mini" open={open}>

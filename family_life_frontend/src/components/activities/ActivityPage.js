@@ -49,7 +49,7 @@ class ActivityPage extends Component {
 
   handleModalToggle = () => {
     this.setState({
-      modal: true
+      modal: !this.state.modal
     });
   };
   handleAddActivity = (newActivity) => {
@@ -84,10 +84,7 @@ class ActivityPage extends Component {
         console.log("We have a problem", err);
       });
   };
-
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state.activities !== nextState.activities    
-  }
+  
   render() {
     const { activities, modal, action, activity } = this.state;
     const accountType = localStorage.getItem("accountType");
