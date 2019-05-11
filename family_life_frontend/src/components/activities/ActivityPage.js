@@ -8,11 +8,11 @@ import { Segment, Button } from "semantic-ui-react";
 import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let heroku = 'https://familylife.herokuapp.com';
- if (typeof backend !== 'string') {
-   backend = heroku;
- }
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = 'https://familylife.herokuapp.com';
+// if (typeof backend !== 'string') {
+//   backend = heroku;
+// }
 
 class ActivityPage extends Component {
   state = {

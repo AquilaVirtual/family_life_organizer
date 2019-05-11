@@ -12,17 +12,12 @@
   margin-top: 30px;
   margin-bottom: -30px;
 }
-
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  margin-top: 64px;
+.ui.dropdown {
+  background-color: lightgray;
+  width: 5.9rem;
+  text-align: center;
+  padding-top: 0.8rem;
 }
-
-/* .menu:hover .dropdown-menu {
-  display: block;
-  cursor: pointer;
-} */
 ul {
   list-style: none;
   display: flex;

@@ -7,7 +7,7 @@ import "../css/LandingPage.css";
 
 import {
   Button,
-  Container,  
+  Container,
   Dropdown,
   Menu,
   Responsive,
@@ -21,7 +21,7 @@ class DesktopContainer extends Component {
   hideFixedMenu = () => this.setState({ fixed: false });
   showFixedMenu = () => this.setState({ fixed: true });
 
-   logOut = () => {
+  logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("name");
     localStorage.removeItem("userId");
@@ -29,7 +29,7 @@ class DesktopContainer extends Component {
     localStorage.removeItem("username");
 
     this.props.history.push("/");
-}
+  };
 
   render() {
     const { children } = this.props;
@@ -73,11 +73,19 @@ class DesktopContainer extends Component {
                     <Menu className="menu" compact>
                       {" "}
                       <Dropdown
-                        style={{ color: "white", backgroundColor: "lightgrey" }}
                         text={`${localStorage.getItem("name").split(" ")[0]}`}
-                        simple
-                        item
-                      />
+                      >
+                        <Dropdown.Menu>
+                          <Dropdown.Item
+                            text="Users"
+                            onClick={() => {
+                              this.props.history.push("/users");
+                            }}
+                          />
+                          <Dropdown.Item text="Settings" />
+                          <Dropdown.Item text="Logout" onClick={this.logOut} />
+                        </Dropdown.Menu>
+                      </Dropdown>
                     </Menu>
                   ) : (
                     <div>
@@ -100,7 +108,7 @@ class DesktopContainer extends Component {
                       </NavLink>
                     </div>
                   )}
-                  <div className="dropdown-menu">
+                  {/* <div className="dropdown-menu">
                     <ul>
                       <li
                         onClick={() => {
@@ -112,7 +120,7 @@ class DesktopContainer extends Component {
                       <li>settings</li>
                       <li onClick={this.logOut}>logout</li>
                     </ul>
-                  </div>
+                  </div> */}
                 </Menu.Item>
               </Container>
             </Menu>

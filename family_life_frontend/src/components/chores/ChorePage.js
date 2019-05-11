@@ -7,11 +7,11 @@ import ChoreCard from "./ChoreCard";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let heroku = 'https://familylife.herokuapp.com';
- if (typeof backend !== 'string') {
-   backend = heroku;
- }
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = 'https://familylife.herokuapp.com';
+// if (typeof backend !== 'string') {
+//   backend = heroku;
+// }
 
 class ChorePage extends Component {
   state = {
