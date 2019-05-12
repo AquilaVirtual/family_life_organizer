@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { Button, Modal, Form } from "semantic-ui-react";
 
 class ActivityModal extends Component {
@@ -36,22 +36,11 @@ class ActivityModal extends Component {
     this.setState({
       activityName: "",
       activityType: ""
-    });     
-    handleAddActivity(newActivity)
+    });
+    handleAddActivity(newActivity);
     handleModalToggle();
   };
-
-  // toggleAction = () => {
-  //   if (this.props.action === "Edit") {
-  //     this.props.handleModalToggle();
-  //   } else if (this.props.action === "Add") {
-  //     this.props.handleModalToggle();
-  //   } else if (this.props.action === "Add Person") {
-  //     this.props.handleModalToggle();
-  //   }
-  // };
   render() {
-    console.log("ToggleModal in Activity", this.props)
     const { open } = this.props;
     const { activityName, activityType } = this.state;
     return (

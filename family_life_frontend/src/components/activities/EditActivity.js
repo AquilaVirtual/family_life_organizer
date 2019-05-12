@@ -2,6 +2,12 @@ import React, { Component} from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = 'https://familylife.herokuapp.com';
+// if (typeof backend !== 'string') {
+//   backend = heroku;
+// }
+
 class EditActivity extends Component {
   state = {
     activityName: "",
@@ -41,7 +47,7 @@ class EditActivity extends Component {
 
     axios
       .put(
-        `http://localhost:3002/api/activity/edit/${activity._id}`,
+        `${backend}/api/activity/edit/${activity._id}`,
         newActivity
       )
       .then(activities => {})

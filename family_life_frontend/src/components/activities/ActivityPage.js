@@ -43,7 +43,7 @@ class ActivityPage extends Component {
         });
       })
       .catch(err => {
-        console.log("We have a problem", err);
+        console.log("We have a problem", err.response);
       });
   }  
 
@@ -64,7 +64,7 @@ class ActivityPage extends Component {
         })
       })
       .catch(err => {
-        console.log("We have a problem", err);
+        console.log("We have a problem", err.response);
       });
 
   }

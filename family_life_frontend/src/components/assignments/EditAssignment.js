@@ -6,11 +6,11 @@ import DatePicker from "react-datepicker";
 // needed for DatePicker to work
 import "react-datepicker/dist/react-datepicker.css";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let heroku = 'https://familylife.herokuapp.com';
-if (typeof backend !== 'string') {
-  backend = heroku;
-}
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = 'https://familylife.herokuapp.com';
+//if (typeof backend !== 'string') {
+  //backend = heroku;
+//}
 
 class EditAssignment extends Component {
   state = {

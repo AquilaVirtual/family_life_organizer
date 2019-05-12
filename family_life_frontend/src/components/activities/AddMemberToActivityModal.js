@@ -25,11 +25,10 @@ class AddMemberToActivity extends Component {
     const { addMemberToggle, activity } = this.props;
     const member = memberName.trim();
     
-    console.log("Current Activity", activity, member);
     const username = localStorage.getItem("username");
     axios
       .put(
-        `${backend}/add_member_to_activity/${
+        `${backend}/api/activity/add_member_to_activity/${
           activity._id
         }`,
         { username, member }
@@ -38,7 +37,7 @@ class AddMemberToActivity extends Component {
         console.log("Add member fired!", addedMember);
       })
       .catch(err => {
-        console.log("We have a problem", err.errorMessage);
+        console.log("We have a problem", err.response);
       });
     this.setState({
       memberName: ""
