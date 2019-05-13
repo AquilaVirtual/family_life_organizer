@@ -7,8 +7,8 @@ import LoginHeader from "./LoginHeader";
 import "../css/Register.css";
 
 
-// let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+ let backend = process.env.REACT_APP_LOCAL_BACKEND;
+//let backend = 'https://familylife.herokuapp.com';
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -22,8 +22,7 @@ class Register extends Component {
       email: "",
       username: "",
       password: "",
-      child: false,
-      id: 2,
+      child: false,      
       confirmPassword: "",
       error: false,
       errorMessage: ""
@@ -60,7 +59,7 @@ class Register extends Component {
       .catch(err => {
         this.setState({
           error: true,
-          errorMessage: err.response.data.error
+          errorMessage: err.response.data.errorMessage
         });
         console.log("Error in catch", err);
       });
@@ -73,6 +72,9 @@ class Register extends Component {
           onSubmit={this.createUser}
           className="form-group form-group--register"
         >
+        {this.state.error ? (
+            <div className="errorMessage">{this.state.errorMessage}</div>
+          ) : null}
           <Form.Field>
             <input
               required

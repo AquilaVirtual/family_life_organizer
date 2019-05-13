@@ -7,10 +7,10 @@ import LoginHeader from "./LoginHeader";
 
 import "../css/Login.css";
 
-// let backend = process.env.REACT_APP_LOCAL_BACKEND;
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
 let backend = 'https://familylife.herokuapp.com';
 // if (typeof backend !== 'string') {
-//   backend = heroku; 
+//   backend = heroku;
 // }
 
 class LogIn extends Component {
@@ -18,7 +18,7 @@ class LogIn extends Component {
     super(props);
     this.state = {
       username: "",
-      password: "",     
+      password: "",
       error: false,
       open: false,
       errorMessage: ""
@@ -39,6 +39,7 @@ class LogIn extends Component {
     };
     if (!this.state.value) {
       this.setState({
+        error: true,
         errorMessage: "Please select account type"
       });
     } else if (this.state.value === "primary") {
@@ -67,8 +68,8 @@ class LogIn extends Component {
       .catch(err => {
         console.log("Error here in login", err.response);
         this.setState({
-          error: true
-          // errorMessage: err.response.data.error
+          error: true,
+          errorMessage: err.response.data.errorMessage
         });
       });
   };
@@ -78,7 +79,9 @@ class LogIn extends Component {
       <div>
         <LoginHeader name="Login" />
         <Form className="form-group" onSubmit={this.login}>
-          <div className="errorMessage">{this.state.errorMessage}</div>
+          {this.state.error ? (
+            <div className="errorMessage">{this.state.errorMessage}</div>
+          ) : null}
           <Form.Field>
             <input
               id="form-control"
@@ -103,7 +106,7 @@ class LogIn extends Component {
           </Form.Field>
           <div className="radio-buttons-wrapp">
             <Form.Field>
-              <Radio              
+              <Radio
                 label="Primary account"
                 name="radioGroup"
                 value="primary"
