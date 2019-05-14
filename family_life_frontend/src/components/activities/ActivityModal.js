@@ -5,7 +5,7 @@ class ActivityModal extends Component {
   state = {
     activityName: "",
     activityType: "",
-    memberName: ""
+    memberName: "",
   };
   componentWillReceiveProps(props) {
     if (props.activity) {
@@ -25,7 +25,7 @@ class ActivityModal extends Component {
     });
   };
   addActivity = () => {
-    const { handleModalToggle, handleAddActivity } = this.props;
+    const { handleModalToggle, handleAddActivity, error } = this.props;
     const { activityName, activityType } = this.state;
 
     const newActivity = {
@@ -38,13 +38,16 @@ class ActivityModal extends Component {
       activityType: ""
     });
     handleAddActivity(newActivity);
+    if(!error) {
     handleModalToggle();
+    }
   };
   render() {
-    const { open } = this.props;
+    const { open, error, errorMessage } = this.props;
     const { activityName, activityType } = this.state;
     return (
       <Modal size="mini" open={open}>
+        {error ? errorMessage: null}
         <Modal.Header>{`Add an activity`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.addActivity}>

@@ -17,7 +17,9 @@ let backend = 'https://familylife.herokuapp.com';
 class ActivityPage extends Component {
   state = {
     activities: [],
-    modal: false
+    modal: false,
+    error: false,
+    errorMessage: "",
   };
 
   componentDidMount() {
@@ -39,11 +41,15 @@ class ActivityPage extends Component {
       .get(`${url}/${username}`, headers)
       .then(activities => {
         this.setState({
+          error: false,
           activities: activities.data
         });
       })
       .catch(err => {
-        console.log("We have a problem", err.response);
+        this.setState({
+        error: true,  
+        errorMessage: err.response.data.errorMessage
+        })
       });
   }  
 
@@ -86,7 +92,7 @@ class ActivityPage extends Component {
   };
   
   render() {
-    const { activities, modal, action, activity } = this.state;
+    const { activities, modal, activity, error, errorMessage } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -116,8 +122,7 @@ class ActivityPage extends Component {
           {activities &&
             activities.map(activity => (
               <ActivityCard
-                activity={activity}
-                action={action}
+                activity={activity}               
                 key={activity._id}
                 handleModalToggle={() => this.handleModalToggle()}
                 deleteActivity={() => this.deleteActivity(activity._id)}
@@ -125,8 +130,9 @@ class ActivityPage extends Component {
             ))}
         </div>
         <ActivityModal
-          open={modal}
-          action={action}
+        error={error}
+        errorMessage={errorMessage}
+          open={modal}       
           handleModalToggle={() => this.setState({ modal: false })}
           handleAddActivity={this.handleAddActivity}
         />

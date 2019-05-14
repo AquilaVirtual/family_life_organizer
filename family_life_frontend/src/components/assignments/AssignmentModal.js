@@ -11,9 +11,15 @@ class AssignmentModal extends Component {
     due: new Date(),
     title: "",
     description: "",
-    username: localStorage.getItem("username")
+    username: localStorage.getItem("username"),
+    error: false,
   };
 
+    componentDidMount = () => {
+      this.setState({
+        error: this.props.error
+      })
+    }
   changeDate = date => {
     this.setState({
       due: date
@@ -27,25 +33,23 @@ class AssignmentModal extends Component {
   };
 
   handleChange = ({ target }) => {
-    console.log(target.name);
     this.setState({
       [target.name]: target.value
     });
   };
 
   handleSubmit = () => {
-    const { addAssignment, handleModalToggle } = this.props;
+    const { addAssignment, handleModalToggle, error } = this.props;
     const { name, due, title, description, username } = this.state;
-
     const newAssignment = {
       name,
       due,
       title,
       description,
       username,
-      status: "initial"
+      status: "initial",    
     };
-
+  
     this.setState({
       user: "",
       due: new Date(),
@@ -53,16 +57,18 @@ class AssignmentModal extends Component {
       description: ""
     });
 
-    addAssignment(newAssignment);
-    handleModalToggle();
+    addAssignment(newAssignment);   
+    console.log("Error State", this.props.error)
+      if(!error)       
+        handleModalToggle();       
   };
-
   render() {
-    const { open, handleModalToggle } = this.props;
+    const { open, handleModalToggle, error, errorMessage } = this.props;
     const { name, title, due, description } = this.state;
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>Add an Assignment for {name}</Modal.Header>
+        {error ? errorMessage : null}
+        <Modal.Header>Add Assignment for {name}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input

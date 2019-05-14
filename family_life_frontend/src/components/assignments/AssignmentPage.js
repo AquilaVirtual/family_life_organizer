@@ -19,7 +19,9 @@ class AssignmentPage extends Component {
     super(props);
     this.state = {
       assignments: [],
-      modal: false
+      modal: false,
+      error: false,
+      errorMessage: "",
     };
   }
   componentDidMount() {
@@ -37,7 +39,6 @@ class AssignmentPage extends Component {
         console.log("Something Bahd!", err);
       });
   }
-
   handleModalToggle = (action, member) => {
     this.setState(state => ({
       modal: !state.modal,
@@ -73,7 +74,10 @@ class AssignmentPage extends Component {
         })
       })
       .catch(err => {
-        console.log("Something Bahd!", err.response);
+        this.setState({
+         error: true,
+         errorMessage: err.response.data.errorMessage
+        });
       });
   };
   changeStatus = id => {
@@ -90,7 +94,7 @@ class AssignmentPage extends Component {
     }));
   };   
   render() {
-    const { assignments, modal } = this.state;
+    const { assignments, modal, error, errorMessage } = this.state;
     const accountType = localStorage.getItem("accountType");
 
     return (
@@ -133,6 +137,8 @@ class AssignmentPage extends Component {
           ))}
         </div>
         <AssignmentModal
+        error={error}      
+        errorMessage={errorMessage}
           open={modal}
           handleModalToggle={this.handleModalToggle}
           addAssignment={this.addAssignment}

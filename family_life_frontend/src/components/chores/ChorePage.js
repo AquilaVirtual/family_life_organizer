@@ -15,7 +15,8 @@ let backend = 'https://familylife.herokuapp.com';
 
 class ChorePage extends Component {
   state = {
-    users: []
+    users: [],
+    error: false
   };
 
   componentDidMount() {

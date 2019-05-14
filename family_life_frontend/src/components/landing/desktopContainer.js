@@ -91,14 +91,14 @@ class DesktopContainer extends Component {
                     <div>
                       <NavLink to="/login">
                         {" "}
-                        <Button as="a" inverted={!fixed}>
+                        <Button as="div" inverted={!fixed}>
                           Log in
                         </Button>
                       </NavLink>
                       <NavLink to="/register">
                         {" "}
                         <Button
-                          as="a"
+                          as="div"
                           inverted={!fixed}
                           primary={fixed}
                           style={{ marginLeft: "0.5em" }}
