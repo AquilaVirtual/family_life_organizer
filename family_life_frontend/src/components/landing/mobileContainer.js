@@ -6,13 +6,12 @@ import HomepageHeading from "./homePageHeading";
 import "../css/LandingPage.css";
 
 import {
-  Button,
   Container,
   Icon,
   Menu,
   Responsive,
   Segment,
-  Sidebar,
+  Sidebar
 } from "semantic-ui-react";
 
 class MobileContainer extends Component {
@@ -60,19 +59,6 @@ class MobileContainer extends Component {
               <Menu inverted pointing secondary size="large">
                 <Menu.Item onClick={this.handleToggle}>
                   <Icon name="sidebar" />
-                </Menu.Item>
-                <Menu.Item position="right">
-                  <NavLink to="/login">
-                    <Button as="a" inverted>
-                      Log in
-                    </Button>
-                  </NavLink>
-                  <NavLink to="/register">
-                    {" "}
-                    <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
-                      Sign Up
-                    </Button>
-                  </NavLink>
                 </Menu.Item>
               </Menu>
             </Container>

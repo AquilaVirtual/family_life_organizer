@@ -1,9 +1,9 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -46,10 +46,7 @@ class EditActivity extends Component {
     console.log("Edited activity", newActivity);
 
     axios
-      .put(
-        `${backend}/api/activity/edit/${activity._id}`,
-        newActivity
-      )
+      .put(`${backend}/api/activity/edit/${activity._id}`, newActivity)
       .then(activities => {})
       .catch(err => {
         console.log("We have a problem", err);

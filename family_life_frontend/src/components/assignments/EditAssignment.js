@@ -7,9 +7,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+let backend = "https://familylife.herokuapp.com";
 //if (typeof backend !== 'string') {
-  //backend = heroku;
+//backend = heroku;
 //}
 
 class EditAssignment extends Component {

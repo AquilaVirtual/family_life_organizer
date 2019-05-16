@@ -1,7 +1,7 @@
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-import React, { Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
 
@@ -9,7 +9,7 @@ import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -19,7 +19,7 @@ class ActivityPage extends Component {
     activities: [],
     modal: false,
     error: false,
-    errorMessage: "",
+    errorMessage: ""
   };
 
   componentDidMount() {
@@ -47,18 +47,18 @@ class ActivityPage extends Component {
       })
       .catch(err => {
         this.setState({
-        error: true,  
-        errorMessage: err.response.data.errorMessage
-        })
+          error: true,
+          errorMessage: err.response.data.errorMessage
+        });
       });
-  }  
+  }
 
   handleModalToggle = () => {
     this.setState({
       modal: !this.state.modal
     });
   };
-  handleAddActivity = (newActivity) => {
+  handleAddActivity = newActivity => {
     const { activities } = this.state;
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
@@ -66,14 +66,13 @@ class ActivityPage extends Component {
       .post(`${backend}/api/activity/create`, newActivity, headers)
       .then(activity => {
         this.setState({
-         activities: [...activities, activity.data]
-        })
+          activities: [...activities, activity.data]
+        });
       })
       .catch(err => {
         console.log("We have a problem", err.response);
       });
-
-  }
+  };
   deleteActivity = id => {
     const { activities } = this.state;
     const token = localStorage.getItem("token");
@@ -81,18 +80,20 @@ class ActivityPage extends Component {
     axios
       .delete(`${backend}/api/activity/delete/${id}`, headers)
       .then(response => {
-        const currentActivities = activities.filter(activity => activity._id !== response.data._id)
-       this.setState({
-        activities: currentActivities
-       })
+        const currentActivities = activities.filter(
+          activity => activity._id !== response.data._id
+        );
+        this.setState({
+          activities: currentActivities
+        });
       })
       .catch(err => {
         console.log("We have a problem", err);
       });
   };
-  
+
   render() {
-    const { activities, modal, activity, error, errorMessage } = this.state;
+    const { activities, modal, error, errorMessage } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (
       <Segment
@@ -111,7 +112,7 @@ class ActivityPage extends Component {
             primary
             icon="add"
             content="New Activity"
-            onClick={()=>this.handleModalToggle()}
+            onClick={() => this.handleModalToggle()}
           />
         ) : null}
         <div
@@ -122,7 +123,7 @@ class ActivityPage extends Component {
           {activities &&
             activities.map(activity => (
               <ActivityCard
-                activity={activity}               
+                activity={activity}
                 key={activity._id}
                 handleModalToggle={() => this.handleModalToggle()}
                 deleteActivity={() => this.deleteActivity(activity._id)}
@@ -130,9 +131,9 @@ class ActivityPage extends Component {
             ))}
         </div>
         <ActivityModal
-        error={error}
-        errorMessage={errorMessage}
-          open={modal}       
+          error={error}
+          errorMessage={errorMessage}
+          open={modal}
           handleModalToggle={() => this.setState({ modal: false })}
           handleAddActivity={this.handleAddActivity}
         />

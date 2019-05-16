@@ -8,7 +8,7 @@ import LoginHeader from "./LoginHeader";
 import "../css/Login.css";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }

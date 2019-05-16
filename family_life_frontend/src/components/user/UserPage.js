@@ -2,16 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Segment, Button } from "semantic-ui-react";
 
-
 import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
- //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-  let backend = "https://familylife.herokuapp.com";
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+// let backend = "https://familylife.herokuapp.com";
 //  if (typeof backend !== 'string') {
-//    backend = heroku; 
+//    backend = heroku;
 //  }
 
 class UserPage extends Component {
@@ -40,7 +39,7 @@ class UserPage extends Component {
     axios
       .get(`${url}/${username}`, headers)
       .then(response => {
-        console.log("Getting users", response)
+        console.log("Getting users", response);
         this.setState({
           users: response.data
         });
@@ -59,7 +58,7 @@ class UserPage extends Component {
   };
 
   addMember = member => {
-    console.log("New member credentials", member)
+    console.log("New member credentials", member);
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
     axios
@@ -72,7 +71,7 @@ class UserPage extends Component {
       .catch(err => {
         console.log("Error adding member", err.response);
       });
-  }; 
+  };
   deleteUser = id => {
     const { users } = this.state;
     const token = localStorage.getItem("token");

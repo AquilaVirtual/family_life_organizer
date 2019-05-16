@@ -4,7 +4,6 @@ import { NavLink, withRouter } from "react-router-dom";
 
 import DesktopContainer from "./desktopContainer";
 import MobileContainer from "./mobileContainer";
-import HomepageHeading from "./homePageHeading";
 import "../css/LandingPage.css";
 
 import {

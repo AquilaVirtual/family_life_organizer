@@ -1,9 +1,9 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com/';
+let backend = "https://familylife.herokuapp.com/";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -24,15 +24,13 @@ class AddMemberToActivity extends Component {
     const { errorMessage, memberName } = this.state;
     const { addMemberToggle, activity } = this.props;
     const member = memberName.trim();
-    
+
     const username = localStorage.getItem("username");
     axios
-      .put(
-        `${backend}/api/activity/add_member_to_activity/${
-          activity._id
-        }`,
-        { username, member }
-      )
+      .put(`${backend}/api/activity/add_member_to_activity/${activity._id}`, {
+        username,
+        member
+      })
       .then(addedMember => {
         console.log("Add member fired!", addedMember);
       })

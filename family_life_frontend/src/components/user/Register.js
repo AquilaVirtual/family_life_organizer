@@ -6,13 +6,11 @@ import LoginHeader from "./LoginHeader";
 
 import "../css/Register.css";
 
-
 // let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
-
 
 class Register extends Component {
   constructor(props) {
@@ -22,7 +20,7 @@ class Register extends Component {
       email: "",
       username: "",
       password: "",
-      child: false,      
+      child: false,
       confirmPassword: "",
       error: false,
       errorMessage: ""
@@ -46,7 +44,6 @@ class Register extends Component {
       email: this.state.email,
       username: this.state.username,
       password: this.state.password
-    
     };
     axios
       .post(`${backend}/api/user/register`, user)
@@ -72,7 +69,7 @@ class Register extends Component {
           onSubmit={this.createUser}
           className="form-group form-group--register"
         >
-        {this.state.error ? (
+          {this.state.error ? (
             <div className="errorMessage">{this.state.errorMessage}</div>
           ) : null}
           <Form.Field>

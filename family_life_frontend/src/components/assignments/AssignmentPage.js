@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { Segment, Header, Button } from "semantic-ui-react";
 
 import axios from "axios";
@@ -9,7 +9,7 @@ import SiteHeader from "../header/SiteHeader";
 import AssignmentModal from "./AssignmentModal";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = 'https://familylife.herokuapp.com';
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -21,7 +21,7 @@ class AssignmentPage extends Component {
       assignments: [],
       modal: false,
       error: false,
-      errorMessage: "",
+      errorMessage: ""
     };
   }
   componentDidMount() {
@@ -53,10 +53,12 @@ class AssignmentPage extends Component {
     axios
       .delete(`${backend}/api/assignment/${id}`, headers)
       .then(response => {
-       const currentAssignments = assignments.filter(assignment => assignment._id !== response.data._id)
-       this.setState({
-         assignments: currentAssignments
-       })
+        const currentAssignments = assignments.filter(
+          assignment => assignment._id !== response.data._id
+        );
+        this.setState({
+          assignments: currentAssignments
+        });
       })
       .catch(err => {
         console.log("Something Bahd!", err);
@@ -71,12 +73,12 @@ class AssignmentPage extends Component {
       .then(response => {
         this.setState({
           assignments: [...assignments, response.data]
-        })
+        });
       })
       .catch(err => {
         this.setState({
-         error: true,
-         errorMessage: err.response.data.errorMessage
+          error: true,
+          errorMessage: err.response.data.errorMessage
         });
       });
   };
@@ -92,7 +94,7 @@ class AssignmentPage extends Component {
         return assignment;
       })
     }));
-  };   
+  };
   render() {
     const { assignments, modal, error, errorMessage } = this.state;
     const accountType = localStorage.getItem("accountType");
@@ -137,8 +139,8 @@ class AssignmentPage extends Component {
           ))}
         </div>
         <AssignmentModal
-        error={error}      
-        errorMessage={errorMessage}
+          error={error}
+          errorMessage={errorMessage}
           open={modal}
           handleModalToggle={this.handleModalToggle}
           addAssignment={this.addAssignment}

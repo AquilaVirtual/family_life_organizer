@@ -12,14 +12,14 @@ class AssignmentModal extends Component {
     title: "",
     description: "",
     username: localStorage.getItem("username"),
-    error: false,
+    error: false
   };
 
-    componentDidMount = () => {
-      this.setState({
-        error: this.props.error
-      })
-    }
+  componentDidMount = () => {
+    this.setState({
+      error: this.props.error
+    });
+  };
   changeDate = date => {
     this.setState({
       due: date
@@ -47,9 +47,9 @@ class AssignmentModal extends Component {
       title,
       description,
       username,
-      status: "initial",    
+      status: "initial"
     };
-  
+
     this.setState({
       user: "",
       due: new Date(),
@@ -57,10 +57,9 @@ class AssignmentModal extends Component {
       description: ""
     });
 
-    addAssignment(newAssignment);   
-    console.log("Error State", this.props.error)
-      if(!error)       
-        handleModalToggle();       
+    addAssignment(newAssignment);
+    console.log("Error State", this.props.error);
+    if (!error) handleModalToggle();
   };
   render() {
     const { open, handleModalToggle, error, errorMessage } = this.props;
