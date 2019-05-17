@@ -9,6 +9,7 @@ import ChorePage from "./components/chores/ChorePage";
 import AssignmentPage from "./components/assignments/AssignmentPage";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
+import UserSettings from "./components/user/UserSettings";
 // import Navbar from "./components/navbar/Navbar";
 
 import "./App.css";
@@ -25,7 +26,8 @@ class App extends Component {
        
         <Route exact path="/register" component={Register} />        
         
-          <Route exact path="/users" component={UserPage} />        
+          <Route exact path="/users" component={UserPage} />       
+          <Route path="/settings" component={UserSettings} /> 
         <Route exact path="/activities" component={ActivityPage} />
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />

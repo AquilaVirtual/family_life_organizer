@@ -82,7 +82,9 @@ class DesktopContainer extends Component {
                               this.props.history.push("/users");
                             }}
                           />
-                          <Dropdown.Item text="Settings" />
+                          <Dropdown.Item text="Settings" onClick={() => {
+                              this.props.history.push("/settings");
+                            }} />
                           <Dropdown.Item text="Logout" onClick={this.logOut} />
                         </Dropdown.Menu>
                       </Dropdown>
