@@ -1,0 +1,8 @@
+.success {
+    border: 1px solid #f39389;
+    border-radius: 2px;
+    padding: 10px;
+    position: absolute;
+    background-color: rgb(86, 207, 86);
+    color: white;   
+  }

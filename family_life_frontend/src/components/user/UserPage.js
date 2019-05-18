@@ -7,8 +7,10 @@ import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-// let backend = "https://familylife.herokuapp.com";
+import "../css/UserPage.css"
+
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+ let backend = "https://familylife.herokuapp.com";
 //  if (typeof backend !== 'string') {
 //    backend = heroku;
 //  }
@@ -49,13 +51,24 @@ class UserPage extends Component {
       });
   }
 
-  handleModalToggle = (action, member) => {
+  handleModalToggle = () => {
     this.setState(state => ({
-      modal: !state.modal,
-      action,
-      member
+      modal: !state.modal,    
     }));
   };
+
+ displaySuccessBox = (status, name) => { 
+  //if(status === 200) {  
+    let successBox = document.createElement("div");
+    successBox.className = "success";
+    successBox.innerHTML = `${name} was successfully added to family!`
+    
+    let textBox = document.getElementById("header--heading");    
+
+    textBox.parentNode.insertBefore(successBox, textBox.nextSibling);   
+
+ }
+
 
   addMember = member => {
     console.log("New member credentials", member);
@@ -67,6 +80,9 @@ class UserPage extends Component {
         this.setState({
           users: [...this.state.users, response.data]
         });
+        this.displaySuccessBox(200, "David")
+       // console.log("It didn't work")
+
       })
       .catch(err => {
         console.log("Error adding member", err.response);
