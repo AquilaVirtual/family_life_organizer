@@ -57,13 +57,14 @@ class UserPage extends Component {
     }));
   };
 
+  //this fuction displays a box with a text informing user of a successful addition of a family member
  displaySuccessBox = (status, name) => { 
   //if(status === 200) {
     let SuccessTimeout;
     let successBox = document.createElement("div");
     successBox.className = "success";
     successBox.innerHTML = `${name} was successfully added to family!`
-    
+    //here we reference header ID in SiteHeader.js
     let textBox = document.getElementById("header--heading");
     
   if (document.body.contains(successBox)) {
@@ -88,8 +89,8 @@ class UserPage extends Component {
         this.setState({
           users: [...this.state.users, response.data]
         });
+        //display is invoked 
         this.displaySuccessBox(200, "David")
-       // console.log("It didn't work")
 
       })
       .catch(err => {
