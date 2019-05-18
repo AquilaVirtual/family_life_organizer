@@ -7,10 +7,10 @@ import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
 
-import "../css/UserPage.css"
+import "../css/UserPage.css";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
- let backend = "https://familylife.herokuapp.com";
+let backend = "https://familylife.herokuapp.com";
 //  if (typeof backend !== 'string') {
 //    backend = heroku;
 //  }
@@ -53,31 +53,31 @@ class UserPage extends Component {
 
   handleModalToggle = () => {
     this.setState(state => ({
-      modal: !state.modal,    
+      modal: !state.modal
     }));
   };
 
-  //this fuction displays a box with a text informing user of a successful addition of a family member
- displaySuccessBox = (status, name) => { 
-  //if(status === 200) {
-    let SuccessTimeout;
-    let successBox = document.createElement("div");
-    successBox.className = "success";
-    successBox.innerHTML = `${name} was successfully added to family!`
-    //here we reference header ID in SiteHeader.js
-    let textBox = document.getElementById("header--heading");
-    
-  if (document.body.contains(successBox)) {
-    window.clearTimeout(SuccessTimeout);
-  } else {
-    textBox.parentNode.insertBefore(successBox, textBox.nextSibling);   
-  }     
-  SuccessTimeout = window.setTimeout(function() {
-    successBox.parentNode.removeChild(successBox);
-    SuccessTimeout = -1;
-  }, 4000);
- }
+  //this fuction displays a dynamically created box with a text informing user of a successful addition of a family member
+  displaySuccessBox = (status, name) => {
+    if (status === 200) {
+      let SuccessTimeout;
+      let successBox = document.createElement("div");
+      successBox.className = "success";
+      successBox.innerHTML = `${name} was successfully added to family!`;
+      //here we reference header ID in SiteHeader.js
+      let textBox = document.getElementById("header--heading");
 
+      if (document.body.contains(successBox)) {
+        window.clearTimeout(SuccessTimeout);
+      } else {
+        textBox.parentNode.insertBefore(successBox, textBox.nextSibling);
+      }
+      SuccessTimeout = window.setTimeout(function() {
+        successBox.parentNode.removeChild(successBox);
+        SuccessTimeout = -1;
+      }, 4000);
+    }
+  };
 
   addMember = member => {
     console.log("New member credentials", member);
@@ -89,9 +89,8 @@ class UserPage extends Component {
         this.setState({
           users: [...this.state.users, response.data]
         });
-        //display is invoked 
-        this.displaySuccessBox(200, "David")
-
+        //displaySuccessBox is invoked
+        this.displaySuccessBox(response.status, response.data.name);
       })
       .catch(err => {
         console.log("Error adding member", err.response);
