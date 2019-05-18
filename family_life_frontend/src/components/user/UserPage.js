@@ -58,15 +58,23 @@ class UserPage extends Component {
   };
 
  displaySuccessBox = (status, name) => { 
-  //if(status === 200) {  
+  //if(status === 200) {
+    let SuccessTimeout;
     let successBox = document.createElement("div");
     successBox.className = "success";
     successBox.innerHTML = `${name} was successfully added to family!`
     
-    let textBox = document.getElementById("header--heading");    
-
+    let textBox = document.getElementById("header--heading");
+    
+  if (document.body.contains(successBox)) {
+    window.clearTimeout(SuccessTimeout);
+  } else {
     textBox.parentNode.insertBefore(successBox, textBox.nextSibling);   
-
+  }     
+  SuccessTimeout = window.setTimeout(function() {
+    successBox.parentNode.removeChild(successBox);
+    SuccessTimeout = -1;
+  }, 4000);
  }
 
 
