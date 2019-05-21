@@ -59,7 +59,7 @@ class AssignmentModal extends Component {
 
     addAssignment(newAssignment);
     console.log("Error State", this.props.error);
-    if (!error) handleModalToggle();
+    if (!error) { handleModalToggle() }
   };
   render() {
     const { open, handleModalToggle, error, errorMessage } = this.props;
