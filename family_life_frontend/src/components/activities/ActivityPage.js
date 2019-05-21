@@ -105,6 +105,7 @@ class ActivityPage extends Component {
           padding: "0px 0px"
         }}
       >
+        <Navbar />
         <SiteHeader name="Activities" />
         {/* { accountType ==="child" ? (null) : ("You don't have any activity")} */}
         {accountType === "Primary" || accountType === "Spouse" ? (
@@ -137,7 +138,6 @@ class ActivityPage extends Component {
           handleModalToggle={() => this.setState({ modal: false })}
           handleAddActivity={this.handleAddActivity}
         />
-        <Navbar />
       </Segment>
     );
   }

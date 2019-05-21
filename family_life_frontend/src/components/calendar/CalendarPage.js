@@ -18,6 +18,7 @@ const CalendarPage = () => {
         padding: "0px 0px"
       }}
     >
+      <Navbar />
       <SiteHeader name="Calendar" />
       <Button
         primary
@@ -27,8 +28,6 @@ const CalendarPage = () => {
       />
 
       <Calendar />
-
-      <Navbar />
     </Segment>
   );
 };
