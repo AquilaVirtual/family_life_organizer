@@ -1,3 +1,5 @@
-.react-calendar {
-    margin: 30px 0 0 40%;
+.calendar-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px
 }

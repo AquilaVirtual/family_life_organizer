@@ -26,8 +26,10 @@ const CalendarPage = () => {
         content="Add event"
         onClick={() => alert("This functionality is not available yet!")}
       />
-
+      <div className="calendar-container">
       <Calendar />
+      </div>
+
     </Segment>
   );
 };

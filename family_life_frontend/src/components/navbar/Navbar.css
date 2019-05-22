@@ -46,9 +46,8 @@
     font-size: 1.5rem;
     top: 87%;
     left: -7%;
-    flex-direction: row;  
+    flex-direction: row;
     position: relative;
-
   }
 
   .navbar--btn {
@@ -59,5 +58,19 @@
     height: 50px;
     padding-top: 14px;
     position: fixed;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar--btn {
+    top: 94%;
+    width: 87px;
+    font-size: 1rem;
+    border-radius: 0;
+  }
+
+  .navbar {
+    margin: -36px;
+    left: -4%;
   }
 }
