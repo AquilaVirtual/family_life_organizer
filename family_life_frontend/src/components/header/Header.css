@@ -23,5 +23,20 @@
   text-align: center;
 }
 
-@media (max-width: 780px) {
+@media (max-width: 360px) {
+  #header--heading {
+    font-size: 1.8rem;
+  }
+  .ui.basic.button {
+    width: 77px;
+    height: 40px;
+    font-size: 0.8rem;
+    margin: 2px 0;
+  }
+  .header--time {
+    font-size: 0.8rem;
+  }
+  .header--headingContainer {
+    margin: 1rem 0 0 0;
+  }
 }

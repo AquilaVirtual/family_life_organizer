@@ -12,7 +12,7 @@ import {
   Menu,
   Responsive,
   Segment,
-  Sidebar,
+  Sidebar
 } from "semantic-ui-react";
 
 class MobileContainer extends Component {
@@ -30,7 +30,7 @@ class MobileContainer extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("accountType");
     localStorage.removeItem("username");
-    this.handleSidebarHide()
+    this.handleSidebarHide();
     this.props.history.push("/");
   };
 
@@ -59,9 +59,10 @@ class MobileContainer extends Component {
           </NavLink>
           <NavLink to="/settings">
             <Menu.Item as="a">Settings</Menu.Item>
-          </NavLink>        
-            <Menu.Item as="a" onClick={this.logOut}>Logout</Menu.Item>
-         
+          </NavLink>
+          <Menu.Item as="a" onClick={this.logOut}>
+            Logout
+          </Menu.Item>
         </Sidebar>
         <Sidebar.Pusher dimmed={sidebarOpened}>
           <Segment
@@ -72,23 +73,31 @@ class MobileContainer extends Component {
           >
             <Container>
               <Menu inverted pointing secondary size="large">
-               {localStorage.getItem("token") ? (<Menu.Item onClick={this.handleToggle}>
-                  <Icon name="sidebar" />
-                </Menu.Item> ):(null )}
+                {localStorage.getItem("token") ? (
+                  <Menu.Item onClick={this.handleToggle}>
+                    <Icon name="sidebar" />
+                  </Menu.Item>
+                ) : null}
 
-               { localStorage.getItem("token") ? (null ):(<Menu.Item position="right">
-                  <NavLink to="/login">
-                    <Button as="a" inverted>
-                      Log in
-                    </Button>
-                  </NavLink>
-                  <NavLink to="/register">
-                    {" "}
-                    <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
-                      Sign Up
-                    </Button>
-                  </NavLink>
-                </Menu.Item>)}
+                {localStorage.getItem("token") ? (
+                  <Menu.Item position="right">{`Hi, ${
+                    localStorage.getItem("name").split(" ")[0]
+                  }!`}</Menu.Item>
+                ) : (
+                  <Menu.Item position="right">
+                    <NavLink to="/login">
+                      <Button as="a" inverted>
+                        Log in
+                      </Button>
+                    </NavLink>
+                    <NavLink to="/register">
+                      {" "}
+                      <Button as="a" inverted style={{ marginLeft: "0.5em" }}>
+                        Sign Up
+                      </Button>
+                    </NavLink>
+                  </Menu.Item>
+                )}
               </Menu>
             </Container>
             <HomepageHeading mobile />
