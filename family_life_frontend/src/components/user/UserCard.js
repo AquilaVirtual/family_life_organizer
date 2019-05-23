@@ -30,7 +30,7 @@ class UserCard extends Component {
     console.log("Getting an image", event.target.value);
   };
 
-  openImage = () => {
+  openImageUploader = () => {
     const image = document.getElementById("image-uploader");
     image.style.display = "block";
   };
@@ -52,8 +52,7 @@ class UserCard extends Component {
     imageId.style.display = "none";
   };
   render() {
-    console.log("User in card", this.props.user);
-    console.log("User in card", this.state.image);
+    //console.log("User in card", this.props.user._id);
     const { user, deleteUser, handleModalToggle } = this.props;
     const { confirmDelete } = this.state;
 
@@ -70,16 +69,16 @@ class UserCard extends Component {
           src={
             user && user.userImage
               ? user.userImage
-              : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+              : "https://png.icons8.com/ios/100/000000/gender-neutral-user.png"
           }
           size="small"
           circular
         />
         <Button
-          onClick={this.openImage}
+          onClick={this.openImageUploader}
           content="Change Image"
           style={{ fontSize: ".7rem" }}
-        />
+        />        
         <div id="image-uploader">
           <input
             type="file"
