@@ -38,11 +38,10 @@ class UserSettings extends Component {
           <div className="container">
        <Navbar />
          <SiteHeader name="settings" />
-         <div className="profile" style={{ display: "flex"}}>
+         <div className="profile">
          <Segment
         style={{
-          width: "18rem",
-          margin: "1rem auto"
+          width: "18rem"         
         }}
         textAlign="center"
       >
@@ -97,6 +96,7 @@ class UserSettings extends Component {
           }}
         />          
       </Segment>
+      <div className="settings-wrap">
       <div className="settings">
            <div className="info-label">Username:</div>
            <div className="info-data">{this.state.username}</div>
@@ -116,6 +116,7 @@ class UserSettings extends Component {
            <button className="password-button" onClick={this.changePassword}>
              Change
            </button>{" "}
+         </div>
          </div>
          </div>
       </div>
