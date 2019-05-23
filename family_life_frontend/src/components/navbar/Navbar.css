@@ -47,7 +47,7 @@
     top: 87%;
     left: -7%;
     flex-direction: row;
-    position: relative;
+    position: fixed;
   }
 
   .navbar--btn {
@@ -57,7 +57,7 @@
     padding: 0;
     height: 50px;
     padding-top: 14px;
-    position: fixed;
+    /* position: fixed; */
   }
 }
 

@@ -1,38 +1,56 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import axios from "axios";
-import { Segment, Image, Header, Icon, Confirm, Button, Form } from "semantic-ui-react";
+import {
+  Segment,
+  Image,
+  Header,
+  Icon,
+  Confirm,
+  Button,
+  Form
+} from "semantic-ui-react";
 
 import "./userCard.css";
 
- //let backend = process.env.REACT_APP_LOCAL_BACKEND;
- let backend = 'https://familylife.herokuapp.com';
- // if (typeof backend !== 'string') {
- //   backend = heroku; 
- // }
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = "https://familylife.herokuapp.com";
+// if (typeof backend !== 'string') {
+//   backend = heroku;
+// }
 
 class UserCard extends Component {
   state = {
     confirmDelete: false,
     image: ""
-  }; 
- 
-  
+  };
+
   handleInputChange = event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
-  console.log("Getting an image", event.target.value)
-  }; 
+    console.log("Getting an image", event.target.value);
+  };
+
+  openImage = () => {
+    const image = document.getElementById("image-uploader");
+    image.style.display = "block";
+  };
   handleImageUpload = () => {
     const image = this.state.image;
-    console.log("Our Image", image)
-    axios.post(`${backend}/api/user/image/${localStorage.getItem("userId")}`, image)
-    .then(response => {      
-      console.log("Image upload response", response)
-    })
-    .catch(err => {
-      console.log("Something BahDDD", err)
-    })
-  } 
+    console.log("Our Image", image);
+    axios
+      .post(
+        `${backend}/api/user/image/${localStorage.getItem("userId")}`,
+        image
+      )
+      .then(response => {
+        console.log("Image upload response", response);
+      })
+      .catch(err => {
+        console.log("Something BahDDD", err);
+      });
+    const imageId = document.getElementById("image-uploader");
+    imageId.style.display = "none";
+  };
   render() {
     console.log("User in card", this.props.user);
     console.log("User in card", this.state.image);
@@ -57,20 +75,20 @@ class UserCard extends Component {
           size="small"
           circular
         />
-        <Button  
-        onClick={this.handleImageUpload}          
-        className="add-image-button"            
-            content="Change Image"
-            style = {{ fontSize: ".7rem"}}
-          /> 
-          <div className="image-upload">         
-            <input            
-             type="file"
-             name="image"
-             value={this.state.image}
-             onChange={this.handleInputChange}
-             /> 
-             </div>       
+        <Button
+          onClick={this.openImage}
+          content="Change Image"
+          style={{ fontSize: ".7rem" }}
+        />
+        <div id="image-uploader">
+          <input
+            type="file"
+            name="image"
+            value={this.state.image}
+            onChange={this.handleInputChange}
+          />
+          <button onClick={this.handleImageUpload}>Upload Image</button>
+        </div>
         <Header as="h1">{user.name}</Header>
         <p>{user.accountType}</p>
         {/* Show the edit and delete icons if the logged in user's account type is primary.

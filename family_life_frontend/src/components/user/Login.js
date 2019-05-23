@@ -21,7 +21,8 @@ class LogIn extends Component {
       password: "",
       error: false,
       open: false,
-      errorMessage: ""
+      errorMessage: "",
+      value: ""
     };
   }
   handleInputChange = event => {
@@ -29,10 +30,10 @@ class LogIn extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleRadioOptionChange = (e, { value }) => this.setState({ value });
+  handleRadioOptionChange = (e, { value }) => this.setState({ value: value });
   login = event => {
-    let url = "";
     event.preventDefault();
+    let url = ""; 
     const user = {
       username: this.state.username,
       password: this.state.password

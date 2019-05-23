@@ -109,7 +109,7 @@ class MemberModal extends Component {
                 floated="right"
                 type="submit"
                 icon={`${action === "Add" ? "add" : "edit"}`}
-                content={`${action === "Add" ? "Add" : "Edit"}`}
+                content={`${action === "Add" ? "Add" : "Add"}`}
               />
               <Button
                 floated="right"
