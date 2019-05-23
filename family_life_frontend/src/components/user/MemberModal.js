@@ -69,10 +69,10 @@ class MemberModal extends Component {
 
   render() {
 
-    const { action, open1, handleModalToggle } = this.props;
+    const { action, open, handleModalToggle } = this.props;
     const { usernameText, emailText, nameText, accountText } = this.state;
     return (
-      <Modal size="mini" open={open1}>
+      <Modal size="mini" open={open}>
         <Modal.Header>{`${action} a Family Member`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleAddMember}>

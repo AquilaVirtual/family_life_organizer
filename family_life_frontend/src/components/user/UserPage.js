@@ -51,10 +51,9 @@ class UserPage extends Component {
       });
   }
 
-  handleModalToggle = (value) => {
+  handleModalToggle = () => {
     this.setState(state => ({
-      modal: !state.modal,
-      action: value
+      modal: !state.modal,    
     }));
   };
 
@@ -153,7 +152,7 @@ class UserPage extends Component {
             primary
             icon="add"
             content="Family Member"
-            onClick={() => this.handleModalToggle("Add")}
+            onClick={() => this.handleModalToggle()}
           />
         ) : null}
         <div
