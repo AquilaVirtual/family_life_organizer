@@ -61,12 +61,13 @@ class MemberModal extends Component {
       email: emailText
     });
     handleModalToggle();
-    //Temporary! Here we alert primary holder with password of newly added family member.
-    //When app is fully functional, this new member informatiom will be sent via email or text message to newly added member.
-    alert(newMember.password);
+    // //Temporary: here we alert primary holder with password of newly added family member.
+    // //When app is fully functional, this new member informatiom will be sent via email or text message to newly added member.
+    // alert(newMember.password);
   };
 
   render() {
+
     const { action, open, handleModalToggle } = this.props;
     const { usernameText, emailText, nameText, accountText } = this.state;
     return (
@@ -109,7 +110,7 @@ class MemberModal extends Component {
                 floated="right"
                 type="submit"
                 icon={`${action === "Add" ? "add" : "edit"}`}
-                content={`${action === "Add" ? "Add" : "Add"}`}
+                content={`${action === "Add" ? "Add" : "Edit"}`}
               />
               <Button
                 floated="right"

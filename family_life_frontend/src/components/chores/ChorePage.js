@@ -76,26 +76,26 @@ class ChorePage extends Component {
   };
 
   updateStatus = (userId, choreId) => {
-    // this.setState(state => ({
-    //   users: state.users.map(user => {
-    //     if (user.id === userId) {
-    //       return {
-    //         ...user,
-    //         chores: user.chores.map((chore, id) => {
-    //           if (id === choreId) {
-    //             return {
-    //               ...chore,
-    //               status:
-    //                 chore.status === "not started" ? "in progress" : "completed"
-    //             };
-    //           }
-    //           return chore;
-    //         })
-    //       };
-    //     }
-    //     return user;
-    //   })
-    // }));
+    this.setState(state => ({
+      users: state.users.map(user => {
+        if (user._id === userId) {
+          return {
+            ...user,
+            chores: user.chores.map((chore, id) => {
+              if (id === choreId) {
+                return {
+                  ...chore,
+                  status:
+                    chore.status === "not started" ? "in progress" : "completed"
+                };
+              }
+              return chore;
+            })
+          };
+        }
+        return user;
+      })
+    }));
   };
 
   render() {

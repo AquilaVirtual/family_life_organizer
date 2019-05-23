@@ -51,9 +51,10 @@ class UserPage extends Component {
       });
   }
 
-  handleModalToggle = () => {
+  handleModalToggle = (value) => {
     this.setState(state => ({
-      modal: !state.modal
+      modal: !state.modal,
+      action: value
     }));
   };
 
@@ -103,18 +104,15 @@ class UserPage extends Component {
     axios
       .delete(`${backend}/api/member/${id}`, headers)
       .then(response => {
-        const newState = users.filter(user => user._id !== response.data._id);
+        const updatedUsers = users.filter(user => user._id !== response.data._id);
         this.setState({
-          users: newState
+          users: updatedUsers
         });
       })
       .catch(err => {
         console.log("Error deleting member", err);
       });
   };
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.state !== nextState;
-  }
   render() {
     const { user, modal, action, member } = this.state;
 
@@ -138,11 +136,9 @@ class UserPage extends Component {
             accountType: localStorage.getItem("accountType"),
             userImage: localStorage.getItem("userImage")
           }}
-          deleteUser={() => this.deleteUser()}
+          deleteUser={() => this.deleteUser(localStorage.getItem("userId"))}
           handleModalToggle={() =>
-            this.handleModalToggle("Edit", {
-              member: { name: user.name, type: user.type }
-            })
+            this.handleModalToggle("Edit")
           }
         />
         {/* Only give ability to add family members if logged-in user is a parent */}
@@ -174,10 +170,7 @@ class UserPage extends Component {
                 user={member}
                 deleteUser={() => this.deleteUser(member._id)}
                 handleModalToggle={() =>
-                  this.handleModalToggle("Edit", {
-                    member: member
-                  })
-                }
+                  this.handleModalToggle("Edit")}
               />
             ))}
         </div>
@@ -185,7 +178,7 @@ class UserPage extends Component {
           open={modal}
           action={action}
           addMember={this.addMember}
-          handleModalToggle={() => this.handleModalToggle()}
+          handleModalToggle={() => this.handleModalToggle("Add")}
           member={member}
         />
       </Segment>
