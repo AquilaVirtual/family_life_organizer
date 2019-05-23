@@ -67,10 +67,11 @@ class UserSettings extends Component {
   };
   handleImageUpload = () => {
     const image = this.state.image;
+    const userId = localStorage.getItem("userId");
     console.log("Our Image", image);
     axios
       .post(
-        `${backend}/api/user/image/${localStorage.getItem("userId")}`,
+        `${backend}/api/user/image/${userId}`,
         image
       )
       .then(response => {
@@ -84,7 +85,7 @@ class UserSettings extends Component {
   };
 
   render() {
-    const { user, deleteUser, handleModalToggle, confirmDelete } = this.state;
+    const { user, deleteUser, confirmDelete } = this.state;
 
     return (
       <div className="container">
@@ -151,20 +152,20 @@ class UserSettings extends Component {
           <div className="settings-wrap">
             <div className="settings">
               <div className="info-label">Username:</div>
-              <div className="info-data">{this.state.username}</div>
+              <div className="info-data">{user.username}</div>
               <button className="username-button" onClick={this.changeUsername}>
                 Change{" "}
               </button>
             </div>
             <div className="settings">
               <div className="info-label">Email:</div>
-              <div className="info-data_email"> {this.state.email}</div>
+              <div className="info-data_email"> {user.email}</div>
               <button className="email-button" onClick={this.changeEmail}>
                 Change
               </button>{" "}
             </div>
             <div className="settings">
-              Password: ******************{" "}
+            <div className="info-label">Password: ******************{" "}</div>
               <button className="password-button" onClick={this.changePassword}>
                 Change
               </button>{" "}

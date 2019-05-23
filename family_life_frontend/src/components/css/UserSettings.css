@@ -2,3 +2,6 @@
     display: flex;
     justify-content: center;
 }
+.settings {
+    display: flex;
+}

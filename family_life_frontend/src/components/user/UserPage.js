@@ -133,7 +133,7 @@ class UserPage extends Component {
       >
         <Navbar />
         <SiteHeader name="Users" />
-        <UserCard
+        {/* <UserCard
           user={{
             name: localStorage.getItem("name"),
             accountType: localStorage.getItem("accountType"),
@@ -143,7 +143,7 @@ class UserPage extends Component {
           handleModalToggle={() =>
             this.handleModalToggle("Edit")
           }
-        />
+        /> */}
         {/* Only give ability to add family members if logged-in user is a parent */}
         {localStorage.getItem("accountType") === "Primary" ||
         localStorage.getItem("accountType") === "Spouse" ? (
