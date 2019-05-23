@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import "../css/UserSettings.css"
 
 import {
     Segment,
@@ -36,6 +38,7 @@ class UserSettings extends Component {
           <div className="container">
        <Navbar />
          <SiteHeader name="settings" />
+         <div className="profile" style={{ display: "flex"}}>
          <Segment
         style={{
           width: "18rem",
@@ -68,12 +71,8 @@ class UserSettings extends Component {
           <button onClick={this.handleImageUpload}>Upload Image</button>
         </div>
         <Header as="h1">{user}</Header>
-        <p>{user}</p>
-        {/* Show the edit and delete icons if the logged in user's account type is primary.
-            Only a primary account holder can delete and/or add family members. 
-        */}
-        {localStorage.getItem("accountType") === "Primary" ||
-        localStorage.getItem("accountType") === "Spouse" ? (
+        <p>{user}</p>     
+      
           <div>
             <Icon
               style={{ cursor: "pointer", fontSize: "1.4rem" }}
@@ -86,7 +85,7 @@ class UserSettings extends Component {
               onClick={() => this.setState({ confirmDelete: true })}
             />{" "}
           </div>
-        ) : null}
+        
         <Confirm
           open={confirmDelete}
           size="mini"
@@ -98,6 +97,27 @@ class UserSettings extends Component {
           }}
         />          
       </Segment>
+      <div className="settings">
+           <div className="info-label">Username:</div>
+           <div className="info-data">{this.state.username}</div>
+           <button className="username-button" onClick={this.changeUsername}>
+             Change{" "}
+           </button>
+         </div>
+         <div className="settings">
+           <div className="info-label">Email:</div>
+           <div className="info-data_email"> {this.state.email}</div>
+           <button className="email-button" onClick={this.changeEmail}>
+             Change
+           </button>{" "}
+         </div>
+         <div className="settings">
+           Password: ******************{" "}
+           <button className="password-button" onClick={this.changePassword}>
+             Change
+           </button>{" "}
+         </div>
+         </div>
       </div>
         
     //   {/* <div className="container">
