@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component } from "react";
 import { Button, Modal, Form, Select } from "semantic-ui-react";
 
 const memberType = [
@@ -68,12 +68,11 @@ class MemberModal extends Component {
   };
 
   render() {
-
-    const { action, open, handleModalToggle } = this.props;
+    const { open, handleModalToggle } = this.props;
     const { usernameText, emailText, nameText, accountText } = this.state;
     return (
       <Modal size="mini" open={open}>
-        <Modal.Header>{`${action} a Family Member`}</Modal.Header>
+        <Modal.Header>{`Add a Family Member`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleAddMember}>
             <Form.Input
@@ -110,8 +109,8 @@ class MemberModal extends Component {
                 primary
                 floated="right"
                 type="submit"
-                icon={`${action === "Add" ? "add" : "edit"}`}
-                content={`${action === "Add" ? "Add" : "Edit"}`}
+                icon="add"
+                content="Add"
               />
               <Button
                 floated="right"

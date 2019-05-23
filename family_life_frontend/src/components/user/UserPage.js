@@ -171,9 +171,7 @@ class UserPage extends Component {
               <UserCard
                 key={member._id}
                 user={member}
-                deleteUser={() => this.deleteUser(member._id)}
-                handleModalToggle={() =>
-                  this.handleModalToggle("Edit")}
+                deleteUser={() => this.deleteUser(member._id)}                
               />
             ))}
         </div>
