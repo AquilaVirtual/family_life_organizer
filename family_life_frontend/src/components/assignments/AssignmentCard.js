@@ -49,7 +49,7 @@ class AssignmentCard extends Component {
             open={confirmDelete}
             size="mini"
             onCancel={() => this.setState({ confirmDelete: false })}
-            content={`Remove ${assignment.user}'s ${assignment.title}?`}
+            content={`Remove ${assignment.name}'s ${assignment.title}?`}
             onConfirm={() => {
               deleteAssignment(_id);
               this.setState({ confirmDelete: false });

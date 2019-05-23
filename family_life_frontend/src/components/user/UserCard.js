@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+
+
 import {
   Segment,
   Image,
@@ -7,7 +9,6 @@ import {
   Icon,
   Confirm,
   Button,
-  Form
 } from "semantic-ui-react";
 
 import "./userCard.css";
@@ -21,15 +22,21 @@ let backend = "https://familylife.herokuapp.com";
 class UserCard extends Component {
   state = {
     confirmDelete: false,
-    image: ""
+    edit: false,
+    image: "",
   };
 
   handleInputChange = event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
-    console.log("Getting an image", event.target.value);
+   // console.log("Getting an image", event.target.value);
   };
-
+  
+  toggleEdit = () => {
+  this.setState(state => ({
+    edit: !state.edit
+  }))
+  }
   openImageUploader = () => {
     const image = document.getElementById("image-uploader");
     image.style.display = "block";
@@ -52,7 +59,7 @@ class UserCard extends Component {
     imageId.style.display = "none";
   };
   render() {
-    //console.log("User in card", this.props.user._id);
+    console.log("User in card", this.props.user);
     const { user, deleteUser, handleModalToggle } = this.props;
     const { confirmDelete } = this.state;
 
@@ -99,7 +106,7 @@ class UserCard extends Component {
             <Icon
               style={{ cursor: "pointer", fontSize: "1.4rem" }}
               className="edit outline green"
-              onClick={handleModalToggle}
+              onClick={this.toggleEdit}
             />
             <Icon
               style={{ cursor: "pointer", fontSize: "1.4rem" }}
@@ -117,7 +124,7 @@ class UserCard extends Component {
             deleteUser();
             this.setState({ confirmDelete: false });
           }}
-        />
+        />          
       </Segment>
     );
   }

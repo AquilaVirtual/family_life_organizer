@@ -22,7 +22,7 @@ class EditAssignment extends Component {
   };
   componentDidMount() {
     this.setState({
-      user: this.props.assignment.user,
+      user: this.props.assignment.name,
       title: this.props.assignment.title,
       description: this.props.assignment.description,
       _id: this.props.assignment._id

@@ -79,6 +79,10 @@ class UserPage extends Component {
       }, 4000);
     }
   };
+ 
+  editMember = (id, info) => {
+
+  }
 
   addMember = member => {
     console.log("New member credentials", member);
@@ -181,6 +185,7 @@ class UserPage extends Component {
           handleModalToggle={() => this.handleModalToggle("Add")}
           member={member}
         />
+        
       </Segment>
     );
   }

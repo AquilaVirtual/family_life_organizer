@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import SiteHeader from "../header/SiteHeader";
+import Navbar from "../navbar/Navbar";
 
 class UserSettings extends Component {
   constructor(props) {
@@ -18,7 +20,10 @@ class UserSettings extends Component {
 
   render() {
     return (
+        
       <div className="container">
+      <Navbar />
+        <SiteHeader name="settings" />
         <div className="settings">
           <div className="info-label">Username:</div>
           <div className="info-data">{this.state.username}</div>

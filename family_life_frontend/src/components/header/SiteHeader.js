@@ -21,7 +21,10 @@ const Header = props => {
         <NavLink to="/">FamilyLife</NavLink> | {props.name}
       </h1>
       <div>
-        <Button size="huge" basic content="Settings"  />
+        <NavLink to="/settings">
+          {" "}
+          <Button size="huge" basic content="Settings" />
+        </NavLink>
         <NavLink to="/">
           {" "}
           <Button
