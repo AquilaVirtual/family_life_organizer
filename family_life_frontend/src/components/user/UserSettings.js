@@ -14,6 +14,8 @@ import {
 import SiteHeader from "../header/SiteHeader";
 import Navbar from "../navbar/Navbar";
 
+
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
 class UserSettings extends Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,49 @@ class UserSettings extends Component {
       errorMessage: ""
     };
   }
+  componentDidMount = () => {
+      axios.get(`http://localhost:3002/api/user/get/${localStorage.getItem("userId")}`)
+      .then(response => {
+      console.log("Getting member", response)    
+      })
+      .catch( err => {
+          console.log("Error in User Settings", err)
+      })
+  }
+
+  handleInputChange = event => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+   // console.log("Getting an image", event.target.value);
+  };
+  
+  toggleEdit = () => {
+  this.setState(state => ({
+    edit: !state.edit
+  }))
+  }
+  openImageUploader = () => {
+    const image = document.getElementById("image-uploader");
+    image.style.display = "block";
+  };
+  handleImageUpload = () => {
+    const image = this.state.image;
+    console.log("Our Image", image);
+    axios
+      .post(
+        `${backend}/api/user/image/${localStorage.getItem("userId")}`,
+        image
+      )
+      .then(response => {
+        console.log("Image upload response", response);
+      })
+      .catch(err => {
+        console.log("Something BahDDD", err);
+      });
+    const imageId = document.getElementById("image-uploader");
+    imageId.style.display = "none";
+  };
+
 
   render() {
     const { user, deleteUser, handleModalToggle } = this.props;
@@ -37,7 +82,7 @@ class UserSettings extends Component {
     return (
           <div className="container">
        <Navbar />
-         <SiteHeader name="settings" />
+         <SiteHeader name="Settings" />
          <div className="profile">
          <Segment
         style={{
