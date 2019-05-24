@@ -66,6 +66,7 @@ class UserCard extends Component {
           open={modalEdit}
           editToggle={this.editToggle}
           activity={activity}
+          handleEdit={this.props.handleEdit}
         />
       </Segment>
     );

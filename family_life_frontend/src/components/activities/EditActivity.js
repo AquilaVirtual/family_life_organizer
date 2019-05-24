@@ -2,12 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
-//let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com";
-// if (typeof backend !== 'string') {
-//   backend = heroku;
-// }
-
 class EditActivity extends Component {
   state = {
     activityName: "",
@@ -30,11 +24,11 @@ class EditActivity extends Component {
       [data.name]: data.value
     });
   };
-  handleEdit = () => {
-    const { activity, editToggle } = this.props;
+  handleEditActivity = () => {
+    const { activity, editToggle, handleEdit } = this.props;
     const { activityName, activityType } = this.state;
 
-    const newActivity = {
+    const activityUpdate = {
       name: activityName,
       type: activityType
     };
@@ -43,26 +37,20 @@ class EditActivity extends Component {
       activityName: "",
       activityType: ""
     });
-    console.log("Edited activity", newActivity);
 
-    axios
-      .put(`${backend}/api/activity/edit/${activity._id}`, newActivity)
-      .then(activities => {})
-      .catch(err => {
-        console.log("We have a problem", err);
-      });
+    handleEdit(activity._id, activityUpdate) 
     editToggle();
   };
 
   toggleAction = () => {};
   render() {
-    const { open, editToggle, activity } = this.props;
+    const { open, editToggle, } = this.props;
     const { activityName, activityType } = this.state;
     return (
       <Modal size="mini" open={open}>
         <Modal.Header>{`Edit this activity`}</Modal.Header>
         <Modal.Content style={{ marginBottom: "2rem" }}>
-          <Form onSubmit={this.handleEdit}>
+          <Form onSubmit={this.handleEditActivity}>
             <Form.Input
               required
               placeholder="Add an activity..."

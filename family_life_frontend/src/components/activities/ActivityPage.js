@@ -73,6 +73,15 @@ class ActivityPage extends Component {
         console.log("We have a problem", err.response);
       });
   };
+
+  handleEdit = (id, activity) => {    
+    axios
+      .put(`${backend}/api/activity/edit/${id}`, activity)
+      .then(activities => {})
+      .catch(err => {
+        console.log("We have a problem", err);
+      });
+  }
   deleteActivity = id => {
     const { activities } = this.state;
     const token = localStorage.getItem("token");
@@ -128,6 +137,7 @@ class ActivityPage extends Component {
                 key={activity._id}
                 handleModalToggle={() => this.handleModalToggle()}
                 deleteActivity={() => this.deleteActivity(activity._id)}
+                handleEdit={this.handleEdit}
               />
             ))}
         </div>
@@ -137,7 +147,7 @@ class ActivityPage extends Component {
           open={modal}
           handleModalToggle={() => this.setState({ modal: false })}
           handleAddActivity={this.handleAddActivity}
-        />
+        /> 
       </Segment>
     );
   }

@@ -27,7 +27,7 @@ class AddMemberToActivity extends Component {
 
     const parentUsername = localStorage.getItem("username");
     axios
-      .put(`${backend}/api/activity/add_member_to_activity/${activity._id}`, {
+      .put(`${backend}/api/activity/addmember/${activity._id}`, {
         parentUsername,
        memberUsername
       })

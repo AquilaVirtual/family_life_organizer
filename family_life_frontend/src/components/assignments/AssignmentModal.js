@@ -71,7 +71,7 @@ class AssignmentModal extends Component {
         <Modal.Content style={{ marginBottom: "2rem" }}>
           <Form onSubmit={this.handleSubmit}>
             <Form.Input
-              placeholder="Add a user's username..."
+              placeholder="Add a member's name..."
               onChange={this.handleChange}
               name="name"
               value={name}
