@@ -36,18 +36,28 @@ class UserSettings extends Component {
       errorMessage: ""
     };
   }
-  componentDidMount = () => {
-    const userId = localStorage.getItem("userId");
+  componentDidMount = () => {    
+      let url = "";
+    const userId = localStorage.getItem("userId"); 
+    const accountType = localStorage.getItem("accountType");
+    if(accountType === "Primay") {
+        url =`${backend}/api/user/get`
+    }
+    else {
+        url =`${backend}/api/member/get`
+    }
     axios
-      .get(`${backend}/api/user/get/${userId}`)
-      .then(response => {
-        console.log("Getting member", response);
+      .get(`${url}/${userId}`)
+      .then(response => {     
         this.setState({
           user: response.data
         });
       })
       .catch(err => {
-        console.log("Error in User Settings", err);
+        //console.log("Error in User Settings", err);
+        this.setState({
+            errorMessage: err.response.data.errorMessage
+        })
       });
   };
 

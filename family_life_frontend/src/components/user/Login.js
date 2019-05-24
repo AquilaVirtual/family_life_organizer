@@ -67,7 +67,7 @@ class LogIn extends Component {
         }, 200);
       })
       .catch(err => {
-        console.log("Error here in login", err.response);
+        //console.log("Error here in login", err.response);
         this.setState({
           error: true,
           errorMessage: err.response.data.errorMessage
