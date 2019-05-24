@@ -36,19 +36,22 @@ class UserSettings extends Component {
       errorMessage: ""
     };
   }
-  componentDidMount = () => {    
-      let url = "";
-    const userId = localStorage.getItem("userId"); 
+  componentDidMount = () => {
+    let url = "";
+    const userId = localStorage.getItem("userId");
     const accountType = localStorage.getItem("accountType");
-    if(accountType === "Primay") {
-        url =`${backend}/api/user/get`
-    }
-    else {
-        url =`${backend}/api/member/get`
+    if (accountType === "Primary") {
+      url = `${backend}/api/user/get`;
+    } else if (
+      accountType === "Child" ||
+      accountType === "Spouse" ||
+      accountType === "Relative"
+    ) {
+      url = `${backend}/api/member/get`;
     }
     axios
       .get(`${url}/${userId}`)
-      .then(response => {     
+      .then(response => {
         this.setState({
           user: response.data
         });
@@ -56,8 +59,8 @@ class UserSettings extends Component {
       .catch(err => {
         //console.log("Error in User Settings", err);
         this.setState({
-            errorMessage: err.response.data.errorMessage
-        })
+          errorMessage: err.response.data.errorMessage
+        });
       });
   };
 
@@ -80,10 +83,7 @@ class UserSettings extends Component {
     const userId = localStorage.getItem("userId");
     console.log("Our Image", image);
     axios
-      .post(
-        `${backend}/api/user/image/${userId}`,
-        image
-      )
+      .post(`${backend}/api/user/image/${userId}`, image)
       .then(response => {
         console.log("Image upload response", response);
       })
@@ -175,7 +175,7 @@ class UserSettings extends Component {
               </button>{" "}
             </div>
             <div className="settings">
-            <div className="info-label">Password: ******************{" "}</div>
+              <div className="info-label">Password: ****************** </div>
               <button className="password-button" onClick={this.changePassword}>
                 Change
               </button>{" "}
