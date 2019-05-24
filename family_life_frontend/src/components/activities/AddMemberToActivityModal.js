@@ -10,35 +10,38 @@ let backend = "https://familylife.herokuapp.com/";
 
 class AddMemberToActivity extends Component {
   state = {
-    memberName: "",
+   username: "",
     errorMessage: ""
   };
 
   handleChange = event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
-    console.log("Our Current state", this.state.memberName);
+    console.log("Our Current state", this.state.memberUsername);
   };
 
   addMemberToActivity = () => {
-    const { errorMessage, memberName } = this.state;
+    const { errorMessage, username } = this.state;
     const { addMemberToggle, activity } = this.props;
-    const member = memberName.trim();
+    const  memberUsername = username.trim();
 
-    const username = localStorage.getItem("username");
+    const parentUsername = localStorage.getItem("username");
     axios
       .put(`${backend}/api/activity/add_member_to_activity/${activity._id}`, {
-        username,
-        member
+        parentUsername,
+       memberUsername
       })
       .then(addedMember => {
-        console.log("Add member fired!", addedMember);
+        ///console.log("Add member fired!", addedMember);
       })
       .catch(err => {
-        console.log("We have a problem", err.response);
+       // console.log("We have a problem", err.response);
+       this.setState({
+        errorMessage: err.response.data.errorMessage
+       });
       });
     this.setState({
-      memberName: ""
+     username: ""
     });
     if (!errorMessage) {
       addMemberToggle();
@@ -47,7 +50,7 @@ class AddMemberToActivity extends Component {
 
   render() {
     const { open, addMemberToggle } = this.props;
-    const { memberName } = this.state;
+    const { username } = this.state;
     return (
       <Modal size="mini" open={open}>
         <Modal.Header>{`Add a family member to this activity`}</Modal.Header>
@@ -57,8 +60,8 @@ class AddMemberToActivity extends Component {
               required
               placeholder="Type full name of family member"
               onChange={this.handleChange}
-              name="memberName"
-              value={memberName}
+              name="username"
+              value={username}
             />
             <div style={{ padding: "1rem 0" }}>
               <Button
