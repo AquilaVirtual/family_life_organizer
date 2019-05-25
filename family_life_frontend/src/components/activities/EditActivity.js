@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
 class EditActivity extends Component {

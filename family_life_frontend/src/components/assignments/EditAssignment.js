@@ -6,11 +6,6 @@ import DatePicker from "react-datepicker";
 // needed for DatePicker to work
 import "react-datepicker/dist/react-datepicker.css";
 
-//let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com";
-//if (typeof backend !== 'string') {
-//backend = heroku;
-//}
 
 class EditAssignment extends Component {
   state = {
@@ -35,26 +30,24 @@ class EditAssignment extends Component {
   };
 
   handleSelect = (e, data) => {
+    e.preventDefault();
     this.setState({ [data.name]: data.value });
   };
 
-  handleChange = event => {
-    console.log(event.target.name);
-    this.setState({ [event.target.name]: [event.target.value] });
+  handleChange = event => { 
+    this.setState({ [event.target.name]: event.target.value });
   };
   handleSubmit = () => {
-    const { user, due, title, description, _id } = this.state;
-    axios
-      .put(`${backend}/api/assignment/${_id}`, {
-        user,
-        due,
-        title,
-        description
-      })
-      .then(response => {})
-      .catch(err => {
-        console.log("Fire!", err);
-      });
+    const { user, due, title, description, _id } = this.state;    
+    const { handleEdit } = this.props;
+    const assignmentUpdate = {
+      user: user,
+      due: due,
+      title: title,
+      description: description,
+      _id: _id
+    }; 
+    handleEdit(_id, assignmentUpdate)
     this.props.toggleEdit();
   };
   render() {

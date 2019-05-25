@@ -65,6 +65,7 @@ class AssignmentPage extends Component {
       });
   };
   addAssignment = assignment => {
+    console.log("New assignment", assignment);
     const { assignments } = this.state;
     const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
@@ -80,6 +81,15 @@ class AssignmentPage extends Component {
           error: true,
           errorMessage: err.response.data.errorMessage
         });
+      });
+  };
+  handleEdit = (id, assignment) => {
+    console.log("Updated assignment", assignment);
+    axios
+      .put(`${backend}/api/assignment/${id}`, assignment)
+      .then(response => {})
+      .catch(err => {
+        console.log("Fire!", err);
       });
   };
   changeStatus = id => {
@@ -135,6 +145,7 @@ class AssignmentPage extends Component {
               assignment={assignment}
               deleteAssignment={this.deleteAssignment}
               changeStatus={this.changeStatus}
+              handleEdit={this.handleEdit}
             />
           ))}
         </div>

@@ -59,6 +59,7 @@ class AssignmentCard extends Component {
             open={confirmEdit}
             toggleEdit={() => this.setState({ confirmEdit: false })}
             assignment={this.props.assignment}
+            handleEdit={this.props.handleEdit}
           />
         </p>
         <div style={{ widht: "100%", textAlign: "left" }}>
