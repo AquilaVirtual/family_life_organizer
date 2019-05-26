@@ -20,7 +20,8 @@ class UserPage extends Component {
     users: [],
     modal: false,
     action: "add",
-    member: null
+    member: null,
+    errorMessage: ""
   };
 
   componentDidMount() {
@@ -48,12 +49,15 @@ class UserPage extends Component {
       })
       .catch(err => {
         console.log("Error getting members", err.response);
+        this.setState({
+          errorMessage: err.response.data.errorMessage
+        });
       });
   }
 
   handleModalToggle = () => {
     this.setState(state => ({
-      modal: !state.modal,    
+      modal: !state.modal
     }));
   };
 
@@ -78,10 +82,8 @@ class UserPage extends Component {
       }, 4000);
     }
   };
- 
-  editMember = (id, info) => {
 
-  }
+  editMember = (id, info) => {};
 
   addMember = member => {
     console.log("New member credentials", member);
@@ -98,6 +100,9 @@ class UserPage extends Component {
       })
       .catch(err => {
         console.log("Error adding member", err.response);
+        this.setState({
+          errorMessage: err.response.data.errorMessage
+        });
       });
   };
   deleteUser = id => {
@@ -107,13 +112,18 @@ class UserPage extends Component {
     axios
       .delete(`${backend}/api/member/${id}`, headers)
       .then(response => {
-        const updatedUsers = users.filter(user => user._id !== response.data._id);
+        const updatedUsers = users.filter(
+          user => user._id !== response.data._id
+        );
         this.setState({
           users: updatedUsers
         });
       })
       .catch(err => {
         console.log("Error deleting member", err);
+        this.setState({
+          errorMessage: err.response.data.errorMessage
+        });
       });
   };
   render() {
@@ -171,7 +181,7 @@ class UserPage extends Component {
               <UserCard
                 key={member._id}
                 user={member}
-                deleteUser={() => this.deleteUser(member._id)}                
+                deleteUser={() => this.deleteUser(member._id)}
               />
             ))}
         </div>
@@ -182,7 +192,6 @@ class UserPage extends Component {
           handleModalToggle={() => this.handleModalToggle("Add")}
           member={member}
         />
-        
       </Segment>
     );
   }

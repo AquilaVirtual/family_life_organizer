@@ -89,6 +89,9 @@ class UserSettings extends Component {
       })
       .catch(err => {
         console.log("Something BahDDD", err);
+        this.setState({
+          errorMessage: err.response.data.errorMessage
+        });
       });
     const imageId = document.getElementById("image-uploader");
     imageId.style.display = "none";
