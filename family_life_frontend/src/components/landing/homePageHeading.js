@@ -32,7 +32,7 @@ const HomepageHeading = ({ mobile }) => (
     <NavLink to={localStorage.getItem("token") ? "users" : "login"}>
       <Button primary size="huge">
         Get Organized!
-        <Icon name="right arrow" />
+        <Icon name="right arrow"/>
       </Button>{" "}
     </NavLink>
   </Container>

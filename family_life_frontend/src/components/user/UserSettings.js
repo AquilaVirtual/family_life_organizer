@@ -162,24 +162,24 @@ class UserSettings extends Component {
               }}
             />
           </Segment>
-          <div className="settings-wrap">
-            <div className="settings">
+          <div id="settings">
+            <div className="setting">
               <div className="info-label">Username:</div>
-              <div className="info-data">{user.username}</div>
-              <button className="username-button" onClick={this.changeUsername}>
+              <div className="info-data_username">{user.username}</div>
+              <button className="setting-button" onClick={this.changeUsername}>
                 Change{" "}
               </button>
             </div>
-            <div className="settings">
+            <div className="setting">
               <div className="info-label">Email:</div>
               <div className="info-data_email"> {user.email}</div>
-              <button className="email-button" onClick={this.changeEmail}>
+              <button className="setting-button" onClick={this.changeEmail}>
                 Change
               </button>{" "}
             </div>
-            <div className="settings">
+            <div className="setting">
               <div className="info-label">Password: ****************** </div>
-              <button className="password-button" onClick={this.changePassword}>
+              <button className="setting-button" onClick={this.changePassword}>
                 Change
               </button>{" "}
             </div>

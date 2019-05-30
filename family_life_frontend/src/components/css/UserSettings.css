@@ -1,7 +1,21 @@
 .profile {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
-.settings {
-    display: flex;
+#settings {
+  margin-top: 20px 0 20px;
+}
+.setting {
+  display: flex;
+  margin: 20px;
+}
+.setting-button {
+  position: absolute;
+  left: 70%;
+}
+.info-data_username {
+    margin-left: 10px;
+}
+.info-data_email {
+    margin-left: 40px;
 }
