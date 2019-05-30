@@ -69,10 +69,10 @@ class UserSettings extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  toggleEdit = () => {
-    this.setState(state => ({
-      edit: !state.edit
-    }));
+  toggleEdit = (e) => {
+    e.preventDefault();
+    e.target.previousElementSibling.style.display = "block";
+  console.log("Clicked button", e.target.previousElementSibling.previousElementSibling.style.display = "none")
   };
   openImageUploader = () => {
     const image = document.getElementById("image-uploader");
@@ -166,20 +166,24 @@ class UserSettings extends Component {
             <div className="setting">
               <div className="info-label">Username:</div>
               <div className="info-data_username">{user.username}</div>
-              <button className="setting-button" onClick={this.changeUsername}>
+              <input className="input" type="type" value={user.username}/>            
+              <button className="setting-button" onClick={this.toggleEdit}>
                 Change{" "}
               </button>
             </div>
             <div className="setting">
               <div className="info-label">Email:</div>
               <div className="info-data_email"> {user.email}</div>
-              <button className="setting-button" onClick={this.changeEmail}>
+              <input className="input" type="type" name="email"value={user.email}/>            
+              <button className="setting-button" onClick={this.toggleEdit}>
                 Change
               </button>{" "}
             </div>
             <div className="setting">
-              <div className="info-label">Password: ****************** </div>
-              <button className="setting-button" onClick={this.changePassword}>
+              <div className="info-label">Password:</div>
+              <div className="info-label_password">****************** </div>  
+              <input className="input" type="type" />            
+              <button className="setting-button" onClick={this.toggleEdit}>
                 Change
               </button>{" "}
             </div>

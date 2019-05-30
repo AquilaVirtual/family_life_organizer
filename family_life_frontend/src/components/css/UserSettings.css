@@ -19,3 +19,12 @@
 .info-data_email {
     margin-left: 40px;
 }
+
+.info-label_password {
+  margin-left: 10px;
+}
+.input {
+  display: none;
+  position: absolute;
+  margin-left: 90px;
+}
