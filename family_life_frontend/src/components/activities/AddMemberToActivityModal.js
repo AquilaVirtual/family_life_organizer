@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-//let backend = "https://familylife.herokuapp.com/";
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = "https://familylife.herokuapp.com/";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -58,7 +58,7 @@ class AddMemberToActivity extends Component {
           <Form onSubmit={this.addMemberToActivity}>
             <Form.Input
               required
-              placeholder="Type full name of family member"
+              placeholder="Enter username of family member"
               onChange={this.handleChange}
               name="username"
               value={username}

@@ -46,7 +46,7 @@ class ChoreCard extends Component {
           <Grid.Row>
             <Grid.Column>
               <Header textAlign="left" as="h2">
-                {user}
+                {user.split(" ")[0]}
               </Header>
             </Grid.Column>
             <Grid.Column>

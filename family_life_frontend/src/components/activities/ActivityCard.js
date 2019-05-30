@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Segment, Header, Icon, Confirm, Button } from "semantic-ui-react";
-
-import ActivityModal from "./ActivityModal";
 import EditActivity from "./EditActivity";
 import AddMemberToActivityModal from "./AddMemberToActivityModal";
 
@@ -20,7 +18,7 @@ class UserCard extends Component {
     this.setState({ modalEdit: !this.state.modalEdit });
   };
   render() {
-    const { activity, deleteActivity, handleModalToggle } = this.props;
+    const { activity, deleteActivity } = this.props;
     const { confirmDelete, modalMember, modalEdit } = this.state;
     const accountType = localStorage.getItem("accountType");
     return (

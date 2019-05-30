@@ -83,8 +83,6 @@ class UserPage extends Component {
     }
   };
 
-  editMember = (id, info) => {};
-
   addMember = member => {
     console.log("New member credentials", member);
     const token = localStorage.getItem("token");
@@ -127,7 +125,7 @@ class UserPage extends Component {
       });
   };
   render() {
-    const { user, modal, action, member } = this.state;
+    const { modal, action, member } = this.state;
 
     if (!localStorage.getItem("name")) return <div>No User</div>;
     return (
@@ -142,18 +140,7 @@ class UserPage extends Component {
         }}
       >
         <Navbar />
-        <SiteHeader name="Users" />
-        {/* <UserCard
-          user={{
-            name: localStorage.getItem("name"),
-            accountType: localStorage.getItem("accountType"),
-            userImage: localStorage.getItem("userImage")
-          }}
-          deleteUser={() => this.deleteUser(localStorage.getItem("userId"))}
-          handleModalToggle={() =>
-            this.handleModalToggle("Edit")
-          }
-        /> */}
+        <SiteHeader name="Users" />        
         {/* Only give ability to add family members if logged-in user is a parent */}
         {localStorage.getItem("accountType") === "Primary" ||
         localStorage.getItem("accountType") === "Spouse" ? (
