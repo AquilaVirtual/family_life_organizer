@@ -28,3 +28,9 @@
   position: absolute;
   margin-left: 90px;
 }
+
+
+.reset-password {
+  display: none;
+  flex-direction: column;
+}

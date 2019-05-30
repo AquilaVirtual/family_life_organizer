@@ -68,11 +68,24 @@ class UserSettings extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-
-  toggleEdit = (e) => {
+  
+  toggleChange = e => {
     e.preventDefault();
-    e.target.previousElementSibling.style.display = "block";
-  console.log("Clicked button", e.target.previousElementSibling.previousElementSibling.style.display = "none")
+    if (e.target.previousElementSibling.style.display === "flex") {
+      e.target.previousElementSibling.style.display = "none";
+    } else {
+      e.target.previousElementSibling.style.display = "flex";
+    }
+    if (
+      e.target.previousElementSibling.previousElementSibling.style.display ===
+      "none"
+    ) {
+      e.target.previousElementSibling.previousElementSibling.style.display =
+        "block";
+    } else {
+      e.target.previousElementSibling.previousElementSibling.style.display =
+        "none";
+    }
   };
   openImageUploader = () => {
     const image = document.getElementById("image-uploader");
@@ -142,7 +155,7 @@ class UserSettings extends Component {
               <Icon
                 style={{ cursor: "pointer", fontSize: "1.4rem" }}
                 className="edit outline green"
-                onClick={this.toggleEdit}
+                onClick={this.toggle}
               />
               <Icon
                 style={{ cursor: "pointer", fontSize: "1.4rem" }}
@@ -166,24 +179,36 @@ class UserSettings extends Component {
             <div className="setting">
               <div className="info-label">Username:</div>
               <div className="info-data_username">{user.username}</div>
-              <input className="input" type="type" value={user.username}/>            
-              <button className="setting-button" onClick={this.toggleEdit}>
+              <input className="input" type="type" value={user.username} />
+              <button className="setting-button" onClick={this.toggleChange}>
                 Change{" "}
               </button>
             </div>
             <div className="setting">
               <div className="info-label">Email:</div>
               <div className="info-data_email"> {user.email}</div>
-              <input className="input" type="type" name="email"value={user.email}/>            
-              <button className="setting-button" onClick={this.toggleEdit}>
+              <input
+                className="input"
+                type="type"
+                name="email"
+                value={user.email}
+              />
+              <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
             </div>
             <div className="setting">
               <div className="info-label">Password:</div>
-              <div className="info-label_password">****************** </div>  
-              <input className="input" type="type" />            
-              <button className="setting-button" onClick={this.toggleEdit}>
+              <div className="info-label_password">****************** </div>
+              <div className="reset-password">
+                <input className="password" type="password" />
+                <input className="password" type="password" />
+                <input className="password" type="password" />
+              </div>
+              <button
+                className="setting-button"
+                onClick={this.toggleChange}
+              >
                 Change
               </button>{" "}
             </div>
