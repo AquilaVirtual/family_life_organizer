@@ -3,7 +3,7 @@ import axios from "axios";
 import { Button, Modal, Form } from "semantic-ui-react";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com/";
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
