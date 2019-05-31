@@ -68,7 +68,7 @@ class UserSettings extends Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
-  
+
   toggleChange = e => {
     e.preventDefault();
     if (e.target.previousElementSibling.style.display === "flex") {
@@ -201,14 +201,23 @@ class UserSettings extends Component {
               <div className="info-label">Password:</div>
               <div className="info-label_password">****************** </div>
               <div className="reset-password">
-                <input className="password" type="password" />
-                <input className="password" type="password" />
-                <input className="password" type="password" />
+                <input
+                  className="password"
+                  placeholder="Current Password"
+                  type="password"
+                />
+                <input
+                  className="password"
+                  placeholder="New Password"
+                  type="password"
+                />
+                <input
+                  className="password"
+                  placeholder="Repeat Password"
+                  type="password"
+                />
               </div>
-              <button
-                className="setting-button"
-                onClick={this.toggleChange}
-              >
+              <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
             </div>

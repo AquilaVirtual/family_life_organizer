@@ -28,9 +28,13 @@
   position: absolute;
   margin-left: 90px;
 }
-
-
 .reset-password {
   display: none;
   flex-direction: column;
+  position: absolute;
+  margin: 34px 0 0 90px;
+}
+.password {
+  margin-top: 10px;
+  padding: 5px;
 }
