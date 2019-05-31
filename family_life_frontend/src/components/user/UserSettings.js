@@ -66,7 +66,7 @@ class UserSettings extends Component {
       });
   };
 
-  handleEmailAndUsernameReset = () => {
+  handleEmailAndUsernameChange = () => {
     let url = "";
     const userId = localStorage.getItem("userId");
     const info = {
@@ -76,6 +76,31 @@ class UserSettings extends Component {
     this.setState({
       email: "",
       username: ""
+    });
+    axios
+      .put(`${url}/${userId}`, info)
+      .then(response => {
+        this.setState({});
+      })
+      .catch(err => {
+        this.setState({
+          errorMessage: err.response.data.errorMessage
+        });
+      });
+  };
+
+  handlPasswordChange = () => {
+    let url = "";
+    const userId = localStorage.getItem("userId");
+    const info = {
+      password: this.state.password,
+      newPassword: this.state.newPassword,
+      verifyPassword: this.state.verifyPassword
+    };
+    this.setState({
+      password: "",
+      newPassword: "",
+      verifyPassword: ""
     });
     axios
       .put(`${url}/${userId}`, info)
