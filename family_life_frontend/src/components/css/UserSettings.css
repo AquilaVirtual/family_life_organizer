@@ -2,6 +2,9 @@
   display: flex;
   justify-content: center;
 }
+#image-uploader {
+  display: none;
+}
 #settings {
   margin-top: 20px 0 20px;
 }
@@ -15,6 +18,8 @@
 }
 .ctn {
   display: none;
+  position: absolute;
+  margin-left: 13%;
 }
 .setting-button:hover {
   cursor: pointer;
