@@ -53,7 +53,9 @@ class UserSettings extends Component {
       .get(`${url}/${userId}`)
       .then(response => {
         this.setState({
-          user: response.data
+          user: response.data,
+          email: response.data.email,
+          username: response.data.username
         });
       })
       .catch(err => {
@@ -64,9 +66,32 @@ class UserSettings extends Component {
       });
   };
 
-  handleInputChange = event => {
-    event.preventDefault();
-    this.setState({ [event.target.name]: event.target.value });
+  handlePasswordReset = () => {
+    let url = "";
+    const userId = localStorage.getItem("userId");
+    const info = {
+      email: this.state.email,
+      username: this.state.username
+    };
+    this.setState({
+      email: "",
+      username: ""
+    });
+    axios
+      .put(`${url}/${userId}`, info)
+      .then(response => {
+        this.setState({});
+      })
+      .catch(err => {
+        this.setState({
+          errorMessage: err.response.data.errorMessage
+        });
+      });
+  };
+
+  handleInputChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   toggleChange = e => {
@@ -82,11 +107,11 @@ class UserSettings extends Component {
     ) {
       e.target.previousElementSibling.previousElementSibling.style.display =
         "block";
-        e.target.innerHTML = "Change"
+      e.target.innerHTML = "Change";
     } else {
       e.target.previousElementSibling.previousElementSibling.style.display =
         "none";
-        e.target.innerHTML = "Cancel"
+      e.target.innerHTML = "Cancel";
     }
   };
   openImageUploader = () => {
@@ -181,7 +206,14 @@ class UserSettings extends Component {
             <div className="setting">
               <div className="info-label">Username:</div>
               <div className="info-data_username">{user.username}</div>
-              <input className="input" type="type" value={user.username} />
+              <input
+                className="input"
+                type="type"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleInputChange}
+              />
+              <button className="ctn">submit</button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change{" "}
               </button>
@@ -193,8 +225,10 @@ class UserSettings extends Component {
                 className="input"
                 type="type"
                 name="email"
-                value={user.email}
+                value={this.state.email}
+                onChange={this.handleInputChange}
               />
+              <button className="ctn">submit</button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
@@ -220,6 +254,7 @@ class UserSettings extends Component {
                 />
               </div>
               <button className="setting-button" onClick={this.toggleChange}>
+                <button className="ctn">submit</button>
                 Change
               </button>{" "}
             </div>
