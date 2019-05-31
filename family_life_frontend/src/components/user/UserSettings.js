@@ -82,9 +82,11 @@ class UserSettings extends Component {
     ) {
       e.target.previousElementSibling.previousElementSibling.style.display =
         "block";
+        e.target.innerHTML = "Change"
     } else {
       e.target.previousElementSibling.previousElementSibling.style.display =
         "none";
+        e.target.innerHTML = "Cancel"
     }
   };
   openImageUploader = () => {
