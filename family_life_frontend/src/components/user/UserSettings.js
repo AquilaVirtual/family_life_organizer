@@ -66,7 +66,7 @@ class UserSettings extends Component {
       });
   };
 
-  handlePasswordReset = () => {
+  handleEmailAndUsernameReset = () => {
     let url = "";
     const userId = localStorage.getItem("userId");
     const info = {
