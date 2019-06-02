@@ -8,8 +8,6 @@ import {
   Confirm,
 } from "semantic-ui-react";
 
-import "./userCard.css";
-
 class UserCard extends Component {
   state = {
     confirmDelete: false

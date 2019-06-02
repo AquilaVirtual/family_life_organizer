@@ -238,7 +238,7 @@ class UserSettings extends Component {
               <div className="info-label">Username:</div>
               <div className="info-data_username">{user.username}</div>
               <input
-                className="input"
+                className="input-control"
                 type="type"
                 name="username"
                 value={this.state.username}
@@ -253,7 +253,7 @@ class UserSettings extends Component {
               <div className="info-label">Email:</div>
               <div className="info-data_email"> {user.email}</div>
               <input
-                className="input"
+                className="input-control"
                 type="type"
                 name="email"
                 value={this.state.email}
