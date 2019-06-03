@@ -8,8 +8,8 @@ import { Segment, Button } from "semantic-ui-react";
 import ActivityCard from "./ActivityCard";
 import ActivityModal from "./ActivityModal";
 
-//let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com";
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+//let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -74,10 +74,22 @@ class ActivityPage extends Component {
       });
   };
 
-  handleEdit = (id, activity) => {    
+  handleEdit = (id, activity) => { 
+    const { activities } = this.state  
     axios
       .put(`${backend}/api/activity/edit/${id}`, activity)
-      .then(activities => {})
+      .then(activity => {
+           activities.forEach((element, i)  => {
+        if (activity.data._id === element._id) {
+          activities[i] = activity.data;
+        } 
+        return activities;
+      })
+     this.setState(state => ({
+      ...state.activities,
+      activities: state.activities
+     }))  
+    })
       .catch(err => {
         console.log("We have a problem", err);
       });
