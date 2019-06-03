@@ -8,8 +8,8 @@ import AssignmentCard from "./AssignmentCard";
 import SiteHeader from "../header/SiteHeader";
 import AssignmentModal from "./AssignmentModal";
 
-//let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com";
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+//let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -84,11 +84,26 @@ class AssignmentPage extends Component {
       });
   };
   handleEdit = (id, assignment) => {
+    const { assignments } = this.state;
     console.log("Updated assignment", assignment);
     axios
       .put(`${backend}/api/assignment/${id}`, assignment)
-      .then(response => {})
+      .then(assignment => {
+        assignments.forEach((element, i)  => {
+          if (assignment.data._id === element._id) {
+            assignments[i] = assignment.data;
+          } 
+          return assignments;
+        })
+       this.setState(state => ({
+        ...state.assignments,
+        assignments: state.assignments
+       }))
+      })
       .catch(err => {
+        this.setState({
+        errorMessage: err.response.data.errorMessage
+        })
         console.log("Fire!", err);
       });
   };
