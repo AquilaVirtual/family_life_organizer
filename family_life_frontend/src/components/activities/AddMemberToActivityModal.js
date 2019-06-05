@@ -21,6 +21,7 @@ class AddMemberToActivity extends Component {
   };
 
   addMemberToActivity = () => {
+    
     const { errorMessage, username } = this.state;
     const { addMemberToggle, activity } = this.props;
     const  memberUsername = username.trim();
@@ -43,9 +44,7 @@ class AddMemberToActivity extends Component {
     this.setState({
      username: ""
     });
-    if (!errorMessage) {
-      addMemberToggle();
-    }
+      addMemberToggle();   
   };
 
   render() {

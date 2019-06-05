@@ -84,10 +84,15 @@ class AssignmentPage extends Component {
       });
   };
   handleEdit = (id, assignment) => {
+
+
+    const token = localStorage.getItem("token");    
+    const headers = { headers: { authorization: token } };
+
     const { assignments } = this.state;
     console.log("Updated assignment", assignment);
     axios
-      .put(`${backend}/api/assignment/${id}`, assignment)
+      .put(`${backend}/api/assignment/${id}`, assignment, headers)
       .then(assignment => {
         assignments.forEach((element, i)  => {
           if (assignment.data._id === element._id) {
