@@ -19,7 +19,7 @@
 .ctn {
   display: none;
   position: absolute;
-  margin-left: 13%;
+  margin-left: 14.68%;
 }
 .setting-button:hover {
   cursor: pointer;
@@ -49,4 +49,11 @@
 .password {
   margin-top: 10px;
   padding: 5px;
+}
+
+.ctn-password {
+  display: none;
+  position: absolute;
+  margin-left: 11.3%;
+  margin-top: 9%;
 }

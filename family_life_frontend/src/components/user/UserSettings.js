@@ -284,7 +284,7 @@ class UserSettings extends Component {
                   type="password"
                 />
               </div>
-              <button className="ctn">submit</button>
+              <button className="ctn-password">submit</button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
