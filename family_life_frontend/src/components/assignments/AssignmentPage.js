@@ -8,8 +8,8 @@ import AssignmentCard from "./AssignmentCard";
 import SiteHeader from "../header/SiteHeader";
 import AssignmentModal from "./AssignmentModal";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-//let backend = "https://familylife.herokuapp.com";
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
