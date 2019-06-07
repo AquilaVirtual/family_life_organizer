@@ -77,7 +77,7 @@ class UserSettings extends Component {
       email: "",
       username: ""
     });
-    console.log("Updated infor", info)
+    console.log("Updated infor", info);
     axios
       .put(`${url}/${userId}`, info)
       .then(response => {
@@ -137,12 +137,12 @@ class UserSettings extends Component {
     ) {
       e.target.previousElementSibling.previousElementSibling.previousElementSibling.style.display =
         "block";
-        e.target.previousElementSibling.style.display = "none"
+      e.target.previousElementSibling.style.display = "none";
       e.target.innerHTML = "Change";
     } else {
       e.target.previousElementSibling.previousElementSibling.previousElementSibling.style.display =
         "none";
-        e.target.previousElementSibling.style.display = "block"
+      e.target.previousElementSibling.style.display = "block";
       e.target.innerHTML = "Cancel";
     }
   };
@@ -245,7 +245,12 @@ class UserSettings extends Component {
                 value={this.state.username}
                 onChange={this.handleInputChange}
               />
-              <button className="ctn" onClick={this.handleEmailAndUsernameChange}>submit</button>
+              <button
+                className="ctn"
+                onClick={this.handleEmailAndUsernameChange}
+              >
+                submit
+              </button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change{" "}
               </button>
@@ -260,7 +265,12 @@ class UserSettings extends Component {
                 value={this.state.email}
                 onChange={this.handleInputChange}
               />
-              <button className="ctn" onClick={this.handleEmailAndUsernameChange}>submit</button>
+              <button
+                className="ctn"
+                onClick={this.handleEmailAndUsernameChange}
+              >
+                submit
+              </button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
@@ -285,7 +295,12 @@ class UserSettings extends Component {
                   type="password"
                 />
               </div>
-              <button className="ctn-password" onClick={this.handlPasswordChange}>submit</button>
+              <button
+                className="ctn-password"
+                onClick={this.handlPasswordChange}
+              >
+                submit
+              </button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
