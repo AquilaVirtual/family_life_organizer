@@ -67,34 +67,6 @@ class UserSettings extends Component {
       });
   };
 
-  // handleEmailAndUsernameChange = (e) => {
-  //   e.preventDefault();
-  //   let url = "";
-  //   const userId = localStorage.getItem("userId");
-  //   const info = {
-  //     email: this.state.email,
-  //     username: this.state.username
-  //   };
-  //   // this.setState({
-  //   //   email: "",
-  //   //   username: ""
-  //   // });
-  //   console.log("Updated infor", info);
-  //   axios
-  //     .put(`${url}/${userId}`, info)
-  //     .then(response => {
-  //       this.setState({});
-  //     })
-  //     .catch(err => {
-  //       this.setState({
-  //         errorMessage: err.response.data.errorMessage
-  //       });
-  //     });
-  //     e.target.style.display="none";
-  //     // e.target.previousElementSibling.style.display="none";
-  //     e.target.nextElementSibling.innerHTML="Change"
-  // };
-
   updateUser = () => {
     let user = {};
     if (this.state.current === "username") {
@@ -124,32 +96,6 @@ class UserSettings extends Component {
       showForm: false
     });
   };
-
-  // handlPasswordChange = e => {
-  //   let url = "";
-  //   const userId = localStorage.getItem("userId");
-  //   const info = {
-  //     password: this.state.password,
-  //     newPassword: this.state.newPassword,
-  //     verifyPassword: this.state.verifyPassword
-  //   };
-  //   this.setState({
-  //     password: "",
-  //     newPassword: "",
-  //     verifyPassword: ""
-  //   });
-  //   axios
-  //     .put(`${url}/${userId}`, info)
-  //     .then(response => {
-  //       this.setState({});
-  //     })
-  //     .catch(err => {
-  //       this.setState({
-  //         errorMessage: err.response.data.errorMessage
-  //       });
-  //     });
-  // };
-
   resetPassword = () => {
     let user = {};
     if (this.state.current === "password") {
