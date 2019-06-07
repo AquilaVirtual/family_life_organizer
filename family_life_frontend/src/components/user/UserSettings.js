@@ -77,6 +77,7 @@ class UserSettings extends Component {
       email: "",
       username: ""
     });
+    console.log("Updated infor", info)
     axios
       .put(`${url}/${userId}`, info)
       .then(response => {
@@ -244,7 +245,7 @@ class UserSettings extends Component {
                 value={this.state.username}
                 onChange={this.handleInputChange}
               />
-              <button className="ctn">submit</button>
+              <button className="ctn" onClick={this.handleEmailAndUsernameChange}>submit</button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change{" "}
               </button>
@@ -259,7 +260,7 @@ class UserSettings extends Component {
                 value={this.state.email}
                 onChange={this.handleInputChange}
               />
-              <button className="ctn">submit</button>
+              <button className="ctn" onClick={this.handleEmailAndUsernameChange}>submit</button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
@@ -284,7 +285,7 @@ class UserSettings extends Component {
                   type="password"
                 />
               </div>
-              <button className="ctn-password">submit</button>
+              <button className="ctn-password" onClick={this.handlPasswordChange}>submit</button>
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
