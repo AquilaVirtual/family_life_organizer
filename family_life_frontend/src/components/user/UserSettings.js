@@ -66,17 +66,18 @@ class UserSettings extends Component {
       });
   };
 
-  handleEmailAndUsernameChange = () => {
+  handleEmailAndUsernameChange = (e) => {
+    e.preventDefault();
     let url = "";
     const userId = localStorage.getItem("userId");
     const info = {
       email: this.state.email,
       username: this.state.username
     };
-    this.setState({
-      email: "",
-      username: ""
-    });
+    // this.setState({
+    //   email: "",
+    //   username: ""
+    // });
     console.log("Updated infor", info);
     axios
       .put(`${url}/${userId}`, info)
@@ -88,9 +89,12 @@ class UserSettings extends Component {
           errorMessage: err.response.data.errorMessage
         });
       });
+      e.target.style.display="none";
+      e.target.previousElementSibling.style.display="none";
+      e.target.nextElementSibling.innerHTML="Change"
   };
 
-  handlPasswordChange = () => {
+  handlPasswordChange = (e) => {
     let url = "";
     const userId = localStorage.getItem("userId");
     const info = {
