@@ -125,29 +125,56 @@ class UserSettings extends Component {
     });
   };
 
-  handlPasswordChange = e => {
-    let url = "";
-    const userId = localStorage.getItem("userId");
-    const info = {
-      password: this.state.password,
-      newPassword: this.state.newPassword,
-      verifyPassword: this.state.verifyPassword
-    };
-    this.setState({
-      password: "",
-      newPassword: "",
-      verifyPassword: ""
-    });
+  // handlPasswordChange = e => {
+  //   let url = "";
+  //   const userId = localStorage.getItem("userId");
+  //   const info = {
+  //     password: this.state.password,
+  //     newPassword: this.state.newPassword,
+  //     verifyPassword: this.state.verifyPassword
+  //   };
+  //   this.setState({
+  //     password: "",
+  //     newPassword: "",
+  //     verifyPassword: ""
+  //   });
+  //   axios
+  //     .put(`${url}/${userId}`, info)
+  //     .then(response => {
+  //       this.setState({});
+  //     })
+  //     .catch(err => {
+  //       this.setState({
+  //         errorMessage: err.response.data.errorMessage
+  //       });
+  //     });
+  // };
+
+  resetPassword = () => {
+    let user = {};
+    if (this.state.current === "password") {
+      user = {
+        password: this.state.password,
+        newPassword: this.state.newPassword,
+        verifyPassword: this.state.verifyPassword
+      };
+    }
+    const id = localStorage.getItem("userId");
     axios
-      .put(`${url}/${userId}`, info)
+      .put(`${backend}api/users/resetpassword/${id}`, user)
       .then(response => {
-        this.setState({});
+        // console.log("Getting something for password", response)
       })
       .catch(err => {
+        // console.log(err)
         this.setState({
-          errorMessage: err.response.data.errorMessage
+          error: true,
+          errorMessage: err.message
         });
       });
+    this.setState({
+      showForm: false
+    });
   };
 
   handleInputChange = e => {
