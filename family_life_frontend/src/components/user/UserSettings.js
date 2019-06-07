@@ -123,6 +123,30 @@ class UserSettings extends Component {
     });
   };
 
+  changeEmail = () => {
+    this.setState({
+      current: "email",
+      showForm: true
+    });
+  };
+  changeUsername = () => {
+    this.setState({
+      current: "username",
+      showForm: true
+    });
+  };
+  changePassword = () => {
+    this.setState({
+      current: "password",
+      showForm: true
+    });
+  };
+  cancelSettings = () => {
+    this.setState({
+      showForm: false
+    });
+  };
+
   handleInputChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
