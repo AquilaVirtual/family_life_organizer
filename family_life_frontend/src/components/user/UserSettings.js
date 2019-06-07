@@ -26,6 +26,7 @@ class UserSettings extends Component {
     this.state = {
       user: "",
       username: "",
+      current: "",
       newUsername: "",
       email: "",
       newEmail: "",
@@ -66,35 +67,65 @@ class UserSettings extends Component {
       });
   };
 
-  handleEmailAndUsernameChange = (e) => {
-    e.preventDefault();
-    let url = "";
-    const userId = localStorage.getItem("userId");
-    const info = {
-      email: this.state.email,
-      username: this.state.username
-    };
-    // this.setState({
-    //   email: "",
-    //   username: ""
-    // });
-    console.log("Updated infor", info);
+  // handleEmailAndUsernameChange = (e) => {
+  //   e.preventDefault();
+  //   let url = "";
+  //   const userId = localStorage.getItem("userId");
+  //   const info = {
+  //     email: this.state.email,
+  //     username: this.state.username
+  //   };
+  //   // this.setState({
+  //   //   email: "",
+  //   //   username: ""
+  //   // });
+  //   console.log("Updated infor", info);
+  //   axios
+  //     .put(`${url}/${userId}`, info)
+  //     .then(response => {
+  //       this.setState({});
+  //     })
+  //     .catch(err => {
+  //       this.setState({
+  //         errorMessage: err.response.data.errorMessage
+  //       });
+  //     });
+  //     e.target.style.display="none";
+  //     // e.target.previousElementSibling.style.display="none";
+  //     e.target.nextElementSibling.innerHTML="Change"
+  // };
+
+  updateUser = () => {
+    let user = {};
+    if (this.state.current === "username") {
+      user = {
+        username: this.state.newUsername
+      };
+    } else if (this.state.current === "email") {
+      user = {
+        email: this.state.newEmail
+      };
+    }
+    const id = localStorage.getItem("userId");
     axios
-      .put(`${url}/${userId}`, info)
+      .put(`${backend}api/users/update/${id}`, user)
       .then(response => {
-        this.setState({});
+        // console.log("Getting something", response)
       })
       .catch(err => {
+        // console.log(err)
         this.setState({
+          error: true,
           errorMessage: err.response.data.errorMessage
         });
       });
-      e.target.style.display="none";
-      e.target.previousElementSibling.style.display="none";
-      e.target.nextElementSibling.innerHTML="Change"
+
+    this.setState({
+      showForm: false
+    });
   };
 
-  handlPasswordChange = (e) => {
+  handlPasswordChange = e => {
     let url = "";
     const userId = localStorage.getItem("userId");
     const info = {
