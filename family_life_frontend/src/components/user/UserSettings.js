@@ -178,6 +178,116 @@ class UserSettings extends Component {
       e.target.innerHTML = "Cancel";
     }
   };
+
+  loadContent = () => {
+    switch (this.state.current) {
+      case "password":
+        return (
+          <div className="password-wrap">
+            <div className="login-main">
+              <div className={this.state.error ? "error" : "hidden"}>
+                {this.state.errorMessage}
+              </div>
+              <div className="signup-form">
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    placeholder="Old password"
+                    name="password"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    placeholder="New Password"
+                    name="newPassword"
+                    type="password"
+                    value={this.state.newPassword}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    placeholder="Retype Password"
+                    name="verifyPassword"
+                    type="password"
+                    value={this.state.verifyPassword}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="signup-button"
+              onClick={this.resetPassword}
+            >
+              Confirm
+            </button>
+            <button className="home-button" onClick={this.cancelSettings}>
+              Cancel
+            </button>
+          </div>
+        );
+      case "username":
+        return (
+          <div className="change-form">
+            <div className="form-group">
+              <input
+                className="form-control"
+                placeholder="Username"
+                name="newUsername"
+                type="text"
+                value={this.state.newUsername}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <button
+              type="submit"
+              className="signup-button"
+              onClick={this.updateUser}
+            >
+              Confirm
+            </button>
+            <button className="home-button" onClick={this.cancelSettings}>
+              Cancel
+            </button>
+          </div>
+        );
+      case "email":
+        return (
+          <div className="change-form">
+            <div className="form-group">
+              <input
+                className="form-control"
+                placeholder="Email"
+                name="newEmail"
+                type="text"
+                value={this.state.newEmail}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <button
+              type="submit"
+              className="signup-button"
+              onClick={this.updateUser}
+            >
+              Confirm
+            </button>
+            <button className="home-button" onClick={this.cancelSettings}>
+              Cancel
+            </button>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   openImageUploader = () => {
     const image = document.getElementById("image-uploader");
     image.style.display = "block";
