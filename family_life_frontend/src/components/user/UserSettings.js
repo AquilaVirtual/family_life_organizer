@@ -62,7 +62,7 @@ class UserSettings extends Component {
       .catch(err => {
         //console.log("Error in User Settings", err);
         this.setState({
-          errorMessage: err.response.data.errorMessage
+          // errorMessage: err.response.data.errorMessage
         });
       });
   };
@@ -379,52 +379,21 @@ class UserSettings extends Component {
           <div id="settings">
             <div className="setting">
               <div className="info-label">Username:</div>
-              <div className="info-data_username">{user.username}</div>
-              <input
-                className="input-control"
-                type="type"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChange}
-              />         
+              <div className="info-data_username">{user.username}</div>                    
               <button className="setting-button" onClick={this.toggleChange}>
                 Change{" "}
               </button>
             </div>
             <div className="setting">
               <div className="info-label">Email:</div>
-              <div className="info-data_email"> {user.email}</div>
-              <input
-                className="input-control"
-                type="type"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleInputChange}
-              />          
+              <div className="info-data_email"> {user.email}</div>                 
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
             </div>
             <div className="setting">
               <div className="info-label">Password:</div>
-              <div className="info-label_password">****************** </div>
-              <div className="reset-password">
-                <input
-                  className="password"
-                  placeholder="Current Password"
-                  type="password"
-                />
-                <input
-                  className="password"
-                  placeholder="New Password"
-                  type="password"
-                />
-                <input
-                  className="password"
-                  placeholder="Repeat Password"
-                  type="password"
-                />
-              </div>         
+              <div className="info-label_password">****************** </div>             
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
