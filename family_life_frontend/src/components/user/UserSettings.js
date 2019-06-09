@@ -54,7 +54,7 @@ class UserSettings extends Component {
     axios
       .get(`${url}/${userId}`)
       .then(response => {
-        console.log("the resonse")
+        console.log("the resonse");
         this.setState({
           user: response.data,
           email: response.data.email,
@@ -238,51 +238,47 @@ class UserSettings extends Component {
       case "username":
         return (
           <div className="change-form">
-            <div className="form-group">
-              <input
-                className="form-control"
-                placeholder="Username"
-                name="newUsername"
-                type="text"
-                value={this.state.newUsername}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <button
-              type="submit"
-              className="signup-button"
-              onClick={this.updateUser}
-            >
-              Confirm
-            </button>
-            <button className="home-button" onClick={this.cancelAction}>
-              Cancel
-            </button>
+            <form action="submit" onSubmit={this.updateUser}>
+              <div className="form-group">
+                <input
+                  className="form-control"
+                  placeholder="Username"
+                  name="newUsername"
+                  type="text"
+                  value={this.state.newUsername}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <button type="submit" className="signup-button">
+                Confirm
+              </button>
+              <button className="home-button" onClick={this.cancelAction}>
+                Cancel
+              </button>
+            </form>
           </div>
         );
       case "email":
         return (
           <div className="change-form">
-            <div className="form-group">
-              <input
-                className="form-control"
-                placeholder="Email"
-                name="newEmail"
-                type="text"
-                value={this.state.newEmail}
-                onChange={this.handleInputChange}
-              />
-            </div>
-            <button
-              type="submit"
-              className="signup-button"
-              onClick={this.updateUser}
-            >
-              Confirm
-            </button>
-            <button className="home-button" onClick={this.cancelAction}>
-              Cancel
-            </button>
+            <form action="submit" onSubmit={this.updateUser}>
+              <div className="form-group">
+                <input
+                  className="form-control"
+                  placeholder="Email"
+                  name="newEmail"
+                  type="text"
+                  value={this.state.newEmail}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <button type="submit" className="signup-button">
+                Confirm
+              </button>
+              <button className="home-button" onClick={this.cancelAction}>
+                Cancel
+              </button>
+            </form>
           </div>
         );
       default:
@@ -381,24 +377,25 @@ class UserSettings extends Component {
           <div id="settings">
             <div className="setting">
               <div className="info-label">Username:</div>
-              <div className="info-data_username">{user.username}</div>                    
-              <button className="setting-button" onClick={this.toggleChange}>
+              <div className="info-data_username">{user.username}</div>
+              <button className="setting-button" onClick={this.changeEmail}>
                 Change{" "}
               </button>
             </div>
             <div className="setting">
               <div className="info-label">Email:</div>
-              <div className="info-data_email"> {user.email}</div>                 
-              <button className="setting-button" onClick={this.toggleChange}>
+              <div className="info-data_email"> {user.email}</div>
+              <button className="setting-button" onClick={this.changeEmail}>
                 Change
               </button>{" "}
             </div>
             <div className="setting">
               <div className="info-label">Password:</div>
-              <div className="info-label_password">****************** </div>             
-              <button className="setting-button" onClick={this.toggleChange}>
+              <div className="info-label_password">****************** </div>
+              <button className="setting-button" onClick={this.changePassword}>
                 Change
               </button>{" "}
+              {this.loadContent()}
             </div>
           </div>
         </div>
