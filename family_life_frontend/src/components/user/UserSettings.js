@@ -27,6 +27,7 @@ class UserSettings extends Component {
       user: "",
       username: "",
       current: "",
+      showForm: "",
       newUsername: "",
       email: "",
       newEmail: "",
@@ -53,6 +54,7 @@ class UserSettings extends Component {
     axios
       .get(`${url}/${userId}`)
       .then(response => {
+        console.log("the resonse")
         this.setState({
           user: response.data,
           email: response.data.email,
@@ -141,7 +143,7 @@ class UserSettings extends Component {
       showForm: true
     });
   };
-  cancelSettings = () => {
+  cancelAction = () => {
     this.setState({
       showForm: false
     });
@@ -228,7 +230,7 @@ class UserSettings extends Component {
             >
               Confirm
             </button>
-            <button className="home-button" onClick={this.cancelSettings}>
+            <button className="home-button" onClick={this.cancelAction}>
               Cancel
             </button>
           </div>
@@ -253,7 +255,7 @@ class UserSettings extends Component {
             >
               Confirm
             </button>
-            <button className="home-button" onClick={this.cancelSettings}>
+            <button className="home-button" onClick={this.cancelAction}>
               Cancel
             </button>
           </div>
@@ -278,7 +280,7 @@ class UserSettings extends Component {
             >
               Confirm
             </button>
-            <button className="home-button" onClick={this.cancelSettings}>
+            <button className="home-button" onClick={this.cancelAction}>
               Cancel
             </button>
           </div>
