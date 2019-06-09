@@ -153,33 +153,6 @@ class UserSettings extends Component {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
   };
-  toggleChange = e => {
-    e.preventDefault();
-    if (
-      e.target.previousElementSibling.previousElementSibling.style.display ===
-      "flex"
-    ) {
-      e.target.previousElementSibling.previousElementSibling.style.display =
-        "none";
-    } else {
-      e.target.previousElementSibling.previousElementSibling.style.display =
-        "flex";
-    }
-    if (
-      e.target.previousElementSibling.previousElementSibling
-        .previousElementSibling.style.display === "none"
-    ) {
-      e.target.previousElementSibling.previousElementSibling.previousElementSibling.style.display =
-        "block";
-      e.target.previousElementSibling.style.display = "none";
-      e.target.innerHTML = "Change";
-    } else {
-      e.target.previousElementSibling.previousElementSibling.previousElementSibling.style.display =
-        "none";
-      e.target.previousElementSibling.style.display = "block";
-      e.target.innerHTML = "Cancel";
-    }
-  };
 
   loadContent = () => {
     switch (this.state.current) {
