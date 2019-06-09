@@ -386,13 +386,7 @@ class UserSettings extends Component {
                 name="username"
                 value={this.state.username}
                 onChange={this.handleInputChange}
-              />
-              <button
-                className="ctn"
-                onClick={this.handleEmailAndUsernameChange}
-              >
-                submit
-              </button>
+              />         
               <button className="setting-button" onClick={this.toggleChange}>
                 Change{" "}
               </button>
@@ -406,13 +400,7 @@ class UserSettings extends Component {
                 name="email"
                 value={this.state.email}
                 onChange={this.handleInputChange}
-              />
-              <button
-                className="ctn"
-                onClick={this.handleEmailAndUsernameChange}
-              >
-                submit
-              </button>
+              />          
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
@@ -436,13 +424,7 @@ class UserSettings extends Component {
                   placeholder="Repeat Password"
                   type="password"
                 />
-              </div>
-              <button
-                className="ctn-password"
-                onClick={this.handlPasswordChange}
-              >
-                submit
-              </button>
+              </div>         
               <button className="setting-button" onClick={this.toggleChange}>
                 Change
               </button>{" "}
