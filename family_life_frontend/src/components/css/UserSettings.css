@@ -57,3 +57,11 @@
   margin-left: 11.3%;
   margin-top: 9%;
 }
+
+.form-control {
+}
+.form-group {
+  width: 23%;
+  left: 50%;
+  background-color: #fff;
+}

@@ -159,6 +159,7 @@ class UserSettings extends Component {
       case "password":
         return (
           <div className="password-wrap">
+          <form type="submit" onSubmit={this.resetPassword}>
             <div className="login-main">
               <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
@@ -198,20 +199,20 @@ class UserSettings extends Component {
             </div>
             <button
               type="submit"
-              className="signup-button"
-              onClick={this.resetPassword}
+              className=""           
             >
               Confirm
             </button>
-            <button className="home-button" onClick={this.cancelAction}>
+            <button className="" onClick={this.cancelAction}>
               Cancel
             </button>
+            </form>
           </div>
         );
       case "username":
         return (
           <div className="change-form">
-            <form action="submit" onSubmit={this.updateUser}>
+            <form type="submit" onSubmit={this.updateUser}>
               <div className="form-group">
                 <input
                   className="form-control"
@@ -222,10 +223,10 @@ class UserSettings extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-              <button type="submit" className="signup-button">
+              <button type="submit" className="">
                 Confirm
               </button>
-              <button className="home-button" onClick={this.cancelAction}>
+              <button className="" onClick={this.cancelAction}>
                 Cancel
               </button>
             </form>
@@ -234,7 +235,7 @@ class UserSettings extends Component {
       case "email":
         return (
           <div className="change-form">
-            <form action="submit" onSubmit={this.updateUser}>
+            <form type="submit" onSubmit={this.updateUser}>
               <div className="form-group">
                 <input
                   className="form-control"
@@ -245,10 +246,10 @@ class UserSettings extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
-              <button type="submit" className="signup-button">
+              <button type="submit" className="">
                 Confirm
               </button>
-              <button className="home-button" onClick={this.cancelAction}>
+              <button className="" onClick={this.cancelAction}>
                 Cancel
               </button>
             </form>
@@ -351,7 +352,7 @@ class UserSettings extends Component {
             <div className="setting">
               <div className="info-label">Username:</div>
               <div className="info-data_username">{user.username}</div>
-              <button className="setting-button" onClick={this.changeEmail}>
+              <button className="setting-button" onClick={this.changeUsername}>
                 Change{" "}
               </button>
             </div>
@@ -368,7 +369,7 @@ class UserSettings extends Component {
               <button className="setting-button" onClick={this.changePassword}>
                 Change
               </button>{" "}
-              {this.loadContent()}
+              {this.state.showForm? (this.loadContent()):(null)}
             </div>
           </div>
         </div>
