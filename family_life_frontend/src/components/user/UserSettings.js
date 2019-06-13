@@ -158,102 +158,93 @@ class UserSettings extends Component {
     switch (this.state.current) {
       case "password":
         return (
-          <div className="password-wrap">
           <form type="submit" onSubmit={this.resetPassword}>
-            <div className="login-main">
+            <div className="form-control">
               <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
               </div>
-              <div className="signup-form">
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    placeholder="Old password"
-                    name="password"
-                    type="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    placeholder="New Password"
-                    name="newPassword"
-                    type="password"
-                    value={this.state.newPassword}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    placeholder="Retype Password"
-                    name="verifyPassword"
-                    type="password"
-                    value={this.state.verifyPassword}
-                    onChange={this.handleInputChange}
-                  />
-                </div>
+              <div className="input-wrap">
+                <input
+                  className="input-control"
+                  placeholder="Old password"
+                  name="password"
+                  type="password"
+                  value={this.state.password}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <div className="input-wrap">
+                <input
+                  className="input-control"
+                  placeholder="New Password"
+                  name="newPassword"
+                  type="password"
+                  value={this.state.newPassword}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <div className="input-wrap">
+                <input
+                  className="input-control"
+                  placeholder="Retype Password"
+                  name="verifyPassword"
+                  type="password"
+                  value={this.state.verifyPassword}
+                  onChange={this.handleInputChange}
+                />
+              </div>
+              <div>
+                <button type="submit" className="">
+                  Confirm
+                </button>
+                <button className="" onClick={this.cancelAction}>
+                  Cancel
+                </button>
               </div>
             </div>
-            <button
-              type="submit"
-              className=""           
-            >
-              Confirm
-            </button>
-            <button className="" onClick={this.cancelAction}>
-              Cancel
-            </button>
-            </form>
-          </div>
+          </form>
         );
       case "username":
         return (
-          <div className="change-form">
-            <form type="submit" onSubmit={this.updateUser}>
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  placeholder="Username"
-                  name="newUsername"
-                  type="text"
-                  value={this.state.newUsername}
-                  onChange={this.handleInputChange}
-                />
-              </div>
+          <form type="submit" onSubmit={this.updateUser}>
+            <div className="form-group">
+              <input
+                className="input-control"
+                placeholder="Username"
+                name="newUsername"
+                type="text"
+                value={this.state.newUsername}
+                onChange={this.handleInputChange}
+              />
               <button type="submit" className="">
                 Confirm
               </button>
               <button className="" onClick={this.cancelAction}>
                 Cancel
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
         );
       case "email":
         return (
-          <div className="change-form">
-            <form type="submit" onSubmit={this.updateUser}>
-              <div className="form-group">
-                <input
-                  className="form-control"
-                  placeholder="Email"
-                  name="newEmail"
-                  type="text"
-                  value={this.state.newEmail}
-                  onChange={this.handleInputChange}
-                />
-              </div>
+          <form type="submit" onSubmit={this.updateUser}>
+            <div className="form-group">
+              <input
+                className="input-control"
+                placeholder="Email"
+                name="newEmail"
+                type="text"
+                value={this.state.newEmail}
+                onChange={this.handleInputChange}
+              />
               <button type="submit" className="">
                 Confirm
               </button>
               <button className="" onClick={this.cancelAction}>
                 Cancel
               </button>
-            </form>
-          </div>
+            </div>
+          </form>
         );
       default:
         return null;
@@ -369,7 +360,7 @@ class UserSettings extends Component {
               <button className="setting-button" onClick={this.changePassword}>
                 Change
               </button>{" "}
-              {this.state.showForm? (this.loadContent()):(null)}
+              {this.state.showForm ? this.loadContent() : null}
             </div>
           </div>
         </div>

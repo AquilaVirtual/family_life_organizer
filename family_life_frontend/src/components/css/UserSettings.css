@@ -34,11 +34,7 @@
   margin-left: 10px;
 }
 .input-control {
-  display: none;
-  position: absolute;
-  margin-left: 90px;
-  padding: 5px;
-  border-radius: 2px;
+
 }
 .reset-password {
   display: none;
@@ -59,6 +55,12 @@
 }
 
 .form-control {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  position: absolute;
+  width: 330px;
+  height: 203px;
 }
 .form-group {
   width: 23%;
