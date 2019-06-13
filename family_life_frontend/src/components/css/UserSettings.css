@@ -14,7 +14,9 @@
 }
 .setting-button {
   position: absolute;
-  left: 70%;  
+  left: 70%;
+  width: 74px;
+  height: 28px;
 }
 .ctn {
   display: none;
@@ -38,23 +40,40 @@
   width: 245px;
   margin: 5px;
 }
+.inputs-wrap--big {
+  margin-top: 24px;
+}
+.inputs-wrap--small {
+  margin-top: 14px;
+}
 .reset-password {
-
 }
 .password {
-
 }
-
+.ctn-btn {
+  width: 74px;
+  height: 28px;
+  margin: 5px;
+}
 .form-wrap--big {
   display: flex;
   flex-direction: column;
   border: 1px solid lightgray;
   position: absolute;
+  top: 314px;
+  left: 53%;
   width: 330px;
   height: 203px;
+  z-index: 1;
 }
-.form-wrap--small {
-  width: 23%;
-  left: 50%;
-  background-color: #fff;
+.form-wrap--small { 
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  position: absolute;
+  top: 314px;
+  left: 53%;
+  width: 330px;
+  height: 100px;
+  z-index: 1;
 }

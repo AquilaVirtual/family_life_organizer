@@ -163,7 +163,7 @@ class UserSettings extends Component {
               <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
               </div>
-              <div className="inputs-wrap">
+              <div className="inputs-wrap--big">
               <div className="input-wrap">
                 <input
                   className="input-control"
@@ -196,10 +196,10 @@ class UserSettings extends Component {
               </div>
               </div>
               <div>
-                <button type="submit" className="">
+                <button type="submit" className="ctn-btn">
                   Confirm
                 </button>
-                <button className="" onClick={this.cancelAction}>
+                <button className="ctn-btn" onClick={this.cancelAction}>
                   Cancel
                 </button>
               </div>
@@ -210,6 +210,7 @@ class UserSettings extends Component {
         return (
           <form  onSubmit={this.updateUser}>
             <div className="form-wrap--small">
+              <div className="inputs-wrap--small">
               <input
                 className="input-control"
                 placeholder="Username"
@@ -218,12 +219,15 @@ class UserSettings extends Component {
                 value={this.state.newUsername}
                 onChange={this.handleInputChange}
               />
-              <button type="submit" className="">
+              <div className="ctn-wrap--small">
+              <button type="submit" className="ctn-btn">
                 Confirm
               </button>
-              <button className="" onClick={this.cancelAction}>
+              <button className="ctn-btn" onClick={this.cancelAction}>
                 Cancel
               </button>
+              </div>
+              </div>
             </div>
           </form>
         );
@@ -231,6 +235,7 @@ class UserSettings extends Component {
         return (
           <form  onSubmit={this.updateUser}>
             <div className="form-wrap--small">
+            <div className="inputs-wrap--small">
               <input
                 className="input-control"
                 placeholder="Email"
@@ -239,12 +244,15 @@ class UserSettings extends Component {
                 value={this.state.newEmail}
                 onChange={this.handleInputChange}
               />
-              <button type="submit" className="">
+              <div className="ctn-wrap--small">
+              <button type="submit" className="ctn-btn">
                 Confirm
               </button>
-              <button className="" onClick={this.cancelAction}>
+              <button className="ctn-btn" onClick={this.cancelAction}>
                 Cancel
               </button>
+              </div>
+              </div>
             </div>
           </form>
         );
