@@ -158,11 +158,12 @@ class UserSettings extends Component {
     switch (this.state.current) {
       case "password":
         return (
-          <form type="submit" onSubmit={this.resetPassword}>
-            <div className="form-control">
+          <form onSubmit={this.resetPassword}>
+            <div className="form-wrap--big">
               <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
               </div>
+              <div className="inputs-wrap">
               <div className="input-wrap">
                 <input
                   className="input-control"
@@ -193,6 +194,7 @@ class UserSettings extends Component {
                   onChange={this.handleInputChange}
                 />
               </div>
+              </div>
               <div>
                 <button type="submit" className="">
                   Confirm
@@ -206,8 +208,8 @@ class UserSettings extends Component {
         );
       case "username":
         return (
-          <form type="submit" onSubmit={this.updateUser}>
-            <div className="form-group">
+          <form  onSubmit={this.updateUser}>
+            <div className="form-wrap--small">
               <input
                 className="input-control"
                 placeholder="Username"
@@ -227,8 +229,8 @@ class UserSettings extends Component {
         );
       case "email":
         return (
-          <form type="submit" onSubmit={this.updateUser}>
-            <div className="form-group">
+          <form  onSubmit={this.updateUser}>
+            <div className="form-wrap--small">
               <input
                 className="input-control"
                 placeholder="Email"

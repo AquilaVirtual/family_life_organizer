@@ -34,27 +34,18 @@
   margin-left: 10px;
 }
 .input-control {
-
+  padding: 6px;
+  width: 245px;
+  margin: 5px;
 }
 .reset-password {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  margin: 34px 0 0 90px;
+
 }
 .password {
-  margin-top: 10px;
-  padding: 5px;
+
 }
 
-.ctn-password {
-  display: none;
-  position: absolute;
-  margin-left: 11.3%;
-  margin-top: 9%;
-}
-
-.form-control {
+.form-wrap--big {
   display: flex;
   flex-direction: column;
   border: 1px solid lightgray;
@@ -62,7 +53,7 @@
   width: 330px;
   height: 203px;
 }
-.form-group {
+.form-wrap--small {
   width: 23%;
   left: 50%;
   background-color: #fff;
