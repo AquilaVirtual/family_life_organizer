@@ -66,7 +66,7 @@
   height: 203px;
   z-index: 1;
 }
-.form-wrap--small { 
+.form-wrap--small {
   display: flex;
   flex-direction: column;
   border: 1px solid lightgray;

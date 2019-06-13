@@ -164,36 +164,36 @@ class UserSettings extends Component {
                 {this.state.errorMessage}
               </div>
               <div className="inputs-wrap--big">
-              <div className="input-wrap">
-                <input
-                  className="input-control"
-                  placeholder="Old password"
-                  name="password"
-                  type="password"
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <div className="input-wrap">
-                <input
-                  className="input-control"
-                  placeholder="New Password"
-                  name="newPassword"
-                  type="password"
-                  value={this.state.newPassword}
-                  onChange={this.handleInputChange}
-                />
-              </div>
-              <div className="input-wrap">
-                <input
-                  className="input-control"
-                  placeholder="Retype Password"
-                  name="verifyPassword"
-                  type="password"
-                  value={this.state.verifyPassword}
-                  onChange={this.handleInputChange}
-                />
-              </div>
+                <div className="input-wrap">
+                  <input
+                    className="input-control"
+                    placeholder="Old password"
+                    name="password"
+                    type="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="input-wrap">
+                  <input
+                    className="input-control"
+                    placeholder="New Password"
+                    name="newPassword"
+                    type="password"
+                    value={this.state.newPassword}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
+                <div className="input-wrap">
+                  <input
+                    className="input-control"
+                    placeholder="Retype Password"
+                    name="verifyPassword"
+                    type="password"
+                    value={this.state.verifyPassword}
+                    onChange={this.handleInputChange}
+                  />
+                </div>
               </div>
               <div>
                 <button type="submit" className="ctn-btn">
@@ -208,50 +208,50 @@ class UserSettings extends Component {
         );
       case "username":
         return (
-          <form  onSubmit={this.updateUser}>
+          <form onSubmit={this.updateUser}>
             <div className="form-wrap--small">
               <div className="inputs-wrap--small">
-              <input
-                className="input-control"
-                placeholder="Username"
-                name="newUsername"
-                type="text"
-                value={this.state.newUsername}
-                onChange={this.handleInputChange}
-              />
-              <div className="ctn-wrap--small">
-              <button type="submit" className="ctn-btn">
-                Confirm
-              </button>
-              <button className="ctn-btn" onClick={this.cancelAction}>
-                Cancel
-              </button>
-              </div>
+                <input
+                  className="input-control"
+                  placeholder="Username"
+                  name="newUsername"
+                  type="text"
+                  value={this.state.newUsername}
+                  onChange={this.handleInputChange}
+                />
+                <div className="ctn-wrap--small">
+                  <button type="submit" className="ctn-btn">
+                    Confirm
+                  </button>
+                  <button className="ctn-btn" onClick={this.cancelAction}>
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </form>
         );
       case "email":
         return (
-          <form  onSubmit={this.updateUser}>
+          <form onSubmit={this.updateUser}>
             <div className="form-wrap--small">
-            <div className="inputs-wrap--small">
-              <input
-                className="input-control"
-                placeholder="Email"
-                name="newEmail"
-                type="text"
-                value={this.state.newEmail}
-                onChange={this.handleInputChange}
-              />
-              <div className="ctn-wrap--small">
-              <button type="submit" className="ctn-btn">
-                Confirm
-              </button>
-              <button className="ctn-btn" onClick={this.cancelAction}>
-                Cancel
-              </button>
-              </div>
+              <div className="inputs-wrap--small">
+                <input
+                  className="input-control"
+                  placeholder="Email"
+                  name="newEmail"
+                  type="text"
+                  value={this.state.newEmail}
+                  onChange={this.handleInputChange}
+                />
+                <div className="ctn-wrap--small">
+                  <button type="submit" className="ctn-btn">
+                    Confirm
+                  </button>
+                  <button className="ctn-btn" onClick={this.cancelAction}>
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           </form>
