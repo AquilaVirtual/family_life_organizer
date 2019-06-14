@@ -98,7 +98,7 @@ class UserSettings extends Component {
       showForm: false
     });
   };
-  changePassword = e => {   
+  changePassword = e => {
     e.preventDefault();
     let user = {};
     if (this.state.current === "password") {
@@ -150,7 +150,10 @@ class UserSettings extends Component {
   };
   cancelAction = () => {
     this.setState({
-      showForm: false
+      showForm: false,
+      password: "",
+      newPassword: "",
+      verifyPassword: ""
     });
   };
 
