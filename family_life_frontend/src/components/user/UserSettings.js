@@ -14,8 +14,8 @@ import {
 import SiteHeader from "../header/SiteHeader";
 import Navbar from "../navbar/Navbar";
 
-//let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com";
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+//let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -69,7 +69,7 @@ class UserSettings extends Component {
       });
   };
 
-  updateUser = () => {
+  updateUser = (e) => {
     let user = {};
     if (this.state.current === "username") {
       user = {
@@ -80,11 +80,17 @@ class UserSettings extends Component {
         email: this.state.newEmail
       };
     }
+    console.log("User we'er", user)
     const id = localStorage.getItem("userId");
     axios
-      .put(`${backend}api/users/update/${id}`, user)
+      .put(`${backend}/api/user/update_email_username/${id}`, user)
       .then(response => {
         // console.log("Getting something", response)
+        this.setState({
+          showForm: false,
+          email:"",
+          username:"",
+        });
       })
       .catch(err => {
         // console.log(err)
@@ -92,11 +98,7 @@ class UserSettings extends Component {
           error: true,
           errorMessage: err.response.data.errorMessage
         });
-      });
-
-    this.setState({
-      showForm: false
-    });
+      }); 
   };
   changePassword = e => {
     e.preventDefault();
@@ -153,7 +155,10 @@ class UserSettings extends Component {
       showForm: false,
       password: "",
       newPassword: "",
-      verifyPassword: ""
+      verifyPassword: "",
+      errorMessage: "",
+      email:"",
+      username:"",
     });
   };
 
@@ -214,7 +219,7 @@ class UserSettings extends Component {
         );
       case "username":
         return (
-          <form onSubmit={this.updateUser}>
+          <form type="submit"onSubmit={this.updateUser}>
             <div className="form-wrap--small">
               <div className="inputs-wrap--small">
                 <input
@@ -226,7 +231,7 @@ class UserSettings extends Component {
                   onChange={this.handleInputChange}
                 />
                 <div className="ctn-wrap">
-                  <button type="submit" className="ctn-btn">
+                  <button className="ctn-btn">
                     Confirm
                   </button>
                   <button className="ctn-btn" onClick={this.cancelAction}>
@@ -239,7 +244,7 @@ class UserSettings extends Component {
         );
       case "email":
         return (
-          <form onSubmit={this.updateUser}>
+          <form type="submit"onSubmit={this.updateUser}>
             <div className="form-wrap--small">
               <div className="inputs-wrap--small">
                 <input
@@ -251,7 +256,7 @@ class UserSettings extends Component {
                   onChange={this.handleInputChange}
                 />
                 <div className="ctn-wrap">
-                  <button type="submit" className="ctn-btn">
+                  <button className="ctn-btn">
                     Confirm
                   </button>
                   <button className="ctn-btn" onClick={this.cancelAction}>
