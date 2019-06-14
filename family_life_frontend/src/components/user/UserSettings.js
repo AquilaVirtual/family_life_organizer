@@ -70,6 +70,7 @@ class UserSettings extends Component {
   };
 
   updateUser = (e) => {
+    e.preventDefault();
     let user = {};
     if (this.state.current === "username") {
       user = {
@@ -79,8 +80,7 @@ class UserSettings extends Component {
       user = {
         email: this.state.newEmail
       };
-    }
-    console.log("User we'er", user)
+    }   
     const id = localStorage.getItem("userId");
     axios
       .put(`${backend}/api/user/update_email_username/${id}`, user)
@@ -219,19 +219,22 @@ class UserSettings extends Component {
         );
       case "username":
         return (
-          <form type="submit"onSubmit={this.updateUser}>
+          <form type="submit" onSubmit={this.updateUser}>
             <div className="form-wrap--small">
+            <div className={this.state.error ? "error" : "hidden"}>
+                {this.state.errorMessage}
+              </div>
               <div className="inputs-wrap--small">
                 <input
                   className="input-control"
-                  placeholder="Username"
+                  placeholder="New Username"
                   name="newUsername"
                   type="text"
                   value={this.state.newUsername}
                   onChange={this.handleInputChange}
                 />
                 <div className="ctn-wrap">
-                  <button className="ctn-btn">
+                  <button type="submit" className="ctn-btn">
                     Confirm
                   </button>
                   <button className="ctn-btn" onClick={this.cancelAction}>
@@ -246,17 +249,20 @@ class UserSettings extends Component {
         return (
           <form type="submit"onSubmit={this.updateUser}>
             <div className="form-wrap--small">
+            <div className={this.state.error ? "error" : "hidden"}>
+                {this.state.errorMessage}
+              </div>
               <div className="inputs-wrap--small">
                 <input
                   className="input-control"
-                  placeholder="Email"
+                  placeholder=" New Email"
                   name="newEmail"
                   type="text"
                   value={this.state.newEmail}
                   onChange={this.handleInputChange}
                 />
                 <div className="ctn-wrap">
-                  <button className="ctn-btn">
+                  <button type="submit" className="ctn-btn">
                     Confirm
                   </button>
                   <button className="ctn-btn" onClick={this.cancelAction}>
