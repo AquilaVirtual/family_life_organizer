@@ -98,7 +98,8 @@ class UserSettings extends Component {
       showForm: false
     });
   };
-  resetPassword = () => {
+  changePassword = e => {   
+    e.preventDefault();
     let user = {};
     if (this.state.current === "password") {
       user = {
@@ -107,22 +108,26 @@ class UserSettings extends Component {
         verifyPassword: this.state.verifyPassword
       };
     }
+
+    // console.log("Payload", user)
     const id = localStorage.getItem("userId");
     axios
-      .put(`${backend}api/users/resetpassword/${id}`, user)
+      .put(`${backend}/api/user/password_change/${id}`, user)
       .then(response => {
         // console.log("Getting something for password", response)
+        this.setState({
+          showForm: false,
+          password: "",
+          newPassword: "",
+          verifyPassword: ""
+        });
       })
       .catch(err => {
-        // console.log(err)
         this.setState({
           error: true,
-          errorMessage: err.message
+          errorMessage: err.response.data.errorMessage
         });
       });
-    this.setState({
-      showForm: false
-    });
   };
 
   changeEmail = () => {
@@ -137,7 +142,7 @@ class UserSettings extends Component {
       showForm: true
     });
   };
-  changePassword = () => {
+  changePasswordActive = () => {
     this.setState({
       current: "password",
       showForm: true
@@ -158,7 +163,7 @@ class UserSettings extends Component {
     switch (this.state.current) {
       case "password":
         return (
-          <form onSubmit={this.resetPassword}>
+          <form type="submit" onSubmit={this.changePassword}>
             <div className="form-wrap--big">
               <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
@@ -187,7 +192,7 @@ class UserSettings extends Component {
                 <div className="input-wrap">
                   <input
                     className="input-control"
-                    placeholder="Retype Password"
+                    placeholder="Re-type Password"
                     name="verifyPassword"
                     type="password"
                     value={this.state.verifyPassword}
@@ -195,10 +200,8 @@ class UserSettings extends Component {
                   />
                 </div>
               </div>
-              <div>
-                <button type="submit" className="ctn-btn">
-                  Confirm
-                </button>
+              <div className="ctn-wrap">
+                <button className="ctn-btn">Confirm</button>
                 <button className="ctn-btn" onClick={this.cancelAction}>
                   Cancel
                 </button>
@@ -219,7 +222,7 @@ class UserSettings extends Component {
                   value={this.state.newUsername}
                   onChange={this.handleInputChange}
                 />
-                <div className="ctn-wrap--small">
+                <div className="ctn-wrap">
                   <button type="submit" className="ctn-btn">
                     Confirm
                   </button>
@@ -244,7 +247,7 @@ class UserSettings extends Component {
                   value={this.state.newEmail}
                   onChange={this.handleInputChange}
                 />
-                <div className="ctn-wrap--small">
+                <div className="ctn-wrap">
                   <button type="submit" className="ctn-btn">
                     Confirm
                   </button>
@@ -367,7 +370,10 @@ class UserSettings extends Component {
             <div className="setting">
               <div className="info-label">Password:</div>
               <div className="info-label_password">****************** </div>
-              <button className="setting-button" onClick={this.changePassword}>
+              <button
+                className="setting-button"
+                onClick={this.changePasswordActive}
+              >
                 Change
               </button>{" "}
               {this.state.showForm ? this.loadContent() : null}

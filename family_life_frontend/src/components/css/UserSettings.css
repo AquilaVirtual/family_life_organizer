@@ -17,6 +17,7 @@
   left: 70%;
   width: 74px;
   height: 28px;
+  border-radius: 1px;
 }
 .ctn {
   display: none;
@@ -39,9 +40,15 @@
   padding: 6px;
   width: 245px;
   margin: 5px;
+  border-radius: 5px
 }
 .inputs-wrap--big {
   margin-top: 24px;
+}
+.error {
+  position: absolute;
+  left: 34%;
+  color: red;
 }
 .inputs-wrap--small {
   margin-top: 14px;
@@ -54,6 +61,10 @@
   width: 74px;
   height: 28px;
   margin: 5px;
+  border-radius: 1px;
+}
+.ctn-wrap {
+  margin-left: 84px;
 }
 .form-wrap--big {
   display: flex;
