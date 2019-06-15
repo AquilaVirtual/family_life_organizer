@@ -10,6 +10,7 @@ import AssignmentPage from "./components/assignments/AssignmentPage";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import UserSettings from "./components/user/UserSettings";
+import ResetPassword from "./components/user/ResetPassword";
 // import Navbar from "./components/navbar/Navbar";
 
 import "./App.css";
@@ -32,6 +33,7 @@ class App extends Component {
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />
         <Route exact path="/homeworks" component={AssignmentPage} />
+        <Route exact path="/reset_password" component={ResetPassword} />
       </div>
     );
   }
