@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../css/UserSettings.css";
+import { displaySuccessBox } from "../services/SuccessBox"
 
 import {
   Segment,
@@ -91,6 +92,7 @@ class UserSettings extends Component {
           email:"",
           username:"",
         });
+        displaySuccessBox(200, "Password")
       })
       .catch(err => {
         // console.log(err)
@@ -123,6 +125,7 @@ class UserSettings extends Component {
           newPassword: "",
           verifyPassword: ""
         });
+        displaySuccessBox(200, "Password")
       })
       .catch(err => {
         this.setState({

@@ -15,7 +15,7 @@
       } else {
         textBox.parentNode.insertBefore(successBox, textBox.nextSibling);
       }
-      SuccessTimeout = window.setTimeout(function() {
+      SuccessTimeout = window.setTimeout(() => {
         successBox.parentNode.removeChild(successBox);
         SuccessTimeout = -1;
       }, 4000);
