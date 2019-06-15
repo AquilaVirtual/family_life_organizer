@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../css/UserSettings.css";
-import { displaySuccessBox } from "../services/SuccessBox"
+import { displaySuccessBox } from "../services/SuccessBox";
 
 import {
   Segment,
@@ -70,10 +70,10 @@ class UserSettings extends Component {
       });
   };
 
-  updateUser = (e) => {
+  updateUser = e => {
     e.preventDefault();
     let user = {};
-    let info ="";
+    let info = "";
     if (this.state.current === "username") {
       user = {
         username: this.state.newUsername
@@ -82,7 +82,7 @@ class UserSettings extends Component {
       user = {
         email: this.state.newEmail
       };
-    }   
+    }
     const id = localStorage.getItem("userId");
     axios
       .put(`${backend}/api/user/update_email_username/${id}`, user)
@@ -90,10 +90,10 @@ class UserSettings extends Component {
         // console.log("Getting something", response)
         this.setState({
           showForm: false,
-          email:"",
-          username:"",
+          email: "",
+          username: ""
         });
-        displaySuccessBox(response.status, "Password")
+        displaySuccessBox(response.status, "Password");
       })
       .catch(err => {
         // console.log(err)
@@ -101,12 +101,12 @@ class UserSettings extends Component {
           error: true,
           errorMessage: err.response.data.errorMessage
         });
-      }); 
+      });
   };
   changePassword = e => {
     e.preventDefault();
-    let user = {}
-    let info ="";
+    let user = {};
+    let info = "";
     if (this.state.current === "password") {
       user = {
         password: this.state.password,
@@ -127,7 +127,7 @@ class UserSettings extends Component {
           newPassword: "",
           verifyPassword: ""
         });
-        displaySuccessBox(response.status, "Password")
+        displaySuccessBox(response.status, "Password");
       })
       .catch(err => {
         this.setState({
@@ -162,8 +162,8 @@ class UserSettings extends Component {
       newPassword: "",
       verifyPassword: "",
       errorMessage: "",
-      email:"",
-      username:"",
+      email: "",
+      username: ""
     });
   };
 
@@ -226,7 +226,7 @@ class UserSettings extends Component {
         return (
           <form type="submit" onSubmit={this.updateUser}>
             <div className="form-wrap--small">
-            <div className={this.state.error ? "error" : "hidden"}>
+              <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
               </div>
               <div className="inputs-wrap--small">
@@ -252,9 +252,9 @@ class UserSettings extends Component {
         );
       case "email":
         return (
-          <form type="submit"onSubmit={this.updateUser}>
+          <form type="submit" onSubmit={this.updateUser}>
             <div className="form-wrap--small">
-            <div className={this.state.error ? "error" : "hidden"}>
+              <div className={this.state.error ? "error" : "hidden"}>
                 {this.state.errorMessage}
               </div>
               <div className="inputs-wrap--small">
