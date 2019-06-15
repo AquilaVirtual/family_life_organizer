@@ -73,6 +73,7 @@ class UserSettings extends Component {
   updateUser = (e) => {
     e.preventDefault();
     let user = {};
+    let info ="";
     if (this.state.current === "username") {
       user = {
         username: this.state.newUsername
@@ -92,7 +93,7 @@ class UserSettings extends Component {
           email:"",
           username:"",
         });
-        displaySuccessBox(200, "Password")
+        displaySuccessBox(response.status, "Password")
       })
       .catch(err => {
         // console.log(err)
@@ -104,7 +105,8 @@ class UserSettings extends Component {
   };
   changePassword = e => {
     e.preventDefault();
-    let user = {};
+    let user = {}
+    let info ="";
     if (this.state.current === "password") {
       user = {
         password: this.state.password,
@@ -125,7 +127,7 @@ class UserSettings extends Component {
           newPassword: "",
           verifyPassword: ""
         });
-        displaySuccessBox(200, "Password")
+        displaySuccessBox(response.status, "Password")
       })
       .catch(err => {
         this.setState({
