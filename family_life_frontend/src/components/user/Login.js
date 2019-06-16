@@ -137,6 +137,7 @@ class LogIn extends Component {
           <Button className="form-controlBtn" type="submit" primary>
             Submit
           </Button>
+          <span className="forgotpassword" onClick={() => { this.props.history.push("/forgotpassword")}}>Forgot password?</span>
         </Form>
       </div>
     );

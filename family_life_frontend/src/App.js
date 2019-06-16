@@ -33,7 +33,7 @@ class App extends Component {
         <Route exact path="/calendar" component={CalendarPage} />
         <Route exact path="/chores" component={ChorePage} />
         <Route exact path="/homeworks" component={AssignmentPage} />
-        <Route exact path="/reset_password" component={ResetPassword} />
+        <Route exact path="/forgotpassword" component={ResetPassword} />
       </div>
     );
   }

@@ -3,8 +3,8 @@ import axios from "axios";
 
 import "../css/ResetPassword.css";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-//let backend = "https://familylife.herokuapp.com";
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -30,7 +30,7 @@ class ResetPassword extends Component {
     };
    console.log("Info", email)
     axios
-      .post(`${backend}/api/user/reset_password`, email)
+      .post(`${backend}/api/user/forgotpassword`, email)
       .then(response => {
         // console.log("Getting something", response)
         this.setState({

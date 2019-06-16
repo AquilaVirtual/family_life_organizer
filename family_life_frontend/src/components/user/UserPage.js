@@ -10,8 +10,8 @@ import { displaySuccessBox } from "../services/SuccessBox"
 
 import "../css/UserPage.css";
 
-let backend = process.env.REACT_APP_LOCAL_BACKEND;
-//let backend = "https://familylife.herokuapp.com";
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = "https://familylife.herokuapp.com";
 //  if (typeof backend !== 'string') {
 //    backend = heroku;
 //  }

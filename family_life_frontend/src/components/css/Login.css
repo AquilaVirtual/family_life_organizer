@@ -64,6 +64,12 @@
   color: rgba(11,102,203 ,.8 );
 }
 
+.forgotpassword {
+  color: blue;
+}
+.forgotpassword:hover {
+  cursor: pointer;
+}
 @media (max-width: 1680px) {
 .form-group {
   width: 46%;
