@@ -3,8 +3,8 @@ import axios from "axios";
 
 import "../css/ResetPassword.css";
 
-//let backend = process.env.REACT_APP_LOCAL_BACKEND;
-let backend = "https://familylife.herokuapp.com";
+let backend = process.env.REACT_APP_LOCAL_BACKEND;
+//let backend = "https://familylife.herokuapp.com";
 // if (typeof backend !== 'string') {
 //   backend = heroku;
 // }
@@ -28,9 +28,9 @@ class ResetPassword extends Component {
     let email = {
         email: this.state.email
     };
-
+   console.log("Info", email)
     axios
-      .put(`${backend}/api/user/reset_password`, email)
+      .post(`${backend}/api/user/reset_password`, email)
       .then(response => {
         // console.log("Getting something", response)
         this.setState({
@@ -56,7 +56,7 @@ class ResetPassword extends Component {
           to reset your password.
         </div>
         <div className="form-wrapper">
-          <label forHtml="">Email address</label>
+          <label forhtml="">Email address</label>
           <input
             type="text"
             placeholder="Email"
@@ -65,7 +65,7 @@ class ResetPassword extends Component {
             value={this.state.email}
             onChange={this.handleInputChange}
           />
-          <input type="submit" value="Continue" className="btn-block" />
+          <input type="submit" value="Continue" className="btn-block" onClick={this.resetPassword}/>
           <span className="danger">You must enter a valid email address.</span>
         </div>
       </div>
