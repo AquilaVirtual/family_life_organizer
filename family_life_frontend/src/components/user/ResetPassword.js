@@ -1,6 +1,13 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import "../css/ResetPassword.css";
+
+//let backend = process.env.REACT_APP_LOCAL_BACKEND;
+let backend = "https://familylife.herokuapp.com";
+// if (typeof backend !== 'string') {
+//   backend = heroku;
+// }
 
 class ResetPassword extends Component {
   constructor() {
@@ -14,6 +21,27 @@ class ResetPassword extends Component {
   handleInputChange = event => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  resetPassword = e => {
+    e.preventDefault();
+    let user = {};
+
+    axios
+      .put(`${backend}/api/user/reset_password`, user)
+      .then(response => {
+        // console.log("Getting something", response)
+        this.setState({
+          email: ""
+        });
+      })
+      .catch(err => {
+        // console.log(err)
+        this.setState({
+          error: true,
+          errorMessage: err.response.data.errorMessage
+        });
+      });
   };
   render() {
     return (
