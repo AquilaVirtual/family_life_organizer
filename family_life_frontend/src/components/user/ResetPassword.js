@@ -25,10 +25,12 @@ class ResetPassword extends Component {
 
   resetPassword = e => {
     e.preventDefault();
-    let user = {};
+    let email = {
+        email: this.state.email
+    };
 
     axios
-      .put(`${backend}/api/user/reset_password`, user)
+      .put(`${backend}/api/user/reset_password`, email)
       .then(response => {
         // console.log("Getting something", response)
         this.setState({
