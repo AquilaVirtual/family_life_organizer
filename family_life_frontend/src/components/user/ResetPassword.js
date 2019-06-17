@@ -59,8 +59,8 @@ class ResetPassword extends Component {
       case "passwordsent":
         return (
           <div className="instruction-container"> 
-            <header>
-              <h1 className="instruction-header">Password request sent</h1>
+            <header  className="instruction-header">
+              <h1 >Password request sent</h1>
             </header>
             <div className="content-wrapper">
             <i className="fas fa-envelope-open-text"></i>
@@ -79,16 +79,18 @@ class ResetPassword extends Component {
 
       default:
         return (
-          <div>
-            <div className="center-text">
+          <div className="instruction-container">
+          <header className="instruction-header">
               <h1>Forgot your Password?</h1>
-            </div>
-            <div>
+            </header>
+            <div className="content-wrapper">
+            <i className="fas fa-envelope-open-text"></i>
+            <div className="instruction">
               Please enter your email address below, and we'll send you and an
               email to reset your password.
             </div>
-            <div className="form-wrapper">
-              <label forhtml="">Email address</label>
+            </div>
+            <div className="form-wrapper">     
               <input
                 type="text"
                 placeholder="Email"
@@ -98,8 +100,8 @@ class ResetPassword extends Component {
                 onChange={this.handleInputChange}
               />
               <footer className="formFooter">
-              <button onClick={()=>{this.props.history.push("/login")}} className="loginhelp-btn" >Back</button>           
-              <button onClick={this.resetPassword} className="loginhelp-btn" >Submit</button>   
+              <button onClick={()=>{this.props.history.push("/login")}} className="loginhelp-btn left">Back</button>           
+              <button onClick={this.resetPassword} className="loginhelp-btn right" >Submit</button>   
               </footer>
               <span className="danger">
                 You must enter a valid email address.
