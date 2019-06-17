@@ -15,7 +15,8 @@ class ResetPassword extends Component {
     this.state = {
       email: "",
       error: false,
-      errorMessage: ""
+      errorMessage: "",
+      current: ""
     };
   }
   handleInputChange = event => {
@@ -26,16 +27,19 @@ class ResetPassword extends Component {
   resetPassword = e => {
     e.preventDefault();
     let email = {
-        email: this.state.email
+      email: this.state.email
     };
-   console.log("Info", email)
+    console.log("Info", email);
     axios
       .post(`${backend}/api/user/forgotpassword`, email)
       .then(response => {
         // console.log("Getting something", response)
         this.setState({
-          email: ""
+          email: "",
+          current: "passwordsent"
+
         });
+        this.loadContent();
       })
       .catch(err => {
         // console.log(err)
@@ -45,31 +49,55 @@ class ResetPassword extends Component {
         });
       });
   };
+
+  loadContent = () => {
+    switch (this.state) {
+      case "passwordsent":
+        return (
+          <div>
+            <p>
+              We've emailed you instructions on how to reset your password. If
+              you don't see it, don't forget to check your spam folder.
+            </p>
+          </div>
+        );
+
+      default:
+        return (
+          <div>
+            <div className="center-text">
+              <h1>Forgot your Password?</h1>
+            </div>
+            <div>
+              Please enter your email address below, and we'll send you and an
+              email to reset your password.
+            </div>
+            <div className="form-wrapper">
+              <label forhtml="">Email address</label>
+              <input
+                type="text"
+                placeholder="Email"
+                className="reset-input--control"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleInputChange}
+              />
+              <input
+                type="submit"
+                value="Continue"
+                className="btn-block"
+                onClick={this.resetPassword}
+              />
+              <span className="danger">
+                You must enter a valid email address.
+              </span>
+            </div>
+          </div>
+        );
+    }
+  };
   render() {
-    return (
-      <div className="reset-container">
-        <div className="center-text">
-          <h1>Forgot your Password?</h1>
-        </div>
-        <div>
-          Please enter your email address below, and we'll send you and an email
-          to reset your password.
-        </div>
-        <div className="form-wrapper">
-          <label forhtml="">Email address</label>
-          <input
-            type="text"
-            placeholder="Email"
-            className="reset-input--control"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-          />
-          <input type="submit" value="Continue" className="btn-block" onClick={this.resetPassword}/>
-          <span className="danger">You must enter a valid email address.</span>
-        </div>
-      </div>
-    );
+    return <div className="reset-container">{this.loadContent()}</div>;
   }
 }
 
