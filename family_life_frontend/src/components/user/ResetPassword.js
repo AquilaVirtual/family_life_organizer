@@ -17,7 +17,7 @@ class ResetPassword extends Component {
       email: "",
       error: false,
       errorMessage: "",
-      current: "passwordsent"
+      current: ""
     };
   }
   handleInputChange = event => {
@@ -58,15 +58,18 @@ class ResetPassword extends Component {
     switch (this.state.current) {
       case "passwordsent":
         return (
-          <div>
+          <div className="instruction-container"> 
             <header>
               <h1 className="instruction-header">Password request sent</h1>
             </header>
+            <div className="content-wrapper">
+            <i className="fas fa-envelope-open-text"></i>
             <div className="instruction">
               <p>
                 We've emailed you instructions on how to reset your password. If
                 you don't see it, don't forget to check your spam folder.
               </p>
+            </div>
             </div>
             <footer className="formFooter">
               <button className="loginhelp-btn" onClick={()=>{this.props.history.push("/login")}}>Go to Log In</button>
