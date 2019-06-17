@@ -94,7 +94,7 @@ class DesktopContainer extends Component {
                       <NavLink to="/login">
                         {" "}
                         <Button as="div" inverted={!fixed}>
-                          Log in
+                          Log In
                         </Button>
                       </NavLink>
                       <NavLink to="/register">

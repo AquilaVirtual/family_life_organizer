@@ -16,7 +16,7 @@ class ResetPassword extends Component {
       email: "",
       error: false,
       errorMessage: "",
-      current: ""
+      current: "passwordsent"
     };
   }
   handleInputChange = event => {
@@ -24,6 +24,11 @@ class ResetPassword extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  changeState = () => {
+      this.setState({
+          current: "passwordsent"
+      })
+  }
   resetPassword = e => {
     e.preventDefault();
     let email = {
@@ -33,13 +38,12 @@ class ResetPassword extends Component {
     axios
       .post(`${backend}/api/user/forgotpassword`, email)
       .then(response => {
-        // console.log("Getting something", response)
+         console.log("Getting something", response)
         this.setState({
-          email: "",
-          current: "passwordsent"
+             email: "",        
 
         });
-        this.loadContent();
+        this.changeState();
       })
       .catch(err => {
         // console.log(err)
@@ -51,14 +55,19 @@ class ResetPassword extends Component {
   };
 
   loadContent = () => {
-    switch (this.state) {
+    switch (this.state.current) {
       case "passwordsent":
         return (
           <div>
+              <div className="instruction">
             <p>
               We've emailed you instructions on how to reset your password. If
               you don't see it, don't forget to check your spam folder.
             </p>
+            </div>
+            <footer className="formFooter">
+                <button className="loginhelp-btn">Go to Log In</button>
+            </footer>
           </div>
         );
 
