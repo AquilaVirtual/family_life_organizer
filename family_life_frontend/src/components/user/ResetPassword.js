@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom"
 import axios from "axios";
 
 import "../css/ResetPassword.css";
@@ -25,10 +26,10 @@ class ResetPassword extends Component {
   };
 
   changeState = () => {
-      this.setState({
-          current: "passwordsent"
-      })
-  }
+    this.setState({
+      current: "passwordsent"
+    });
+  };
   resetPassword = e => {
     e.preventDefault();
     let email = {
@@ -38,10 +39,9 @@ class ResetPassword extends Component {
     axios
       .post(`${backend}/api/user/forgotpassword`, email)
       .then(response => {
-         console.log("Getting something", response)
+        console.log("Getting something", response);
         this.setState({
-             email: "",        
-
+          email: ""
         });
         this.changeState();
       })
@@ -59,14 +59,17 @@ class ResetPassword extends Component {
       case "passwordsent":
         return (
           <div>
-              <div className="instruction">
-            <p>
-              We've emailed you instructions on how to reset your password. If
-              you don't see it, don't forget to check your spam folder.
-            </p>
+            <header>
+              <h1 className="instruction-header">Password request sent</h1>
+            </header>
+            <div className="instruction">
+              <p>
+                We've emailed you instructions on how to reset your password. If
+                you don't see it, don't forget to check your spam folder.
+              </p>
             </div>
             <footer className="formFooter">
-                <button className="loginhelp-btn">Go to Log In</button>
+              <button className="loginhelp-btn" onClick={()=>{this.props.history.push("/login")}}>Go to Log In</button>
             </footer>
           </div>
         );
@@ -110,4 +113,4 @@ class ResetPassword extends Component {
   }
 }
 
-export default ResetPassword;
+export default withRouter(ResetPassword);
