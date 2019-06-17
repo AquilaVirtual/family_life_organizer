@@ -97,12 +97,10 @@ class ResetPassword extends Component {
                 value={this.state.email}
                 onChange={this.handleInputChange}
               />
-              <input
-                type="submit"
-                value="Continue"
-                className="btn-block"
-                onClick={this.resetPassword}
-              />
+              <footer className="formFooter">
+              <button onClick={()=>{this.props.history.push("/login")}} className="loginhelp-btn" >Back</button>           
+              <button onClick={this.resetPassword} className="loginhelp-btn" >Submit</button>   
+              </footer>
               <span className="danger">
                 You must enter a valid email address.
               </span>
