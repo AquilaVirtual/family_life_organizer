@@ -17,6 +17,7 @@ class ResetPassword extends Component {
       email: "",
       error: false,
       errorMessage: "",
+      empty: false,
       current: ""
     };
   }
@@ -31,6 +32,9 @@ class ResetPassword extends Component {
     });
   };
   resetPassword = e => {
+      if(this.state.email !=="") {
+
+    
     e.preventDefault();
     let email = {
       email: this.state.email
@@ -52,6 +56,12 @@ class ResetPassword extends Component {
           errorMessage: err.response.data.errorMessage
         });
       });
+    }
+    else {
+        this.setState({
+            empty: true
+        })
+    }
   };
 
   loadContent = () => {
@@ -86,12 +96,14 @@ class ResetPassword extends Component {
             <div className="content-wrapper">
             <i className="fas fa-envelope-open-text"></i>
             <div className="instruction">
-              Please enter your email address below, and we'll send you and an
+              Please enter your email address below, and we'll send you an
               email to reset your password.
             </div>
             </div>
-            <div className="form-wrapper">     
+            <div className="form-wrapper">   
+                <div className="reset-input-wrapper">  
               <input
+              required
                 type="text"
                 placeholder="Email"
                 className="reset-input--control"
@@ -99,13 +111,15 @@ class ResetPassword extends Component {
                 value={this.state.email}
                 onChange={this.handleInputChange}
               />
+              </div>
+              { this.state.empty ? ( <span className="danger">
+                You must enter a valid email address.
+              </span>):(null)          
+              }
               <footer className="formFooter">
               <button onClick={()=>{this.props.history.push("/login")}} className="loginhelp-btn left">Back</button>           
               <button onClick={this.resetPassword} className="loginhelp-btn right" >Submit</button>   
-              </footer>
-              <span className="danger">
-                You must enter a valid email address.
-              </span>
+              </footer>          
             </div>
           </div>
         );
