@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
 
+import { failBox } from "../services/FailBox";
+
 import "../css/ResetPassword.css";
 
 //let backend = process.env.REACT_APP_LOCAL_BACKEND;
@@ -44,6 +46,9 @@ class ResetPassword extends Component {
       let email = {
         email: this.state.email
       };
+      this.setState({
+        empty: false
+      });
       console.log("Info", email);
       axios
         .post(`${backend}/api/user/forgotpassword`, email)
@@ -55,11 +60,12 @@ class ResetPassword extends Component {
           this.changeState();
         })
         .catch(err => {
-          // console.log(err)
+         console.log(err.response.data)
           this.setState({
             error: true,
             errorMessage: err.response.data.errorMessage
           });
+          failBox(500, this.state.errorMessage)
         });
     } else {
       this.setState({
@@ -73,7 +79,7 @@ class ResetPassword extends Component {
       case "passwordsent":
         return (
           <div className="instruction-container">
-            <header className="instruction-header">
+            <header id="instruction-header">
               <h1>Password request sent</h1>
             </header>
             <div className="content-wrapper">
@@ -101,7 +107,7 @@ class ResetPassword extends Component {
       default:
         return (
           <div className="instruction-container">
-            <header className="instruction-header">
+            <header id="instruction-header">
               <h1>Forgot your Password?</h1>
             </header>
             <div className="content-wrapper">
