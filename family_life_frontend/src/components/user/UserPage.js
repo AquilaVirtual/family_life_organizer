@@ -6,7 +6,7 @@ import UserCard from "./UserCard";
 import MemberModal from "./MemberModal";
 import Navbar from "../navbar/Navbar";
 import SiteHeader from "../header/SiteHeader";
-import { displaySuccessBox } from "../services/SuccessBox"
+import { displaySuccessBox } from "../services/SuccessBox";
 
 import "../css/UserPage.css";
 
@@ -119,7 +119,7 @@ class UserPage extends Component {
         }}
       >
         <Navbar />
-        <SiteHeader name="Users" />        
+        <SiteHeader name="Users" />
         {/* Only give ability to add family members if logged-in user is a parent */}
         {localStorage.getItem("accountType") === "Primary" ||
         localStorage.getItem("accountType") === "Spouse" ? (

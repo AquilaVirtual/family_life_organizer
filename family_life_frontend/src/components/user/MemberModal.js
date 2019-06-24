@@ -64,7 +64,7 @@ class MemberModal extends Component {
     handleModalToggle();
     // //Temporary: here we alert primary holder with password of newly added family member.
     // //When app is fully functional, this new member informatiom will be sent via email or text message to newly added member.
-   alert(newMember.password);
+    alert(newMember.password);
   };
 
   render() {

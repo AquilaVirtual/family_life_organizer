@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 
-import {
-  Segment,
-  Image,
-  Header,
-  Icon,
-  Confirm,
-} from "semantic-ui-react";
+import { Segment, Image, Header, Icon, Confirm } from "semantic-ui-react";
 
 class UserCard extends Component {
   state = {

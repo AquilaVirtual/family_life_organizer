@@ -60,12 +60,12 @@ class ResetPassword extends Component {
           this.changeState();
         })
         .catch(err => {
-         console.log(err.response.data)
+          console.log(err.response.data);
           this.setState({
             error: true,
             errorMessage: err.response.data.errorMessage
           });
-          failBox(500, this.state.errorMessage)
+          failBox(500, this.state.errorMessage);
         });
     } else {
       this.setState({
@@ -79,7 +79,7 @@ class ResetPassword extends Component {
       case "passwordsent":
         return (
           <div className="instruction-container">
-            <header id="instruction-header">
+            <header className="instruction-header">
               <h1>Password request sent</h1>
             </header>
             <div className="content-wrapper">
