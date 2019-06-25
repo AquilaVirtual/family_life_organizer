@@ -40,3 +40,9 @@
     margin: 1rem 0 0 0;
   }
 }
+
+@media (max-width: 1118px) {
+  #header--heading {
+    font-size: 4rem;
+  }
+}
