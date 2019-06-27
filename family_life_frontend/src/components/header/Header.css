@@ -46,3 +46,8 @@
     font-size: 4rem;
   }
 }
+@media (max-width: 996px) {
+  #header--heading {
+    font-size: 3rem;
+  }
+}

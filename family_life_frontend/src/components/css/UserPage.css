@@ -1,13 +1,14 @@
 .success {
-    border: 1px solid #f39389;
-    border-radius: 2px;
-    padding: 10px;
-    position: absolute;
-    background-color: rgb(86, 207, 86);
-    color: white;   
-  }
+  border: 1px solid #f39389;
+  border-radius: 2px;
+  padding: 10px;
+  position: absolute;
+  background-color: rgb(86, 207, 86);
+  color: white;
+}
 
-  @media (max-width: 980px) {
+@media (max-width: 980px) {
   .ui.primary.button {
-      z-index: 8;
-  }}
+    z-index: 8;
+  }
+}
