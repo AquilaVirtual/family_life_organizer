@@ -36,7 +36,10 @@ class AssignmentPage extends Component {
         });
       })
       .catch(err => {
-        console.log("Something Bahd!", err);
+        this.setState({
+          error: true,
+          errorMessage: err.response.data.errorMessage
+        });
       });
   }
   handleModalToggle = (action, member) => {
@@ -84,9 +87,7 @@ class AssignmentPage extends Component {
       });
   };
   handleEdit = (id, assignment) => {
-
-
-    const token = localStorage.getItem("token");    
+    const token = localStorage.getItem("token");
     const headers = { headers: { authorization: token } };
 
     const { assignments } = this.state;
@@ -94,21 +95,21 @@ class AssignmentPage extends Component {
     axios
       .put(`${backend}/api/assignment/${id}`, assignment, headers)
       .then(assignment => {
-        assignments.forEach((element, i)  => {
+        assignments.forEach((element, i) => {
           if (assignment.data._id === element._id) {
             assignments[i] = assignment.data;
-          } 
+          }
           return assignments;
-        })
-       this.setState(state => ({
-        ...state.assignments,
-        assignments: state.assignments
-       }))
+        });
+        this.setState(state => ({
+          ...state.assignments,
+          assignments: state.assignments
+        }));
       })
       .catch(err => {
         this.setState({
-        errorMessage: err.response.data.errorMessage
-        })
+          errorMessage: err.response.data.errorMessage
+        });
         console.log("Fire!", err);
       });
   };

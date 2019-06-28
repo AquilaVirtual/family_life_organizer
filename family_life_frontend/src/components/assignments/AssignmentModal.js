@@ -41,6 +41,7 @@ class AssignmentModal extends Component {
   handleSubmit = () => {
     const { addAssignment, handleModalToggle, error } = this.props;
     const { name, due, title, description, username } = this.state;
+    console.log("Error Modal", error)
     const newAssignment = {
       name,
       due,
@@ -58,8 +59,7 @@ class AssignmentModal extends Component {
     });
 
     addAssignment(newAssignment);
-    console.log("Error State", this.props.error);
-    if (!error) { handleModalToggle() }
+    handleModalToggle();
   };
   render() {
     const { open, handleModalToggle, error, errorMessage } = this.props;
