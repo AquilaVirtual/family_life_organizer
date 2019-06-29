@@ -105,7 +105,7 @@ class AssignmentModal extends Component {
             <Button
               floated="right"
               type="cancel"
-              icon="cancel"
+              icon="cancel"\
               content="Cancel"
               onClick={handleModalToggle}
             />
