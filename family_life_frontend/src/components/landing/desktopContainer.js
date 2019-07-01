@@ -27,6 +27,7 @@ class DesktopContainer extends Component {
     localStorage.removeItem("userId");
     localStorage.removeItem("accountType");
     localStorage.removeItem("username");
+    window.location.reload();
 
     this.props.history.push("/");
   };

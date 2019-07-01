@@ -11,6 +11,7 @@ const Header = props => {
     localStorage.removeItem("userId");
     localStorage.removeItem("accountType");
     localStorage.removeItem("username");
+    window.location.reload();
   };
   return (
     <div className="header--headingContainer">
